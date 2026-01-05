@@ -30,7 +30,7 @@ The system is designed for applications in radiation protection, nuclear emergen
 
 If you use this software in your research, please cite it as follows:
 
-> [BARROS A.R., et.al], **Dose2Risk: A Computational Pipeline for Cancer Risk Estimation from Ionizing Radiation**, (2025), GitHub repository, [https://github.com/alvaroriz/dose2risk](https://github.com/alvaroriz/dose2risk)
+> [BARROS A.R., et.al], **Dose2Risk: A Computational Pipeline for Cancer Risk Estimation from Ionizing Radiation**, (2025), GitHub repository, [https://github.com/profalvarobarros/Dose2Risk](https://github.com/profalvarobarros/Dose2Risk)
 
 *INSERIR REFERÊNCIA DO ARTIGO*
 
@@ -40,8 +40,8 @@ To run this project, you need Python 3.8+ and the required libraries.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/alvaroriz/dose2risk.git
-    cd dose2risk
+    git clone https://github.com/profalvarobarros/Dose2Risk.git
+    cd Dose2Risk
     ```
 
 2.  **Install dependencies:**
@@ -49,7 +49,12 @@ To run this project, you need Python 3.8+ and the required libraries.
     ```bash
     # Create and activate a virtual environment (optional but recommended)
     python -m venv .venv
-    source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`
+    
+    # On Windows
+    .venv\Scripts\activate
+    
+    # On macOS/Linux
+    source .venv/bin/activate
 
     # Install the required packages
     pip install -r requirements.txt
@@ -57,15 +62,15 @@ To run this project, you need Python 3.8+ and the required libraries.
 
 ## Usage
 
-You can use Dose2Risk through its web interface or the command-line interface.
+You can use Dose2Risk through its web interface.
 
-### Option 1: Web Interface (Recommended)
+### Web Interface
 
 The web interface is the easiest way to use the tool.
 
 1.  **Start the web server:**
     ```bash
-    python app_web.py
+    python run.py
     ```
 
 2.  **Access the application:**
@@ -77,43 +82,24 @@ The web interface is the easiest way to use the tool.
     -   Click "Process" to run the pipeline.
     -   Download the generated CSV and LOG files directly from the interface.
 
-### Option 2: Command-Line Interface (CLI)
-
-The CLI is ideal for batch processing or integration with other scripts.
-
-1.  **Prepare your data:**
-    -   Place your HotSpot input files (`.txt`) in a directory (e.g., `ExemploArquivoEntrada/`).
-    -   Ensure the reference data files are in the `dados_referencia/` directory.
-
-2.  **Run the pipeline:**
-    ```bash
-    python hotspot_to_risk.py --input_dir ExemploArquivoEntrada/ --output_dir saidas/ --exp_age 10 --att_age 30
-    ```
-
-3.  **Command-line arguments:**
-    -   `--input_dir`: Path to the directory containing HotSpot files.
-    -   `--output_dir`: Path to the directory where results will be saved.
-    -   `--exp_age`: Age at exposure (in years).
-    -   `--att_age`: Age at risk assessment (in years).
-
-4.  **Check the results:**
-    The output files (CSV and LOG) will be saved in the specified `output_dir`.
-
 ## Project Structure
 
 ```
 Programa_Python_AR/
-├── app_web.py             # Flask web application
-├── hotspot_to_risk.py     # Main CLI processing script
+├── dose2risk/             # Main application package
+│   ├── api/               # Web API and Flask application
+│   │   ├── routes.py      # Flask routes
+│   │   ├── templates/     # HTML templates
+│   │   └── static/        # Static assets
+│   └── core/              # Core processing logic
+│       ├── pipeline.py        # Orchestrator
+│       ├── extractor.py       # Data extraction from HotSpot files
+│       ├── transposer.py      # Data reshaping
+│       └── risk_calculator.py # BEIR V/VII risk models
+├── config/                # Configuration files
+├── data/                  # Data directory
+├── run.py                 # Application entry point
 ├── requirements.txt       # Project dependencies
-├── babel.cfg              # Configuration for i18n
-├── translations/          # Language translation files
-├── templates/             # HTML templates for the web app
-├── static/                # Static files (CSS, JS, images)
-├── dados_referencia/      # Reference data and parameters (e.g., BEIR tables)
-├── ExemploArquivoEntrada/ # Example HotSpot input files
-├── saidas/                # Default directory for output results
-├── uploads/               # Directory for temporary file uploads
 └── README.md              # This file
 ```
 

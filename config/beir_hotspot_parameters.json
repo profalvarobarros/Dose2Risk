@@ -1,0 +1,682 @@
+{
+  "_metadata": {
+    "version": "2.0",
+    "description": "Biological Risk Parameters for BEIR V and BEIR VII models. Maps HotSpot organs to BEIR models.",
+    "last_update": "2025-12-17"
+  },
+  "configurations": {
+    "red_marrow": {
+      "hotspot_organ": "red_marrow",
+      "beir_VII_equivalence": "leukemia",
+      "baseline_incidence": {
+        "M": 0.0036,
+        "F": 0.0030
+      },
+      "beir_vii": {
+        "model_type": "leukemia",
+        "latency": 2,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.4,
+          "theta": 0.87,
+          "delta": -0.48,
+          "phi": 0.42,
+          "beta": {
+            "M": 1.1,
+            "F": 1.2
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "leukemia_lq",
+        "params": {
+          "alpha2": 0.243,
+          "alpha3": 0.271,
+          "time_windows": [
+            {
+              "max_age_exposure": 20,
+              "intervals": [
+                {
+                  "max_years_since": 120,
+                  "beta": 4.885
+                }
+              ],
+              "fallback_beta": -999.0
+            },
+            {
+              "max_age_exposure": 120,
+              "intervals": [
+                {
+                  "max_years_since": 25,
+                  "beta": 2.367
+                },
+                {
+                  "max_years_since": 30,
+                  "beta": 1.638
+                }
+              ],
+              "fallback_beta": -999.0
+            }
+          ]
+        }
+      }
+    },
+    "lung": {
+      "hotspot_organ": "lung",
+      "beir_VII_equivalence": "lung",
+      "baseline_incidence": {
+        "M": 0.0095,
+        "F": 0.0069
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -1.4,
+          "beta": {
+            "M": 0.32,
+            "F": 1.4
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear",
+        "params": {
+          "coef": {
+            "M": 0.3,
+            "F": 0.6
+          }
+        }
+      }
+    },
+    "breast": {
+      "hotspot_organ": "breast",
+      "beir_VII_equivalence": "breast",
+      "baseline_incidence": {
+        "M": 0.0003,
+        "F": 0.0314
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": 0.0,
+          "eta": -2.0,
+          "beta": {
+            "M": "N/A",
+            "F": 0.51
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "breast_age_dependent",
+        "params": {
+          "age_brackets": [
+            {
+              "max_age": 15,
+              "coef": 1.2
+            },
+            {
+              "max_age": 25,
+              "coef": 1.1
+            },
+            {
+              "max_age": 35,
+              "coef": 0.6
+            },
+            {
+              "max_age": 45,
+              "coef": 0.3
+            }
+          ],
+          "default_coef": 0.1
+        }
+      }
+    },
+    "thyroid": {
+      "hotspot_organ": "thyroid",
+      "beir_VII_equivalence": "thyroid",
+      "baseline_incidence": {
+        "M": 0.0014,
+        "F": 0.0050
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.083,
+          "eta": 0.0,
+          "beta": {
+            "M": 0.53,
+            "F": 1.05
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "thyroid_age_dependent",
+        "params": {
+          "threshold_age": 18,
+          "coef_young": 7.5,
+          "coef_adult": 0.5
+        }
+      }
+    },
+    "stomach_wall": {
+      "hotspot_organ": "stomach_wall",
+      "beir_VII_equivalence": "stomach",
+      "baseline_incidence": {
+        "M": 0.0071,
+        "F": 0.0037
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -1.4,
+          "beta": {
+            "M": 0.21,
+            "F": 0.48
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_digestive",
+        "params": {
+          "coef": 0.8
+        }
+      }
+    },
+    "lli_wall": {
+      "hotspot_organ": "lli_wall",
+      "beir_VII_equivalence": "colon",
+      "baseline_incidence": {
+        "M": 0.0093,
+        "F": 0.0083
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -1.4,
+          "beta": {
+            "M": 0.63,
+            "F": 0.43
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_digestive",
+        "params": {
+          "coef": 0.8
+        }
+      }
+    },
+    "uli_wall": {
+      "hotspot_organ": "uli_wall",
+      "beir_VII_equivalence": "colon",
+      "baseline_incidence": {
+        "M": 0.0093,
+        "F": 0.0083
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -1.4,
+          "beta": {
+            "M": 0.63,
+            "F": 0.43
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_digestive",
+        "params": {
+          "coef": 0.8
+        }
+      }
+    },
+    "si_wall": {
+      "hotspot_organ": "si_wall",
+      "beir_VII_equivalence": "colon",
+      "baseline_incidence": {
+        "M": 0.0093,
+        "F": 0.0083
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -1.4,
+          "beta": {
+            "M": 0.63,
+            "F": 0.43
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_digestive",
+        "params": {
+          "coef": 0.8
+        }
+      }
+    },
+    "liver": {
+      "hotspot_organ": "liver",
+      "beir_VII_equivalence": "liver",
+      "baseline_incidence": {
+        "M": 0.0040,
+        "F": 0.0020
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -1.4,
+          "beta": {
+            "M": 0.32,
+            "F": 0.32
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_digestive",
+        "params": {
+          "coef": 0.8
+        }
+      }
+    },
+    "esophagus": {
+      "hotspot_organ": "esophagus",
+      "beir_VII_equivalence": "other_solid",
+      "baseline_incidence": {
+        "M": 0.0060,
+        "F": 0.0020
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -2.8,
+          "beta": {
+            "M": 0.27,
+            "F": 0.45
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_digestive",
+        "params": {
+          "coef": 0.8
+        }
+      }
+    },
+    "bladder_wall": {
+      "hotspot_organ": "bladder_wall",
+      "beir_VII_equivalence": "bladder",
+      "baseline_incidence": {
+        "M": 0.0045,
+        "F": 0.0015
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -1.4,
+          "beta": {
+            "M": 0.5,
+            "F": 1.65
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "ovaries": {
+      "hotspot_organ": "ovaries",
+      "beir_VII_equivalence": "ovary",
+      "baseline_incidence": {
+        "M": 0.0,
+        "F": 0.0045
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -1.4,
+          "beta": {
+            "M": "N/A",
+            "F": 0.38
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "uterus": {
+      "hotspot_organ": "uterus",
+      "beir_VII_equivalence": "uterus",
+      "baseline_incidence": {
+        "M": 0.0,
+        "F": 0.0135
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -1.4,
+          "beta": {
+            "M": "N/A",
+            "F": 0.055
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "testes": {
+      "hotspot_organ": "testes",
+      "beir_VII_equivalence": "prostate",
+      "baseline_incidence": {
+        "M": 0.0538,
+        "F": 0.0
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -1.4,
+          "beta": {
+            "M": 0.12,
+            "F": "N/A"
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "kidneys": {
+      "hotspot_organ": "kidneys",
+      "beir_VII_equivalence": "other_solid",
+      "baseline_incidence": {
+        "M": 0.0045,
+        "F": 0.0022
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -2.8,
+          "beta": {
+            "M": 0.27,
+            "F": 0.45
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "pancreas": {
+      "hotspot_organ": "pancreas",
+      "beir_VII_equivalence": "other_solid",
+      "baseline_incidence": {
+        "M": 0.0025,
+        "F": 0.0020
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -2.8,
+          "beta": {
+            "M": 0.27,
+            "F": 0.45
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "spleen": {
+      "hotspot_organ": "spleen",
+      "beir_VII_equivalence": "other_solid",
+      "baseline_incidence": {
+        "M": 0.0010,
+        "F": 0.0010
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -2.8,
+          "beta": {
+            "M": 0.27,
+            "F": 0.45
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "skin": {
+      "hotspot_organ": "skin",
+      "beir_VII_equivalence": "other_solid",
+      "baseline_incidence": {
+        "M": 0.0600,
+        "F": 0.0400
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -2.8,
+          "beta": {
+            "M": 0.27,
+            "F": 0.45
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "muscle": {
+      "hotspot_organ": "muscle",
+      "beir_VII_equivalence": "other_solid",
+      "baseline_incidence": {
+        "M": 0.0010,
+        "F": 0.0010
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -2.8,
+          "beta": {
+            "M": 0.27,
+            "F": 0.45
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "adrenals": {
+      "hotspot_organ": "adrenals",
+      "beir_VII_equivalence": "other_solid",
+      "baseline_incidence": {
+        "M": 0.0010,
+        "F": 0.0010
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -2.8,
+          "beta": {
+            "M": 0.27,
+            "F": 0.45
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "brain": {
+      "hotspot_organ": "brain",
+      "beir_VII_equivalence": "other_solid",
+      "baseline_incidence": {
+        "M": 0.0022,
+        "F": 0.0018
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -2.8,
+          "beta": {
+            "M": 0.27,
+            "F": 0.45
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "surface_bone": {
+      "hotspot_organ": "surface_bone",
+      "beir_VII_equivalence": "other_solid",
+      "baseline_incidence": {
+        "M": 0.0010,
+        "F": 0.0010
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -2.8,
+          "beta": {
+            "M": 0.27,
+            "F": 0.45
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    },
+    "thymus": {
+      "hotspot_organ": "thymus",
+      "beir_VII_equivalence": "other_solid",
+      "baseline_incidence": {
+        "M": 0.0010,
+        "F": 0.0010
+      },
+      "beir_vii": {
+        "model_type": "solid",
+        "latency": 5,
+        "ddref": 1.0,
+        "params": {
+          "gamma": -0.3,
+          "eta": -2.8,
+          "beta": {
+            "M": 0.27,
+            "F": 0.45
+          }
+        }
+      },
+      "beir_v": {
+        "model_type": "linear_other",
+        "params": {
+          "coef": 0.2
+        }
+      }
+    }
+  }
+}

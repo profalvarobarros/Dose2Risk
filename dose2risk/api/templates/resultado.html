@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Resultados') }} - Dose2Risk{% endblock %}
+
+{% block content %}
+<div class="result-container">
+    <h2>{{ _('Resultados Gerados') }}</h2>
+    <p>{{ _('Clique nos links abaixo para baixar os arquivos de saída:') }}</p>
+
+    <div class="download-list">
+        {% for arquivo in arquivos_saida %}
+        <a href="{{ url_for('main.download_arquivo', id_execucao=id_saida, nome_arquivo=arquivo) }}"
+            class="download-item">
+            <i class="fas fa-file-alt"></i>
+            <span>{{ arquivo }}</span>
+            <i class="fas fa-download"></i>
+        </a>
+        {% endfor %}
+    </div>
+
+    <div class="action-buttons" style="flex-direction: column; gap: 10px;">
+        <a href="{{ url_for('main.download_todos', id_saida=id_saida) }}" class="submit-btn"
+            style="background-color: #4F46E5; text-align: center;">
+            <i class="fas fa-file-archive"></i> {{ _('Baixar Todos os Arquivos (.zip)') }}
+        </a>
+        <div style="display: flex; gap: 10px; width: 100%; justify-content: center;">
+            <a href="{{ url_for('main.processar', id_execucao=id_entrada) }}" class="submit-btn secondary-btn">{{
+                _('Processar Novamente') }}</a>
+            <a href="{{ url_for('main.index') }}" class="submit-btn">{{ _('Voltar ao Início') }}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,525 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Documentação Técnica') }}{% endblock %}
+
+{% block content %}
+<!-- Custom Styles for Technical Documentation -->
+<style>
+    /* Typography & Layout */
+    .docs-wrapper {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        color: #334155;
+        line-height: 1.7;
+        background-color: #ffffff;
+        padding-top: 40px;
+        padding-bottom: 80px;
+    }
+
+    .docs-title {
+        font-family: 'Segoe UI', serif;
+        /* A bit more formal for the main title */
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
+    }
+
+    .docs-subtitle {
+        font-weight: 400;
+        color: #64748b;
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Sidebar Navigation */
+    .docs-sidebar {
+        position: sticky;
+        top: 2rem;
+        border-right: 1px solid #e2e8f0;
+        padding-right: 2rem;
+    }
+
+    .nav-docs .nav-link {
+        color: #64748b;
+        font-weight: 500;
+        padding: 0.5rem 0;
+        border-left: 2px solid transparent;
+        padding-left: 1rem;
+        margin-bottom: 0.25rem;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+    }
+
+    .nav-docs .nav-link:hover {
+        color: #0f172a;
+        border-left-color: #cbd5e1;
+    }
+
+    .nav-docs .nav-link.active {
+        color: #2563eb;
+        border-left-color: #2563eb;
+        background-color: transparent;
+        font-weight: 600;
+    }
+
+    /* Content Area */
+    .docs-content section {
+        margin-bottom: 3rem;
+        scroll-margin-top: 2rem;
+        /* Avoid header overlap */
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-top: 2rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #334155;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    h4 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #475569;
+        margin-top: 1.5rem;
+    }
+
+    /* Scientific Elements */
+    .equation-box {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 1.5rem;
+        text-align: center;
+        margin: 1.5rem 0;
+        font-size: 1.1rem;
+        overflow-x: auto;
+    }
+
+    .code-block {
+        background-color: #1e293b;
+        color: #e2e8f0;
+        padding: 1rem;
+        border-radius: 6px;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9rem;
+        margin: 1rem 0;
+        border-left: 4px solid #2563eb;
+    }
+
+    .callout {
+        border-left: 4px solid #3b82f6;
+        background-color: #eff6ff;
+        padding: 1rem 1.25rem;
+        margin: 1.5rem 0;
+        border-radius: 0 4px 4px 0;
+    }
+
+    .callout-warning {
+        border-left-color: #f59e0b;
+        background-color: #fef3c7;
+        color: #92400e;
+    }
+
+    .callout-title {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #1e3a8a;
+    }
+
+    .callout-warning .callout-title {
+        color: #92400e;
+    }
+
+    /* Tables */
+    .table-scientific {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+    }
+
+    .table-scientific th {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        font-weight: 600;
+        text-align: left;
+        padding: 0.75rem 1rem;
+        border-bottom: 2px solid #e2e8f0;
+    }
+
+    .table-scientific td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #e2e8f0;
+        color: #475569;
+    }
+
+    .table-scientific tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* Buttons */
+    .btn-science {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: white;
+        border: 1px solid #cfd8dc;
+        color: #374151;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+        text-decoration: none;
+    }
+
+    .btn-science:hover {
+        border-color: #94a3b8;
+        background-color: #f8fafc;
+        color: #0f172a;
+    }
+
+    .btn-science.primary {
+        background-color: #2563eb;
+        color: white;
+        border-color: #2563eb;
+    }
+
+    .btn-science.primary:hover {
+        background-color: #1d4ed8;
+    }
+
+    /* Screenshots Placeholder */
+    .screenshot-placeholder {
+        background: #f1f5f9;
+        border: 2px dashed #cbd5e1;
+        border-radius: 8px;
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #94a3b8;
+        font-style: italic;
+        margin: 1rem 0;
+    }
+</style>
+
+<div class="docs-wrapper">
+    <div class="container">
+        <!-- Main Header -->
+        <div class="row mb-5">
+            <div class="col-lg-10 offset-lg-1">
+                <h1 class="docs-title text-center">{{ _('Manual Técnico de Referência') }}</h1>
+                <p class="docs-subtitle text-center">{{ _('Dose2Risk: Sistema Integrado de Avaliação de Risco
+                    Radiológico') }}</p>
+                <div class="text-center mt-4">
+                    <a href="http://www.dose2risk.com.br" target="_blank" class="btn-science"><i
+                            class="fas fa-globe"></i> Acessar Web App</a>
+                    <a href="http://github.com/profalvarobarros/Dose2Risk" target="_blank" class="btn-science"><i
+                            class="fab fa-github"></i> Código Fonte (GitHub)</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <nav class="docs-sidebar">
+                    <div class="nav flex-column nav-docs" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-intro-tab" data-bs-toggle="pill" href="#section-intro"
+                            role="tab">{{ _('1. Introdução e Propósito') }}</a>
+                        <a class="nav-link" id="v-pills-model-tab" data-bs-toggle="pill" href="#section-model"
+                            role="tab">{{ _('2. Fundamentação Científica') }}</a>
+                        <a class="nav-link" id="v-pills-usage-tab" data-bs-toggle="pill" href="#section-usage"
+                            role="tab">{{ _('3. Guia Operacional') }}</a>
+                        <a class="nav-link" id="v-pills-output-tab" data-bs-toggle="pill" href="#section-output"
+                            role="tab">{{ _('4. Especificação de Saída') }}</a>
+                        <a class="nav-link" id="v-pills-audit-tab" data-bs-toggle="pill" href="#section-audit"
+                            role="tab">{{ _('5. Auditoria e Segurança') }}</a>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Content Area -->
+            <div class="col-lg-9 col-md-12 docs-content tab-content">
+
+                <!-- 1. Introdução -->
+                <div class="tab-pane fade show active" id="section-intro" role="tabpanel">
+                    <section>
+                        <h2>1. Introdução e Propósito do Sistema</h2>
+                        <p>
+                            {{ _('O <strong>Dose2Risk</strong> estabelece uma ponte metodológica crítica entre a física
+                            da dispersão atmosférica e a radiobiologia quantitativa. Enquanto softwares de dispersão
+                            tradicionais (como o HotSpot) entregam métricas de dose física (e.g., Dose Efetiva
+                            Comprometida em Sieverts), eles falham em traduzir esses números em consequências biológicas
+                            tangíveis para a vida humana.') }}
+                        </p>
+
+                        <div class="callout">
+                            <span class="callout-title">{{ _('Objetivo Primário') }}</span>
+                            {{ _('Prover uma estimativa probabilística, auditável e cientificamente embasada do risco de
+                            carcinogênese (câncer) induzido por radiação em indivíduos expostos a eventos radiológicos
+                            ou nucleares, utilizando os modelos padrão-ouro da Academia Nacional de Ciências
+                            (NAS/USA).') }}
+                        </div>
+
+                        <h3>Requisitos de Uso e Instalação</h3>
+                        <p>{{ _('Para aplicações científicas e acadêmicas de alto rigor, recomenda-se a instalação local
+                            da ferramenta para garantir controle total sobre os artefatos de dados e
+                            reprodutibilidade.') }}</p>
+                        <div class="code-block">
+                            # Clonagem do Repositório Oficial
+                            git clone https://github.com/profalvarobarros/Dose2Risk.git
+
+                            # Instalação de Dependências
+                            cd Dose2Risk
+                            pip install -r requirements.txt
+
+                            # Execução Local
+                            python run.py
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 2. Fundamentação -->
+                <div class="tab-pane fade" id="section-model" role="tabpanel">
+                    <section>
+                        <h2>2. Fundamentação Científica e Matemática</h2>
+                        <p>{{ _('O motor de cálculo do Dose2Risk implementa estritamente os algoritmos definidos pelos
+                            comitês BEIR (Biological Effects of Ionizing Radiation). O sistema seleciona dinamicamente
+                            entre os modelos BEIR V e BEIR VII Fase 2, dependendo da especificidade biológica do tecido
+                            analisado.') }}</p>
+
+                        <h3>2.1 Modelo BEIR VII Fase 2 (Cânceres Sólidos)</h3>
+                        <p>{{ _('Para a maioria dos tecidos sólidos (e.g., Estômago, Cólon, Pulmão, Mama, Tireoide),
+                            utiliza-se o Modelo de Excesso de Risco Relativo (ERR) com transporte de risco via Idade
+                            Atingida (Attained Age).') }}</p>
+
+                        <div class="equation-box">
+                            $$ ERR = \beta \cdot D \cdot \exp(\gamma \cdot e^*) \cdot \left(\frac{a}{60}\right)^\eta $$
+                        </div>
+
+                        <table class="table-scientific">
+                            <thead>
+                                <tr>
+                                    <th>{{ _('Parâmetro') }}</th>
+                                    <th>{{ _('Descrição Técnica') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>$$D$$</strong></td>
+                                    <td>{{ _('Dose Absorvida no órgão (unidade: Sievert). Extraído da modelagem de
+                                        dispersão.') }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$$\beta$$</strong></td>
+                                    <td>{{ _('Coeficiente angular de risco (Slope Factor). Específico por sexo e
+                                        órgão.') }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$$e^*$$</strong></td>
+                                    <td>{{ _('Termo de ajuste da idade de exposição. Definido como min(idade_exp - 30,
+                                        0) / 10.') }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$$\eta$$</strong></td>
+                                    <td>{{ _('Expoente de dependência da idade atingida.') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="small text-muted">{{ _('Nota: O Fator de Eficácia de Dose e Taxa de Dose (DDREF) é
+                            configurado como <strong>1.0</strong> (padrão conservador para proteção radiológica), mas
+                            pode ser ajustado na configuração profunda do sistema JSON.') }}</p>
+
+                        <h3>2.2 Modelo BEIR V (Leucemias)</h3>
+                        <p>{{ _('Para tecidos hematopoiéticos (Leucemia, Medula Óssea), o sistema adota o modelo
+                            Linear-Quadrático com forte dependência temporal (Time Since Exposure), refletindo a janela
+                            de latência característica dessas patologias.') }}</p>
+
+                        <div class="equation-box">
+                            $$ ERR = \beta \cdot [D + \theta \cdot D^2] \cdot \exp(\gamma \cdot e + \delta \cdot
+                            \ln(t/25)) $$
+                        </div>
+
+                        <h3>2.3 Parâmetros Basais (LAR)</h3>
+                        <p>{{ _('O cálculo do Risco Vitalício Atribuível (LAR) projeta o ERR sobre as taxas de
+                            mortalidade e incidência de câncer da população. Os dados de base ("baseline incidence")
+                            foram atualizados para o ano de 2025, utilizando estatísticas do <strong>Instituto Nacional
+                                de Câncer (INCA, 2022)</strong>.') }}</p>
+
+                        <div class="mt-3">
+                            <a href="https://nap.nationalacademies.org/catalog/11340/health-risks-from-exposure-to-low-levels-of-ionizing-radiation"
+                                target="_blank" class="btn-science">{{ _('Referência BEIR VII (NAP 2006)') }} <i
+                                    class="fas fa-external-link-alt"></i></a>
+                            <a href="https://nap.nationalacademies.org/catalog/1134/health-effects-of-exposure-to-low-levels-of-ionizing-radiation"
+                                target="_blank" class="btn-science">{{ _('Referência BEIR V (NAP 1990)') }} <i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 3. Guia Operacional -->
+                <div class="tab-pane fade" id="section-usage" role="tabpanel">
+                    <section>
+                        <h2>3. Guia Operacional</h2>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>Passo 1: Input de Dados</h3>
+                                <p>{{ _('O sistema aceita arquivos de texto puro (.txt) gerados pelo módulo "Output to
+                                    Text" do HotSpot. Múltiplos arquivos podem ser processados em lote.') }}</p>
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-file-upload fa-3x mb-3"></i>
+                                    <span>{{ _('Interface de Upload de Arquivos') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>Passo 2: Definição de Cenário</h3>
+                                <p>{{ _('Defina a "Idade na Exposição" (momento do incidente) e "Idade Atingida" (alvo
+                                    da predição). Estas variáveis calibram os modelos de latência.') }}</p>
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-sliders-h fa-3x mb-3"></i>
+                                    <span>{{ _('Formulário de Idades') }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="callout callout-warning mt-4">
+                            <span class="callout-title">{{ _('Arquivos de Exemplo para Validação') }}</span>
+                            <p>{{ _('Para fins de treinamento acadêmico, disponibilizamos um dataset padrão simulando um
+                                Dispositivo de Dispersão Radiológica (RDD) de Cs-137 (1000 Ci).') }}</p>
+
+                            <div class="d-flex gap-3 mt-3">
+                                <a href="{{ url_for('static', filename='examples/inputs/InputHotSpotExamples.zip') }}"
+                                    class="btn-science primary">
+                                    <i class="fas fa-download"></i> {{ _('Baixar Inputs (.txt)') }}
+                                </a>
+                                <a href="{{ url_for('static', filename='examples/outputs/Dose2Risk_execution_ee10_ea30_EXAMPLE.zip') }}"
+                                    class="btn-science">
+                                    <i class="fas fa-file-invoice"></i> {{ _('Baixar Resultados Esperados (.zip)') }}
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 4. Saída -->
+                <div class="tab-pane fade" id="section-output" role="tabpanel">
+                    <section>
+                        <h2>4. Especificação dos Arquivos de Saída</h2>
+                        <p>{{ _('O sistema gera um pacote de dados completo para cada execução. Abaixo, a especificação
+                            técnica das colunas do arquivo principal de risco (`3_calculated_risks.csv`).') }}</p>
+
+                        <table class="table-scientific">
+                            <thead>
+                                <tr>
+                                    <th style="width: 25%">{{ _('Variável (Header)') }}</th>
+                                    <th>{{ _('Definição Técnica') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>row_id</code></td>
+                                    <td>{{ _('Identificador único de rastreabilidade (link com arquivo de entrada).') }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code>dose_Sv_[cen]</code></td>
+                                    <td>{{ _('Dose Absorvida computada para o cenário [cen] (distância/estabilidade).')
+                                        }}</td>
+                                </tr>
+                                <tr>
+                                    <td><code>ERR_[cen]</code></td>
+                                    <td>{{ _('Excesso de Risco Relativo (Adimensional). Fator multiplicativo sobre a
+                                        incidência basal.') }}</td>
+                                </tr>
+                                <tr>
+                                    <td><code>LAR_[cen]</code></td>
+                                    <td>{{ _('Risco Vitalício Atribuível (Probabilidade %%). O risco absoluto adicionado
+                                        ao longo da vida.') }}</td>
+                                </tr>
+                                <tr>
+                                    <td><code>model_[cen]</code></td>
+                                    <td>{{ _('Algoritmo utilizado (BEIR V ou BEIR VII) para auditoria.') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>Integração e Download em Lote</h3>
+                        <p>{{ _('Recomenda-se o uso da função <strong>"Baixar Todos os Arquivos (.zip)"</strong> na tela
+                            de resultados. Este arquivo contém a cadeia de custódia completa do dado: Input Original +
+                            Tabelas Intermediárias + Resultados Finais + Log de Auditoria.') }}</p>
+                    </section>
+                </div>
+
+                <!-- 5. Auditoria -->
+                <div class="tab-pane fade" id="section-audit" role="tabpanel">
+                    <section>
+                        <h2>5. Auditoria e Rastreabilidade</h2>
+                        <p>{{ _('Para atender requisitos de sistemas críticos, o Dose2Risk implementa mecanismos
+                            robustos de integridade de dados.') }}</p>
+
+                        <h4>5.1 Log Forense (Nível DEBUG)</h4>
+                        <p>{{ _('O arquivo `4_execution_log.log` não é apenas um registro de erros. Ele grava cada
+                            coeficiente (beta, gamma) utilizado em cada cálculo individual, permitindo reconstituição
+                            matemática passo-a-passo ("Walkthrough Audit").') }}</p>
+
+                        <h4>5.2 Teste de Regressão "Gold Standard"</h4>
+                        <p>{{ _('O núcleo de cálculo é protegido por um teste de regressão criptográfico. A cada
+                            execução, o sistema verifica se a lógica matemática produz exatamente o mesmo Hash SHA-256
+                            para um dataset de entrada padrão ("Golden Input"). Isso evita alterações silenciosas
+                            ("drift") no código que poderiam comprometer a precisão médica dos resultados.') }}</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MathJax Logic -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Tab Activation Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Find all triggers
+        var triggerTabList = [].slice.call(document.querySelectorAll('.nav-docs .nav-link'));
+
+        triggerTabList.forEach(function (triggerEl) {
+            triggerEl.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // 1. Update Active State in Nav
+                triggerTabList.forEach(l => l.classList.remove('active'));
+                triggerEl.classList.add('active');
+
+                // 2. Hide all panes
+                document.querySelectorAll('.tab-pane').forEach(p => {
+                    p.classList.remove('show', 'active');
+                });
+
+                // 3. Show target pane
+                var targetId = triggerEl.getAttribute('href');
+                var targetPane = document.querySelector(targetId);
+                if (targetPane) {
+                    targetPane.classList.add('show', 'active');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

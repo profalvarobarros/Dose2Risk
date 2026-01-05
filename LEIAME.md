@@ -8,10 +8,21 @@ O sistema é focado em aplicações de radioproteção, emergências nucleares e
 ## Estrutura do Projeto
 ```
 Programa_Python/
-├── hotspot_fluxo_unificado.py          # Script principal do pipeline
-├── dados_referencia/                  # PDFs, tabelas e parâmetros de referência (ex: BEIR VII)
-├── fonte_file_hotspot/                # Arquivos de entrada HotSpot (.txt)
-├── output_dir/                        # Resultados gerados (CSV, logs)
+├── dose2risk/             # Pacote principal da aplicação
+│   ├── api/               # API Web e aplicação Flask
+│   │   ├── routes.py      # Rotas do Flask
+│   │   ├── templates/     # Templates HTML
+│   │   └── static/        # Arquivos estáticos
+│   └── core/              # Lógica principal de processamento
+│       ├── pipeline.py        # Orquestrador
+│       ├── extractor.py       # Extração de dados de arquivos HotSpot
+│       ├── transposer.py      # Reorganização de dados
+│       └── risk_calculator.py # Modelos de risco BEIR V/VII
+├── config/                # Arquivos de configuração
+├── data/                  # Diretório de dados
+├── run.py                 # Ponto de entrada da aplicação
+├── requirements.txt       # Dependências do projeto
+└── LEIAME.md              # Este arquivo
 ```
 
 ## Funcionalidades
@@ -20,6 +31,7 @@ Programa_Python/
 - **Cálculo de risco de câncer** para diferentes órgãos e cenários, com base nos modelos BEIR V e BEIR VII.
 - **Geração de relatórios** em CSV e logs detalhados do processamento.
 - **Parâmetros personalizáveis**: idade de exposição, idade de avaliação, modelo de risco, etc.
+- **Interface Web**: Upload de arquivos, configuração de parâmetros e download de resultados.
 
 ## Modelos Epidemiológicos
 - **BEIR VII**: Utiliza parâmetros beta, gamma e eta para cada órgão/sexo, ajustando o risco conforme idade de exposição e avaliação. Fórmula principal:
@@ -31,66 +43,40 @@ Programa_Python/
 - **BEIR V**: Modelo alternativo para doses muito elevadas, utilizando coeficientes alpha2, alpha3 e modificadores baseados no tempo desde a exposição.
 
 ## Como Executar
-1. **Pré-requisitos:**
-   - Python 3.8+
-   - Bibliotecas: pandas, numpy
 
-2. **Organize os diretórios:**
-   - Coloque os arquivos HotSpot na pasta `fonte_file_hotspot`.
-   - Certifique-se de que os arquivos de parâmetros e tabelas de referência estejam em `dados_referencia`.
-
----
-
-## Execução via Interface Web (Flask)
-
-Além do modo tradicional via linha de comando, este projeto oferece uma interface web moderna e amigável, permitindo o processamento dos arquivos HotSpot e geração dos riscos diretamente pelo navegador.
-
-### Como usar a interface web
+O projeto utiliza uma interface web para facilitar o uso.
 
 1. **Pré-requisitos:**
    - Python 3.8+
-   - Instalar dependências: `pip install flask pandas numpy`
+   - Instalar dependências (recomendado usar ambiente virtual):
+     ```bash
+     python -m venv .venv
+     
+     # Windows
+     .\.venv\Scripts\Activate
+     
+     # Linux/Mac
+     source .venv/bin/activate
+     
+     pip install -r requirements.txt
+     ```
 
 2. **Executando o servidor web:**
    - No terminal, acesse a pasta do projeto e execute:
      ```bash
-     python app_web.py
+     python run.py
      ```
-   - O sistema estará disponível em `http://localhost:5000`.
+   - O sistema estará disponível em `http://localhost:5000` (ou `http://127.0.0.1:5000`).
 
 3. **Fluxo de uso:**
    - **Upload:** Faça upload de um ou mais arquivos HotSpot `.txt` pela página inicial.
    - **Parâmetros:** Informe a idade na exposição e a idade atual no formulário exibido após o upload.
-   - **Processamento:** O sistema executa o pipeline real e gera os arquivos de saída (CSV e LOG) para download.
+   - **Processamento:** O sistema executa o pipeline e gera os arquivos de saída (CSV e LOG) para download.
    - **Reprocessamento:** É possível reprocessar os mesmos arquivos com outros parâmetros de idade, sem necessidade de novo upload.
    - **Download:** Baixe os arquivos de saída gerados diretamente pela interface.
 
 4. **Isolamento de execuções:**
-   - Cada upload cria uma pasta exclusiva para os arquivos enviados e para os resultados, permitindo múltiplos usuários e execuções simultâneas sem conflitos de nomes.
-
-### Exemplo de uso
-
-- Acesse `http://localhost:5000` no navegador.
-- Envie seus arquivos `.txt` do HotSpot.
-- Informe as idades solicitadas.
-- Baixe os arquivos de resultado (CSV/LOG).
-- Se desejar, clique em “Processar novamente com outras idades” para recalcular riscos usando os mesmos arquivos.
-
----
-
-3. **Execute o pipeline:**
-   ```bash
-   python hotspot_fluxo_unificado.py --input_dir fonte_file_hotspot --exp_age 10 --att_age 15 --output_dir output_dir
-   ```
-   - `--input_dir`: Pasta com arquivos HotSpot (.txt)
-   - `--exp_age`: Idade de exposição (anos)
-   - `--att_age`: Idade de avaliação (anos)
-   - `--output_dir`: Pasta para salvar os resultados
-
-4. **Resultados:**
-   - O arquivo CSV com os riscos estará em `output_dir/003_riscos_calculados_<timestamp>.csv`
-   - O log detalhado estará em `output_dir/003_riscos_calculados_<timestamp>.log`
-
+   - Cada sessão de upload cria uma pasta exclusiva para os arquivos enviados e para os resultados, permitindo execuções organizadas.
 ## Parâmetros de Entrada
 - **Idade de exposição:** Idade da pessoa no momento da exposição à radiação.
 - **Idade de avaliação:** Idade da pessoa na avaliação do risco.

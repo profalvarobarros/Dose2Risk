@@ -1,0 +1,204 @@
+HotSpot  Version 3.1.2 General Plume
+jul 16, 2021 17:05:50
+
+Source Term                : CAROLINA UserMix jul 16, 2021 16 10 59.mix (Mixture Scale Factor = 1,0000E+00)
+                             Mixture Scale Factor
+Physical Stack Height      : 0,0 m
+Stack Exit Velocity        : 0,00 m/s
+Stack Diameter             : 0,0 m
+Stack Effluent Temp.       : 0,0 deg C
+Air Temperature            : 0,0 deg C
+Effective Release Height   : 0,00 m
+Wind Speed (h=10 m)        : 3,00 m/s
+Wind Direction             : 195,0 degrees  Wind from the SSW
+Wind Speed (h=H-eff)       : 2,68 m/s
+Stability Class            : A
+Receptor Height            : 1,5 m
+Inversion Layer Height     : None
+Sample Time                : 10,000 min
+Breathing Rate             : 3,33E-04 m3/sec
+Distance Coordinates       : All distances are on the Plume Centerline
+
+Maximum Dose Distance      : 0,010 km   
+Maximum TEDE               : 5,27E+03 Sv
+Inner  Contour Dose        : 0,700 Sv
+Middle Contour Dose        : 0,100 Sv
+Outer  Contour Dose        : 0,050 Sv
+Exceeds Inner  Dose Out To : 0,99 km   
+Exceeds Middle Dose Out To : 2,7 km   
+Exceeds Outer  Dose Out To : 4,0 km   
+
+
+      Include Plume Passage Inhalation and Submersion
+      Include Ground Shine (Weathering Correction Factor : None)
+      Exposure Window:(Start: 0,00 days; Duration: 4,00 days)  [100% stay time].
+      Initial Deposition and Dose Rate shown
+      Ground Roughness Correction Factor: 1,000
+
+                             RESPIRABLE
+ DISTANCE      T E D E     TIME-INTEGRATED   GROUND SURFACE    GROUND SHINE    ARRIVAL
+                          AIR CONCENTRATION    DEPOSITION       DOSE RATE       TIME
+    km          (Sv)         (Bq-sec)/m3        (kBq/m2)          (Sv/hr)     (hour:min)
+ _______________________________________________________________________________________
+   0,030        7,3E+02         1,6E+14          5,0E+08          6,5E-01       <00:01
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,030       km   
+
+  Skin.........[2,7E+02]  Lung.........[1,3E+02]  thyroid......[1,3E+04]
+  Surface Bone.[2,7E+03]  Red Marrow...[1,3E+03]  Liver........[9,8E+01]
+  Spleen.......[9,9E+01]  Ovaries......[9,7E+01]  Adrenals.....[9,9E+01]
+  Breast.......[1,0E+02]  Stomach Wall.[1,0E+02]  SI Wall......[9,8E+01]
+  ULI Wall.....[1,0E+02]  LLI Wall.....[1,1E+02]  Bladder Wall.[9,9E+01]
+  Thymus.......[1,0E+02]  Esophagus....[9,7E+01]  Muscle.......[1,0E+02]
+  Kidneys......[9,8E+01]  Testes.......[1,1E+02]  Uterus.......[9,8E+01]
+  Pancreas.....[9,3E+01]  Brain........[5,1E+01]
+ ----------------------------------------------------------------------------
+ Inhalation  :  6,76E+02 (Plume Passage)
+ Submersion  :  2,84E+00 (Plume Passage)
+ Ground Shine:  5,42E+01
+
+ ----------------------------------------------------------------------------
+   0,100        6,8E+01         1,5E+13          4,5E+07          5,9E-02       <00:01
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,100       km   
+
+  Skin.........[2,5E+01]  Lung.........[1,2E+01]  thyroid......[1,2E+03]
+  Surface Bone.[2,5E+02]  Red Marrow...[1,2E+02]  Liver........[9,0E+00]
+  Spleen.......[9,0E+00]  Ovaries......[8,8E+00]  Adrenals.....[9,0E+00]
+  Breast.......[9,5E+00]  Stomach Wall.[9,1E+00]  SI Wall......[8,9E+00]
+  ULI Wall.....[9,2E+00]  LLI Wall.....[1,0E+01]  Bladder Wall.[9,0E+00]
+  Thymus.......[9,4E+00]  Esophagus....[8,9E+00]  Muscle.......[9,5E+00]
+  Kidneys......[8,9E+00]  Testes.......[9,7E+00]  Uterus.......[8,9E+00]
+  Pancreas.....[8,5E+00]  Brain........[4,6E+00]
+ ----------------------------------------------------------------------------
+ Inhalation  :  6,25E+01 (Plume Passage)
+ Submersion  :  2,63E-01 (Plume Passage)
+ Ground Shine:  4,87E+00
+
+ ----------------------------------------------------------------------------
+   0,500        2,7E+00         6,0E+11          1,8E+06          2,4E-03        00:03
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,500       km   
+
+  Skin.........[1,0E+00]  Lung.........[5,0E-01]  thyroid......[5,1E+01]
+  Surface Bone.[1,0E+01]  Red Marrow...[4,9E+00]  Liver........[3,6E-01]
+  Spleen.......[3,6E-01]  Ovaries......[3,6E-01]  Adrenals.....[3,7E-01]
+  Breast.......[3,8E-01]  Stomach Wall.[3,7E-01]  SI Wall......[3,6E-01]
+  ULI Wall.....[3,7E-01]  LLI Wall.....[4,1E-01]  Bladder Wall.[3,7E-01]
+  Thymus.......[3,8E-01]  Esophagus....[3,6E-01]  Muscle.......[3,9E-01]
+  Kidneys......[3,6E-01]  Testes.......[3,9E-01]  Uterus.......[3,6E-01]
+  Pancreas.....[3,4E-01]  Brain........[1,9E-01]
+ ----------------------------------------------------------------------------
+ Inhalation  :  2,54E+00 (Plume Passage)
+ Submersion  :  1,07E-02 (Plume Passage)
+ Ground Shine:  1,97E-01
+
+ ----------------------------------------------------------------------------
+   1,000        7,0E-01         1,5E+11          4,6E+05          6,1E-04        00:06
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    1,000       km   
+
+  Skin.........[2,5E-01]  Lung.........[1,3E-01]  thyroid......[1,3E+01]
+  Surface Bone.[2,6E+00]  Red Marrow...[1,2E+00]  Liver........[9,3E-02]
+  Spleen.......[9,3E-02]  Ovaries......[9,1E-02]  Adrenals.....[9,3E-02]
+  Breast.......[9,8E-02]  Stomach Wall.[9,4E-02]  SI Wall......[9,2E-02]
+  ULI Wall.....[9,5E-02]  LLI Wall.....[1,0E-01]  Bladder Wall.[9,4E-02]
+  Thymus.......[9,7E-02]  Esophagus....[9,2E-02]  Muscle.......[9,8E-02]
+  Kidneys......[9,2E-02]  Testes.......[1,0E-01]  Uterus.......[9,2E-02]
+  Pancreas.....[8,8E-02]  Brain........[4,8E-02]
+ ----------------------------------------------------------------------------
+ Inhalation  :  6,47E-01 (Plume Passage)
+ Submersion  :  2,72E-03 (Plume Passage)
+ Ground Shine:  5,03E-02
+
+ ----------------------------------------------------------------------------
+   2,000        1,8E-01         4,0E+10          1,2E+05          1,6E-04        00:12
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    2,000       km   
+
+  Skin.........[6,6E-02]  Lung.........[3,3E-02]  thyroid......[3,4E+00]
+  Surface Bone.[6,8E-01]  Red Marrow...[3,2E-01]  Liver........[2,4E-02]
+  Spleen.......[2,4E-02]  Ovaries......[2,4E-02]  Adrenals.....[2,4E-02]
+  Breast.......[2,5E-02]  Stomach Wall.[2,5E-02]  SI Wall......[2,4E-02]
+  ULI Wall.....[2,5E-02]  LLI Wall.....[2,7E-02]  Bladder Wall.[2,4E-02]
+  Thymus.......[2,5E-02]  Esophagus....[2,4E-02]  Muscle.......[2,6E-02]
+  Kidneys......[2,4E-02]  Testes.......[2,6E-02]  Uterus.......[2,4E-02]
+  Pancreas.....[2,3E-02]  Brain........[1,2E-02]
+ ----------------------------------------------------------------------------
+ Inhalation  :  1,68E-01 (Plume Passage)
+ Submersion  :  7,08E-04 (Plume Passage)
+ Ground Shine:  1,31E-02
+
+ ----------------------------------------------------------------------------
+   4,000        4,9E-02         1,1E+10          3,2E+04          4,2E-05        00:24
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    4,000       km   
+
+  Skin.........[1,8E-02]  Lung.........[8,9E-03]  thyroid......[9,0E-01]
+  Surface Bone.[1,8E-01]  Red Marrow...[8,7E-02]  Liver........[6,5E-03]
+  Spleen.......[6,5E-03]  Ovaries......[6,4E-03]  Adrenals.....[6,5E-03]
+  Breast.......[6,9E-03]  Stomach Wall.[6,6E-03]  SI Wall......[6,5E-03]
+  ULI Wall.....[6,7E-03]  LLI Wall.....[7,3E-03]  Bladder Wall.[6,6E-03]
+  Thymus.......[6,8E-03]  Esophagus....[6,4E-03]  Muscle.......[6,9E-03]
+  Kidneys......[6,5E-03]  Testes.......[7,0E-03]  Uterus.......[6,4E-03]
+  Pancreas.....[6,2E-03]  Brain........[3,3E-03]
+ ----------------------------------------------------------------------------
+ Inhalation  :  4,53E-02 (Plume Passage)
+ Submersion  :  1,91E-04 (Plume Passage)
+ Ground Shine:  3,52E-03
+
+ ----------------------------------------------------------------------------
+   6,000        2,3E-02         5,1E+09          1,5E+04          2,0E-05        00:37
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    6,000       km   
+
+  Skin.........[8,4E-03]  Lung.........[4,2E-03]  thyroid......[4,3E-01]
+  Surface Bone.[8,7E-02]  Red Marrow...[4,1E-02]  Liver........[3,1E-03]
+  Spleen.......[3,1E-03]  Ovaries......[3,0E-03]  Adrenals.....[3,1E-03]
+  Breast.......[3,2E-03]  Stomach Wall.[3,1E-03]  SI Wall......[3,1E-03]
+  ULI Wall.....[3,2E-03]  LLI Wall.....[3,4E-03]  Bladder Wall.[3,1E-03]
+  Thymus.......[3,2E-03]  Esophagus....[3,0E-03]  Muscle.......[3,3E-03]
+  Kidneys......[3,1E-03]  Testes.......[3,3E-03]  Uterus.......[3,1E-03]
+  Pancreas.....[2,9E-03]  Brain........[1,6E-03]
+ ----------------------------------------------------------------------------
+ Inhalation  :  2,15E-02 (Plume Passage)
+ Submersion  :  9,04E-05 (Plume Passage)
+ Ground Shine:  1,67E-03
+
+ ----------------------------------------------------------------------------
+   8,000        1,4E-02         3,0E+09          9,1E+03          1,2E-05        00:49
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    8,000       km   
+
+  Skin.........[5,0E-03]  Lung.........[2,5E-03]  thyroid......[2,5E-01]
+  Surface Bone.[5,2E-02]  Red Marrow...[2,5E-02]  Liver........[1,8E-03]
+  Spleen.......[1,8E-03]  Ovaries......[1,8E-03]  Adrenals.....[1,8E-03]
+  Breast.......[1,9E-03]  Stomach Wall.[1,9E-03]  SI Wall......[1,8E-03]
+  ULI Wall.....[1,9E-03]  LLI Wall.....[2,0E-03]  Bladder Wall.[1,9E-03]
+  Thymus.......[1,9E-03]  Esophagus....[1,8E-03]  Muscle.......[1,9E-03]
+  Kidneys......[1,8E-03]  Testes.......[2,0E-03]  Uterus.......[1,8E-03]
+  Pancreas.....[1,7E-03]  Brain........[9,5E-04]
+ ----------------------------------------------------------------------------
+ Inhalation  :  1,28E-02 (Plume Passage)
+ Submersion  :  5,38E-05 (Plume Passage)
+ Ground Shine:  9,95E-04
+
+ ----------------------------------------------------------------------------
+  10,000        9,3E-03         2,1E+09          6,2E+03          8,1E-06        01:02
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location   10,000       km   
+
+  Skin.........[3,4E-03]  Lung.........[1,7E-03]  thyroid......[1,7E-01]
+  Surface Bone.[3,5E-02]  Red Marrow...[1,7E-02]  Liver........[1,2E-03]
+  Spleen.......[1,2E-03]  Ovaries......[1,2E-03]  Adrenals.....[1,2E-03]
+  Breast.......[1,3E-03]  Stomach Wall.[1,3E-03]  SI Wall......[1,2E-03]
+  ULI Wall.....[1,3E-03]  LLI Wall.....[1,4E-03]  Bladder Wall.[1,2E-03]
+  Thymus.......[1,3E-03]  Esophagus....[1,2E-03]  Muscle.......[1,3E-03]
+  Kidneys......[1,2E-03]  Testes.......[1,3E-03]  Uterus.......[1,2E-03]
+  Pancreas.....[1,2E-03]  Brain........[6,4E-04]
+ ----------------------------------------------------------------------------
+ Inhalation  :  8,63E-03 (Plume Passage)
+ Submersion  :  3,63E-05 (Plume Passage)
+ Ground Shine:  6,70E-04
+
+ ----------------------------------------------------------------------------
