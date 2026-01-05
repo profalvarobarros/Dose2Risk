@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: dose2risk_app
+    restart: always
+    ports:
+      - "8000:5000"
+    environment:
+      - FLASK_ENV=production
+      - KEY=value # Adicione outras variáveis de ambiente aqui se necessário
+    volumes:
+      # Persistir dados de upload/output se necessário
+      - ./data:/app/data
