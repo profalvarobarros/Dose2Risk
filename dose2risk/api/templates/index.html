@@ -33,6 +33,12 @@
 {% endblock %}
 
 {% block scripts %}
+<style>
+    .upload-container.dragover {
+        border-color: #4CAF50; /* Cor de destaque ao arrastar */
+        background-color: rgba(76, 175, 80, 0.1);
+    }
+</style>
 <script>
     // Passa as strings traduzidas do Flask-Babel para o JavaScript
     const noneSelectedText = "{{ _('Nenhum ficheiro selecionado') }}";
@@ -46,18 +52,60 @@
 
     if (fileInput) {
         fileInput.addEventListener('change', () => {
-            const numFiles = fileInput.files.length;
-            if (numFiles === 0) {
-                fileNameDisplay.textContent = noneSelectedText;
-            } else if (numFiles === 1) {
-                fileNameDisplay.textContent = fileInput.files[0].name;
-            } else {
-                fileNameDisplay.textContent = filesSelectedTextFormat.replace('{0}', numFiles);
-            }
+            updateFileNameDisplay(fileInput.files);
         });
     }
 
+    function updateFileNameDisplay(files) {
+        const numFiles = files.length;
+        if (numFiles === 0) {
+            fileNameDisplay.textContent = noneSelectedText;
+        } else if (numFiles === 1) {
+            fileNameDisplay.textContent = files[0].name;
+        } else {
+            fileNameDisplay.textContent = filesSelectedTextFormat.replace('{0}', numFiles);
+        }
+    }
+
     if (form) {
+        // Drag and Drop Events
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            form.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            form.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            form.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight(e) {
+            form.classList.add('dragover');
+        }
+
+        function unhighlight(e) {
+            form.classList.remove('dragover');
+        }
+
+        form.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            if (fileInput) {
+                fileInput.files = files;
+                updateFileNameDisplay(files);
+            }
+        }
+
         form.addEventListener('submit', (event) => {
             alertsContainer.innerHTML = ''; // Limpa alertas antigos
 

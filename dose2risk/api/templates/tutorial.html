@@ -1,0 +1,394 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Tutorial de Uso') }}{% endblock %}
+
+{% block content %}
+<style>
+    .docs-wrapper {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        color: #334155;
+        line-height: 1.7;
+        background-color: #ffffff;
+        padding-top: 40px;
+        padding-bottom: 80px;
+    }
+
+    .docs-title {
+        font-family: 'Segoe UI', serif;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+    }
+
+    .docs-subtitle {
+        font-weight: 400;
+        color: #64748b;
+        font-size: 1.25rem;
+        margin-bottom: 3rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-top: 3rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+        margin-bottom: 2rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #334155;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .tutorial-step {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 3rem;
+        align-items: flex-start;
+        padding-bottom: 2rem;
+        border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .tutorial-step:last-child {
+        border-bottom: none;
+    }
+
+    .step-number {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        background-color: #3b82f6;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+    }
+
+    .step-content {
+        flex-grow: 1;
+    }
+
+    .step-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        margin-top: 0;
+    }
+
+    .screenshot-box {
+        background-color: #f8fafc;
+        border: 2px dashed #cbd5e1;
+        border-radius: 8px;
+        min-height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #64748b;
+        font-style: italic;
+        margin-top: 1.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .screenshot-box img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        background: #000;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 3rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .concept-box {
+        background-color: #eff6ff;
+        border-left: 4px solid #3b82f6;
+        padding: 1.5rem;
+        border-radius: 0 6px 6px 0;
+        margin: 1.5rem 0;
+    }
+
+    .concept-title {
+        color: #1e3a8a;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .card {
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: all 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="docs-wrapper">
+    <div class="container">
+        <!-- Header -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="docs-title text-center">{{ _('Como Usar o Dose2Risk') }}</h1>
+                <p class="docs-subtitle text-center">{{ _('Guia passo-a-passo para avaliação de risco radiológico.') }}
+                </p>
+
+                <!-- Section 1: Video -->
+                <h2 class="text-center">{{ _('Visão Geral') }}</h2>
+                <div class="video-container">
+                    <!-- Placeholder for User Video -->
+                    <!-- Upload video to: dose2risk/api/static/tutorial/video_tutorial.mp4 -->
+                    <!-- Or replace iframe src with YouTube link -->
+                    <div class="d-flex align-items-center justify-content-center h-100 text-white flex-column">
+                        <i class="fas fa-play-circle fa-5x mb-3 opacity-50"></i>
+                        <p>{{ _('Espaço reservado para o vídeo tutorial.') }}</p>
+                        <small>{{ _('(Insira o iframe do YouTube/Vimeo aqui)') }}</small>
+                    </div>
+                </div>
+
+                <!-- Section 2: Step by Step -->
+                <h2>{{ _('Fluxo de Trabalho') }}</h2>
+
+                <!-- Step 1 -->
+                <div class="tutorial-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">{{ _('Preparação dos Dados (HotSpot)') }}</h3>
+                        <p>{{ _('O processo começa no software <strong>HotSpot Health Physics Codes</strong>. Você
+                            deve gerar o output de dispersão da pluma ("General Plume").') }}</p>
+
+                        <div class="concept-box">
+                            <span class="concept-title">{{ _('Conceito Crítico: Dose Equivalente vs. TEDE')
+                                }}</span>
+                            <p>{{ _('Ao configurar o output do HotSpot, certifique-se de exportar a
+                                <strong>Committed Dose Equivalent (CDE)</strong> discriminada por órgão.') }}
+                            </p>
+                            <hr>
+                            <p class="mb-0">
+                                <i class="fas fa-exclamation-triangle text-amber-500 me-2"></i>
+                                {{ _('<strong>O Dose2Risk utiliza a CDE (Committed Dose Equivalent) discriminada por
+                                    órgão.
+                                    Não utiliza a TEDE (Total Effective Dose Equivalent).</strong> A TEDE
+                                é uma média ponderada de corpo inteiro. Para calcular o risco de câncer de forma
+                                precisa (ex: Leucemia vs Câncer de Tireoide), o Dose2Risk precisa saber exatamente
+                                quanto <strong>cada órgão específico</strong> recebeu de radiação, não a média
+                                corporal.') }}
+                            </p>
+                        </div>
+
+
+
+                        <h3>{{ _('Exemplo do arquivo gerado pelo HotSpot com informações aproveitadas pelo Dose2Risk.')
+                            }}</h3>
+
+                        <div class="screenshot-box">
+                            <!-- Upload image to: dose2risk/api/static/tutorial/dose2risk-arquivo-hotSpot.png -->
+                            <img src="{{ url_for('main.static', filename='tutorial/dose2risk-arquivo-hotSpot.png') }}"
+                                alt="HotSpot Output"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display:none; text-align:center;">
+                                <i class="fas fa-image fa-3x mb-2"></i><br>
+                                <span>{{ _('Salve a imagem em: static/tutorial/dose2risk-arquivo-hotSpot.png') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="tutorial-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">{{ _('Upload de Arquivos') }}</h3>
+                        <p>{{ _('Na tela inicial do Dose2Risk, arraste ou selecione os arquivos <code>.txt</code>
+                            gerados. Você pode processar múltiplos cenários de uma vez.') }}</p>
+                        <div class="screenshot-box">
+                            <!-- Upload image to: dose2risk/api/static/tutorial/step2_upload.png -->
+                            <img src="{{ url_for('main.static', filename='tutorial/dose2risk-home-drag-drop-files.png') }}"
+                                alt="Upload Screen"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display:none; text-align:center;">
+                                <i class="fas fa-cloud-upload-alt fa-3x mb-2"></i><br>
+                                <span>{{ _('Salve a imagem em: static/tutorial/dose2risk-home-drag-drop-files.png')
+                                    }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="tutorial-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">{{ _('Configuração do Cenário') }}</h3>
+                        <p>{{ _('Defina os parâmetros biológicos das vítimas. O sistema precisa dessas idades para
+                            calibrar os modelos de latência do câncer.') }}</p>
+                        <ul>
+                            <li><strong>{{ _('Idade na Exposição') }}</strong>: {{ _('Quantos anos a pessoa tinha no
+                                dia do acidente.') }}</li>
+                            <li><strong>{{ _('Idade Atingida') }}</strong>: {{ _('Até que idade você quer projetar o
+                                risco futuro.') }}</li>
+                        </ul>
+                        <div class="screenshot-box">
+                            <!-- Upload image to: dose2risk/api/static/tutorial/dose2risk-configuracao-cenario.png -->
+                            <img src="{{ url_for('main.static', filename='tutorial/dose2risk-configuracao-cenario.png') }}"
+                                alt="Config Screen"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display:none; text-align:center;">
+                                <i class="fas fa-sliders-h fa-3x mb-2"></i><br>
+                                <span>{{ _('Salve a imagem em: static/tutorial/dose2risk-configuracao-cenario.png')
+                                    }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Step 4 -->
+                <div class="tutorial-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">{{ _('Processamento concluído') }}</h3>
+                        <p>{{ _('O processamento foi concluído e os resultados estão disponíveis para download.') }}</p>
+                        <ul>
+                            <li><strong>{{ _('Resultado Principal: Riscos Calculados') }}</strong>: {{ _('Contém os
+                                cálculos finais de risco (LAR e ERR) para cada órgão e tipo de câncer, baseados nos
+                                modelos BEIR.') }}</li>
+                            <li><strong>{{ _('Log de Execução') }}</strong>: {{ _('Registro técnico detalhado de todas
+                                as etapas do processamento para fins de auditoria e rastreabilidade.') }}</li>
+                            <li><strong>{{ _('Arquivos de Rastreabilidade e Validação') }}</strong>: {{ _('Arquivos
+                                intermediários gerados durante o processamento (extração, transposição) e relatórios de
+                                validação dos dados.') }}</li>
+                            <li><strong>{{ _('Baixar Todos os Arquivos (.zip)') }}</strong>: {{ _('Baixar todos os
+                                arquivos gerados no processamento.') }}</li>
+                        </ul>
+                        <div class="screenshot-box">
+                            <!-- Upload image to: dose2risk/api/static/tutorial/processamento-concluido.png -->
+                            <img src="{{ url_for('main.static', filename='tutorial/processamento_concluido.png') }}"
+                                alt="Config Screen"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display:none; text-align:center;">
+                                <i class="fas fa-sliders-h fa-3x mb-2"></i><br>
+                                <span>{{ _('Salve a imagem em: static/tutorial/processamento_concluido.png')
+                                    }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+        <!-- Section 3: Interpretation -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h2>{{ _('Interpretando os Resultados') }}</h2>
+                <p>{{ _('O painel de resultados apresenta três nìveis de informação. Veja como ler cada um:') }}</p>
+
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-0 bg-slate-50">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-primary">{{ _('1. Excesso de Risco Relativo (ERR)') }}</h5>
+                                <p class="small text-muted">{{ _('O "Multiplicador" de Risco.') }}</p>
+                                <p>{{ _('Indica quantas vezes o risco dessa pessoa aumentou em relação a alguém não
+                                    exposto.') }}</p>
+                                <ul class="small mb-0">
+                                    <li><code>ERR = 0.0</code>: {{ _('Sem risco extra.') }}</li>
+                                    <li><code>ERR = 1.0</code>: {{ _('O risco dobrou (100%% de aumento).') }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-0 bg-slate-50">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-success">{{ _('2. Risco Vitalício (LAR)') }}</h5>
+                                <p class="small text-muted">{{ _('A Probabilidade Real.') }}</p>
+                                <p>{{ _('É a chance absoluta (0 a 100%%) de que essa pessoa desenvolva um câncer
+                                    radiogênico ao longo da vida.') }}</p>
+                                <p class="mb-0 fw-bold">{{ _('Este é o número mais importante para tomada de
+                                    decisão.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Links to Manuals -->
+                    <h3 class="mt-5">{{ _('Documentação Detalhada') }}</h3>
+                    <p>{{ _('Para uma compreensão profunda de todas as variáveis do arquivo CSV e dos processos de
+                        auditoria, consulte os manuais específicos:') }}</p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <a href="{{ url_for('main.manual_resultados') }}"
+                                class="btn btn-outline-primary w-100 p-4 text-start">
+                                <i class="fas fa-table fa-2x mb-3 text-primary"></i>
+                                <h5 class="fw-bold">{{ _('Manual de Resultados') }}</h5>
+                                <small class="text-muted">{{ _('Dicionário completo de variáveis (.csv) e interpretação
+                                    estatística.') }}</small>
+                            </a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a href="{{ url_for('main.manual_logs') }}"
+                                class="btn btn-outline-secondary w-100 p-4 text-start">
+                                <i class="fas fa-file-signature fa-2x mb-3 text-secondary"></i>
+                                <h5 class="fw-bold">{{ _('Manual de Logs') }}</h5>
+                                <small class="text-muted">{{ _('Entenda o rastreamento forense e a validação dos
+                                    cálculos.') }}</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info d-flex align-items-center mt-3">
+                    <i class="fas fa-info-circle fa-2x me-3"></i>
+                    <div>
+                        <strong>{{ _('Dica de Ouro:') }}</strong>
+                        {{ _('Baixe o arquivo <strong>ZIP Completo</strong> ao final. Ele contém os logs de
+                        auditoria que provam matematicamente como cada número foi calculado. Essencial para
+                        relatórios oficiais.') }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

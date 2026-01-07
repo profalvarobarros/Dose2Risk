@@ -3,20 +3,175 @@
 {% block title %}{{ _('Informar Idades') }} - Dose2Risk{% endblock %}
 
 {% block content %}
+<style>
+    /* Estilos Filtros Avançados - Compatível com Temas */
+    .filters-accordion {
+        margin-top: 25px;
+        border: 1px solid var(--dark-border);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    body.light-mode .filters-accordion {
+        border-color: var(--light-border);
+    }
+
+    .filters-summary {
+        padding: 15px;
+        background-color: var(--dark-bg);
+        color: var(--dark-text);
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.light-mode .filters-summary {
+        background-color: #e2e8f0;
+        /* Um pouco mais escuro que o bg light padrão para contraste */
+        color: var(--light-text);
+    }
+
+    .filters-summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .filters-summary i {
+        transition: transform 0.3s;
+    }
+
+    details[open] .filters-summary i {
+        transform: rotate(180deg);
+    }
+
+    .filters-content {
+        padding: 20px;
+        background-color: var(--dark-card-bg);
+        border-top: 1px solid var(--dark-border);
+        color: var(--dark-text);
+    }
+
+    body.light-mode .filters-content {
+        background-color: var(--light-card-bg);
+        border-top-color: var(--light-border);
+        color: var(--light-text);
+    }
+
+    .filter-group {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--dark-border);
+    }
+
+    body.light-mode .filter-group {
+        border-bottom-color: var(--light-border);
+    }
+
+    .filter-group:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    .filter-title {
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: block;
+        color: var(--accent-color);
+    }
+
+    body.light-mode .filter-title {
+        color: var(--light-text);
+        /* Ou accent-hover se preferir destaque */
+    }
+
+    .checkbox-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 5px;
+        border: 1px solid var(--dark-border);
+        border-radius: 4px;
+    }
+
+    body.light-mode .checkbox-grid {
+        border-color: var(--light-border);
+    }
+
+    .checkbox-item {
+        display: flex;
+        align-items: center;
+        font-size: 0.9em;
+        gap: 8px;
+        color: var(--dark-text-secondary);
+        cursor: pointer;
+    }
+
+    body.light-mode .checkbox-item {
+        color: var(--light-text-secondary);
+    }
+
+    .checkbox-item input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        margin: 0;
+        accent-color: var(--accent-color);
+    }
+
+    .select-actions {
+        margin-bottom: 10px;
+        font-size: 0.85em;
+    }
+
+    .select-actions a {
+        cursor: pointer;
+        color: var(--accent-color);
+        text-decoration: none;
+        margin-right: 15px;
+    }
+
+    body.light-mode .select-actions a {
+        color: #3182ce;
+        /* Azul mais legível no light mode */
+    }
+
+    .select-actions a:hover {
+        text-decoration: underline;
+    }
+
+    .switch-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        font-weight: 500;
+        color: var(--dark-text);
+    }
+
+    body.light-mode .switch-label {
+        color: var(--light-text);
+    }
+</style>
+
 <div class="form-container-wrapper">
     <form action="/processar" method="post" class="generic-form">
         <input type="hidden" name="id_execucao" value="{{ id_execucao }}">
-        
+
         <h2>{{ _('Informar Idades') }}</h2>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            <div class="flashes">
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">{{ message }}</div>
-              {% endfor %}
-            </div>
-          {% endif %}
+        {% if messages %}
+        <div class="flashes">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% endwith %}
 
         <p>{{ _('Digite a idade na data da exposição e a idade atual para o cálculo de risco.') }}</p>
@@ -27,9 +182,77 @@
         </div>
 
         <div class="form-group">
-            <label for="idade_atual">{{ _('Idade atual') }}</label>
+            <label for="idade_atual">{{ _('Idade atingida (anos)') }}</label>
             <input type="number" name="idade_atual" id="idade_atual" step="0.1" min="0" required>
         </div>
+
+        <!-- Filtros Avançados -->
+        <details class="filters-accordion">
+            <summary class="filters-summary">
+                <span><i class="fas fa-filter"></i> {{ _('Opções de Filtro e Seleção de Dados') }}</span>
+                <i class="fas fa-chevron-down"></i>
+            </summary>
+
+            <div class="filters-content">
+
+                <!-- 1. Segurança de Dose -->
+                <div class="filter-group">
+                    <label class="switch-label">
+                        <input type="checkbox" name="filter_4sv" value="1" checked>
+                        <span>{{ _('Mostrar campos com dose > 4 Sv (Segurança)') }}</span>
+                    </label>
+                    <small style="display:block; margin-top:5px; color:#666;">
+                        {{ _('Se desmarcado, colunas que excedem 4 Sv serão suprimidas.') }}
+                    </small>
+                </div>
+
+                <!-- 2. Sexo -->
+                <div class="filter-group">
+                    <span class="filter-title">{{ _('Sexo') }}</span>
+                    <div style="display: flex; gap: 20px;">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="filter_sex_m" value="M" checked> {{ _('Masculino (M)') }}
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="filter_sex_f" value="F" checked> {{ _('Feminino (F)') }}
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 3. Modelo (Output Columns) -->
+                <div class="filter-group">
+                    <span class="filter-title">{{ _('Resultados (Colunas)') }}</span>
+                    <div style="display: flex; gap: 20px;">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="filter_model_err" value="ERR" checked>
+                            {{ _('ERR (Excesso de Risco Relativo)') }}
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="filter_model_lar" value="LAR" checked>
+                            {{ _('LAR (Risco Atribuível ao Longo da Vida)') }}
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 4. Órgãos -->
+                <div class="filter-group">
+                    <span class="filter-title">{{ _('Órgãos') }}</span>
+                    <div class="select-actions">
+                        <a onclick="toggleOrgans(true)">{{ _('Selecionar Todos') }}</a>
+                        <a onclick="toggleOrgans(false)">{{ _('Desmarcar Todos') }}</a>
+                    </div>
+                    <div class="checkbox-grid">
+                        {% for organ in organs %}
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="filter_organs" value="{{ organ }}" checked class="organ-check">
+                            {{ _(organ)|replace('_', ' ')|title }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </details>
 
         <button type="submit" class="submit-btn">{{ _('Processar Dados') }}</button>
 
@@ -48,64 +271,68 @@
 
 {% block scripts %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.generic-form');
-    const modal = document.getElementById('loading-modal');
-    const idadeExposicaoInput = document.getElementById('idade_exposicao');
-    const idadeAtualInput = document.getElementById('idade_atual');
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('.generic-form');
+        const modal = document.getElementById('loading-modal');
+        const idadeExposicaoInput = document.getElementById('idade_exposicao');
+        const idadeAtualInput = document.getElementById('idade_atual');
 
-    form.addEventListener('submit', function(event) {
-        // Limpa alertas anteriores
-        const existingAlert = form.querySelector('.alert-validation');
-        if (existingAlert) {
-            existingAlert.remove();
-        }
-
-        const idadeExposicao = parseFloat(idadeExposicaoInput.value);
-        const idadeAtual = parseFloat(idadeAtualInput.value);
-        let errorMessages = [];
-
-        // 1. Validação de campos obrigatórios
-        if (idadeExposicaoInput.value.trim() === '' || idadeAtualInput.value.trim() === '') {
-            errorMessages.push('{{ _("Idade na exposição e Idade atual são campos obrigatórios.") }}');
-        } else {
-            // 2. Validação de idade na exposição não negativa
-            if (idadeExposicao < 0) {
-                errorMessages.push('{{ _("A Idade na exposição não pode ser menor que zero.") }}');
+        form.addEventListener('submit', function (event) {
+            // Limpa alertas anteriores
+            const existingAlert = form.querySelector('.alert-validation');
+            if (existingAlert) {
+                existingAlert.remove();
             }
 
-            // 3. Validação de idade atual não negativa
-            if (idadeAtual < 0) {
-                errorMessages.push('{{ _("A Idade atual não pode ser menor que zero.") }}');
+            const idadeExposicao = parseFloat(idadeExposicaoInput.value);
+            const idadeAtual = parseFloat(idadeAtualInput.value);
+            let errorMessages = [];
+
+            // 1. Validação de campos obrigatórios
+            if (idadeExposicaoInput.value.trim() === '' || idadeAtualInput.value.trim() === '') {
+                errorMessages.push('{{ _("Idade na exposição e Idade atual são campos obrigatórios.") }}');
+            } else {
+                // 2. Validação de idade na exposição não negativa
+                if (idadeExposicao < 0) {
+                    errorMessages.push('{{ _("A Idade na exposição não pode ser menor que zero.") }}');
+                }
+
+                // 3. Validação de idade atual não negativa
+                if (idadeAtual < 0) {
+                    errorMessages.push('{{ _("A Idade atual não pode ser menor que zero.") }}');
+                }
+
+                // 4. Validação de idade atual >= idade na exposição
+                if (idadeAtual < idadeExposicao) {
+                    errorMessages.push('{{ _("A Idade atual não pode ser menor que a Idade na exposição.") }}');
+                }
+
+                // 5. Limite de 3 dígitos (considerando apenas a parte inteira)
+                if (idadeExposicaoInput.value.split('.')[0].length > 3) {
+                    errorMessages.push('{{ _("A Idade na exposição não pode ter mais que 3 dígitos.") }}');
+                }
+                if (idadeAtualInput.value.split('.')[0].length > 3) {
+                    errorMessages.push('{{ _("A Idade atual não pode ter mais que 3 dígitos.") }}');
+                }
             }
 
-            // 4. Validação de idade atual >= idade na exposição
-            if (idadeAtual < idadeExposicao) {
-                errorMessages.push('{{ _("A Idade atual não pode ser menor que a Idade na exposição.") }}');
-            }
+            if (errorMessages.length > 0) {
+                event.preventDefault(); // Impede o envio do formulário
 
-            // 5. Limite de 3 dígitos (considerando apenas a parte inteira)
-            if (idadeExposicaoInput.value.split('.')[0].length > 3) {
-                 errorMessages.push('{{ _("A Idade na exposição não pode ter mais que 3 dígitos.") }}');
-            }
-            if (idadeAtualInput.value.split('.')[0].length > 3) {
-                 errorMessages.push('{{ _("A Idade atual não pode ter mais que 3 dígitos.") }}');
-            }
-        }
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-error alert-validation';
+                alertDiv.innerHTML = errorMessages.join('<br>');
 
-        if (errorMessages.length > 0) {
-            event.preventDefault(); // Impede o envio do formulário
-            
-            const alertDiv = document.createElement('div');
-            alertDiv.className = 'alert alert-error alert-validation';
-            alertDiv.innerHTML = errorMessages.join('<br>');
-
-            form.querySelector('h2').insertAdjacentElement('afterend', alertDiv);
-        } else {
-            modal.style.display = 'flex';
-        }
+                form.querySelector('h2').insertAdjacentElement('afterend', alertDiv);
+            } else {
+                modal.style.display = 'flex';
+            }
+        });
     });
-});
+
+    function toggleOrgans(checked) {
+        const checkboxes = document.querySelectorAll('.organ-check');
+        checkboxes.forEach(cb => cb.checked = checked);
+    }
 </script>
 {% endblock %}
-

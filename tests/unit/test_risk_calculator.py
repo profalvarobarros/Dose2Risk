@@ -43,7 +43,7 @@ class TestRiskCalculatorUnit:
             dose_Sv=dose,
             age_exp=age_exposicao,
             age_att=50,
-            gender='female',
+            sex='female',
             beir_v_config=MOCK_BEIR_V_CONFIG_THYROID
         )
         
@@ -61,7 +61,7 @@ class TestRiskCalculatorUnit:
             dose_Sv=dose,
             age_exp=age_exposicao,
             age_att=50,
-            gender='female',
+            sex='female',
             beir_v_config=MOCK_BEIR_V_CONFIG_THYROID
         )
         
@@ -83,7 +83,7 @@ class TestRiskCalculatorUnit:
             dose_Sv=dose,
             age_exp=age_exp,
             age_att=age_att,
-            gender='male',
+            sex='male',
             beir_v_config=MOCK_BEIR_V_CONFIG_LEUKEMIA
         )
         
@@ -125,6 +125,6 @@ class TestRiskCalculatorUnit:
     def test_invalid_negative_time(self, calculator):
         """Risk should be 0 if current age < exposure age (Impossible time travel)."""
         err, msg, _ = calculator.beir_v_risk(
-            dose_Sv=1.0, age_exp=50, age_att=40, gender='M', beir_v_config={}
+            dose_Sv=1.0, age_exp=50, age_att=40, sex='M', beir_v_config={}
         )
         assert err == 0.0

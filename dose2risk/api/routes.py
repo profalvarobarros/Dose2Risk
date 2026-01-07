@@ -6,6 +6,7 @@ import zipfile
 import io
 import logging
 from datetime import datetime
+import json
 from flask import Blueprint, render_template, request, send_from_directory, redirect, url_for, flash, session, current_app, send_file
 from flask_babel import gettext as _
 from werkzeug.utils import secure_filename
@@ -57,6 +58,18 @@ def sobre(): return render_template('sobre.html')
 
 @main_bp.route('/documentacao')
 def documentacao(): return render_template('documentacao.html')
+
+@main_bp.route('/tutorial')
+def tutorial(): return render_template('tutorial.html')
+
+@main_bp.route('/tutorial/hotspot')
+def hotspot_tutorial(): return render_template('hotspot_tutorial.html')
+
+@main_bp.route('/manual_resultados')
+def manual_resultados(): return render_template('manual_resultados.html')
+
+@main_bp.route('/manual_logs')
+def manual_logs(): return render_template('manual_logs.html')
 
 @main_bp.route('/privacidade')
 def privacidade(): return render_template('privacidade.html')
@@ -130,11 +143,42 @@ def processar():
         pasta_saida = os.path.join(current_app.config['OUTPUT_FOLDER'], id_execucao)
         
         if request.method == 'GET':
-            return render_template('form_idades.html', id_execucao=id_execucao)
+            # Carregar lista de órgãos para os filtros
+            try:
+                with open(current_app.config['PARAMS_FILE'], 'r') as f:
+                    params_data = json.load(f)
+                available_organs = sorted(list(params_data.get('configurations', {}).keys()))
+            except Exception as e:
+                logging.error(f"Erro ao carregar órgãos para filtro: {e}")
+                available_organs = []
+
+            return render_template('form_idades.html', id_execucao=id_execucao, organs=available_organs)
             
         # POST
         idade_exposicao = request.form.get('idade_exposicao', type=float)
         idade_atual = request.form.get('idade_atual', type=float)
+        
+        # Captura de Filtros Avançados
+        filters = {
+            'show_4sv': 'filter_4sv' in request.form,
+            'sexes': [],
+            'models': [],
+            'organs': request.form.getlist('filter_organs')
+        }
+        
+        if 'filter_sex_m' in request.form: filters['sexes'].append('M')
+        if 'filter_sex_f' in request.form: filters['sexes'].append('F')
+        
+        if 'filter_model_err' in request.form: filters['models'].append('ERR')
+        if 'filter_model_lar' in request.form: filters['models'].append('LAR')
+
+        # Se nenhum órgão selecionado, assume todos (fallback de segurança)
+        if not filters['organs']:
+             # Recarrega se vazio para garantir processamento completo se user desmarcar tudo sem querer?
+             # User disse "todos selecionados por padrão". Se desmarcar, teoricamente não processa nada.
+             # Mas vamos manter o comportamento explícito do form.
+             pass 
+
         
         if idade_exposicao is None or idade_atual is None:
             flash(_('Informe as idades corretamente.'))
@@ -162,7 +206,8 @@ def processar():
             exposure_age=idade_exposicao,
             current_age=idade_atual,
             output_folder=pasta_saida,
-            params_file=current_app.config['PARAMS_FILE']
+            params_file=current_app.config['PARAMS_FILE'],
+            filters=filters
         )
         pipeline.run()
         

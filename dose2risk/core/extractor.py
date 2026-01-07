@@ -117,7 +117,7 @@ class ExtratorHotspot:
             'wind_direction_degrees': r'Wind Direction\s*:\s*([0-9]+,[0-9]+)\s*degrees',
             'wind_from_the': r'Wind Direction\s*:\s*[0-9]+,[0-9]+\s*degrees\s*Wind from the\s*([A-Za-z]+)',
             'wind_speed_h=h-eff_m_s': r'Wind Speed \(h=H-eff\)\s*:\s*([^\s]+)\s*m/s',
-            'stability_class': r'Stability Class\s*:\s*([A-Za-z])',
+            'stability_class': r'Stability Class[^:]*:\s*([A-Za-z])',
             'receptor_height_m': r'Receptor Height\s*:\s*([^\s]+)\s*m',
             'inversion_layer_height': r'Inversion Layer Height\s*:\s*([^\s]+)',
             'sample_time_min': r'Sample Time\s*:\s*([^\s]+)\s*min',

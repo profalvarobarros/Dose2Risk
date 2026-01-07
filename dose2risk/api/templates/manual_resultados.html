@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Manual de Resultados') }}{% endblock %}
+
+{% block content %}
+<style>
+    .docs-wrapper {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        color: #334155;
+        line-height: 1.7;
+        background-color: #ffffff;
+        padding-top: 40px;
+        padding-bottom: 80px;
+    }
+
+    .docs-title {
+        font-family: 'Segoe UI', serif;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+    }
+
+    .docs-subtitle {
+        font-weight: 400;
+        color: #64748b;
+        font-size: 1.25rem;
+        margin-bottom: 3rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-top: 3rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #334155;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Scientific Table Style */
+    .table-scientific {
+        width: 100%;
+        margin: 1.5rem 0;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-scientific th {
+        background-color: #f8fafc;
+        color: #0f172a;
+        font-weight: 600;
+        text-align: left;
+        padding: 1rem;
+        border-bottom: 2px solid #e2e8f0;
+    }
+
+    .table-scientific td {
+        padding: 1rem;
+        border-bottom: 1px solid #e2e8f0;
+        color: #475569;
+        vertical-align: top;
+    }
+
+    .table-scientific tr:last-child td {
+        border-bottom: none;
+    }
+
+    .badge-var {
+        font-family: 'Consolas', monospace;
+        background-color: #f1f5f9;
+        color: #0f172a;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        border: 1px solid #cbd5e1;
+        font-size: 0.85em;
+    }
+
+    .callout {
+        border-left: 4px solid #3b82f6;
+        background-color: #eff6ff;
+        padding: 1.5rem;
+        margin: 2rem 0;
+        border-radius: 0 6px 6px 0;
+    }
+
+    .callout-title {
+        font-weight: 700;
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #1e3a8a;
+    }
+
+    .example-box {
+        background-color: #1e293b;
+        color: #e2e8f0;
+        padding: 1.5rem;
+        border-radius: 8px;
+        font-family: 'Consolas', monospace;
+        margin: 1.5rem 0;
+    }
+</style>
+
+<div class="docs-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="docs-title text-center">{{ _('Manual de Interpretação de Resultados') }}</h1>
+                <p class="docs-subtitle text-center">{{ _('Guia definitivo para entender o arquivo de Risco (CSV) gerado
+                    pelo Dose2Risk') }}</p>
+
+                <div class="callout">
+                    <span class="callout-title">{{ _('Para quem é este guia?') }}</span>
+                    {{ _('Este documento destina-se a gestores de emergência, físicos médicos e pesquisadores que
+                    necessitam interpretar os dados brutos gerados pelo sistema para tomada de decisão ou compilação de
+                    relatórios.') }}
+                </div>
+
+                <!-- Seção 1: Nomenclatura -->
+                <section id="nomenclatura">
+                    <h2>1. Nomenclatura do Arquivo</h2>
+                    <p>{{ _('Todo arquivo gerado pelo sistema possui uma "impressão digital" no próprio nome, garantindo
+                        que você saiba exatamente sob quais condições aquela simulação foi rodada.') }}</p>
+
+                    <div class="example-box">
+                        3_calculated_risks_ERR_LAR_ee10_ea30_20251225_143000.csv
+                    </div>
+
+                    <table class="table-scientific">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%">{{ _('Segmento') }}</th>
+                                <th>{{ _('Significado') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge-var">ee10</span></td>
+                                <td>
+                                    <strong>{{ _('Age at Exposure (Idade na Exposição): 10 anos') }}</strong><br>
+                                    {{ _('Indica que os cálculos assumiram que as vítimas tinham 10 anos no momento do
+                                    contato com a radiação. Isso é crítico pois crianças são muito mais radiossensíveis
+                                    que adultos.') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-var">ea30</span></td>
+                                <td>
+                                    <strong>{{ _('Attained Age (Idade Atingida): 30 anos') }}</strong><br>
+                                    {{ _('Indica que o risco foi calculado projetando a saúde dessa pessoa até ela
+                                    completar 30 anos (ou seja, 20 anos após o acidente).') }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Seção 2: Estrutura das Colunas -->
+                <section id="colunas">
+                    <h2>2. Estrutura das Colunas (O que significa cada campo?)</h2>
+                    <p>{{ _('O arquivo CSV é uma tabela onde cada linha representa uma análise biológica para um órgão
+                        específico. Abaixo, o dicionário de variáveis:') }}</p>
+
+                    <table class="table-scientific">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%">{{ _('Nome da Coluna') }}</th>
+                                <th>{{ _('Definição e Interpretação') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge-var">row_id</span></td>
+                                <td>
+                                    <strong>{{ _('Identificador de Auditoria') }}</strong><br>
+                                    {{ _('Um número sequencial único. Se você precisar auditar a matemática exata de uma
+                                    linha, use este número para buscar o registro correspondente no arquivo de LOG
+                                    (.log).') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-var">sex</span></td>
+                                <td>
+                                    <strong>{{ _('Sexo Biológico') }}</strong><br>
+                                    {{ _('Valores: "male" ou "female". Define quais coeficientes hormonais e tabelas de
+                                    incidência de câncer foram usados. Ex: O risco de câncer de mama é zerado para
+                                    "male".') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-var">hotspot_organ</span></td>
+                                <td>
+                                    <strong>{{ _('Órgão Alvo') }}</strong><br>
+                                    {{ _('O tecido onde a dose de radiação foi depositada (Ex: thyroid, lung, colon).')
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-var">dose_Sv_[CENARIO]</span></td>
+                                <td>
+                                    <strong>{{ _('Dose Absorvida (Sievert)') }}</strong><br>
+                                    {{ _('A quantidade de energia radioativa absorvida pelo órgão. Ex: "dose_Sv_A_0.03"
+                                    significa a dose no cenário de estabilidade A a 0.03km.') }}<br>
+                                    <em>{{ _('Valores acima de 4.0 Sv são letais e podem ser suprimidos do relatório por
+                                        segurança.') }}</em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-var">ERR_[CENARIO]</span></td>
+                                <td>
+                                    <strong>{{ _('Excesso de Risco Relativo (ERR)') }}</strong><br>
+                                    {{ _('O "multiplicador" de perigo. É um número adimensional.') }}<br>
+                                    <ul>
+                                        <li>ERR = 0.0: {{ _('Sem risco adicional.') }}</li>
+                                        <li>ERR = 1.0: {{ _('O risco dobrou (100%% de aumento) em relação a uma pessoa
+                                            não exposta.') }}</li>
+                                        <li>ERR = 0.5: {{ _('50%% de aumento no risco.') }}</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-var">LAR_[CENARIO]</span></td>
+                                <td>
+                                    <strong>{{ _('Risco Vitalício Atribuível (LAR)') }}</strong><br>
+                                    {{ _('A probabilidade absoluta (0.0 a 1.0) de desenvolver câncer DEVIDO à
+                                    radiação.') }}<br>
+                                    <em>{{ _('Exemplo: 0.05 significa 5%% de chance extra de ter câncer ao longo da
+                                        vida.') }}</em>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Seção 3: Nota Científica -->
+                <section id="notacao">
+                    <h2>3. Entendendo a Notação Científica</h2>
+                    <p>{{ _('Para manter a precisão, o sistema usa notação "E" (exponencial).') }}</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="example-box text-center">
+                                1.234e-02
+                            </div>
+                            <p class="text-center">{{ _('Significa') }} <strong>1.234%</strong> (0.01234)</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="example-box text-center">
+                                5.000e-04
+                            </div>
+                            <p class="text-center">{{ _('Significa') }} <strong>0.05%</strong> (0.0005)</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

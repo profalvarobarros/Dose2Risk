@@ -7,16 +7,363 @@
     <h2>{{ _('Resultados Gerados') }}</h2>
     <p>{{ _('Clique nos links abaixo para baixar os arquivos de saída:') }}</p>
 
-    <div class="download-list">
+    <style>
+        /* Estilos específicos para a página de resultados */
+        .result-section {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .highlight-card {
+            background-color: var(--dark-card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 5px solid #4F46E5;
+            /* Cor destaque principal */
+            transition: transform 0.2s, background-color 0.3s;
+            color: var(--dark-text);
+            border: 1px solid var(--dark-border);
+            border-left-width: 5px;
+            /* Restaura a borda esquerda mais grossa */
+        }
+
+        body.light-mode .highlight-card {
+            background-color: var(--light-card-bg);
+            color: var(--light-text);
+            border-color: var(--light-border);
+            border-left-color: #4F46E5;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .highlight-card.secondary {
+            border-left-color: #6B7280;
+            /* Cor log */
+        }
+
+        .card-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .file-icon {
+            font-size: 24px;
+            color: #4F46E5;
+        }
+
+        .file-info h3 {
+            margin: 0;
+            font-size: 1.1em;
+            color: var(--dark-text);
+        }
+
+        body.light-mode .file-info h3 {
+            color: var(--light-text);
+        }
+
+        .file-info p {
+            margin: 5px 0 0;
+            font-size: 0.9em;
+            color: var(--dark-text-secondary);
+        }
+
+        body.light-mode .file-info p {
+            color: var(--light-text-secondary);
+        }
+
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+            margin-left: 8px;
+            cursor: help;
+        }
+
+        .tooltip-icon {
+            color: var(--dark-text-secondary);
+            font-size: 0.9em;
+        }
+
+        body.light-mode .tooltip-icon {
+            color: var(--light-text-secondary);
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #374151;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 100 !important;
+            /* Força ficar acima */
+            bottom: 125%;
+            /* Acima do ícone */
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85em;
+            font-weight: normal;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+            /* Evita interferência com mouse */
+        }
+
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .accordion {
+            background-color: var(--dark-card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            /* overflow: hidden; REMOVIDO para permitir que o tooltip vaze */
+            margin-bottom: 20px;
+            border: 1px solid var(--dark-border);
+        }
+
+        body.light-mode .accordion {
+            background-color: var(--light-card-bg);
+            border-color: var(--light-border);
+        }
+
+        .accordion-header {
+            background-color: rgba(255, 255, 255, 0.05);
+            /* Sutilmente diferente do fundo */
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--dark-text);
+            border: none;
+            width: 100%;
+            text-align: left;
+            border-radius: 8px;
+            /* Arredondado por padrão */
+            transition: border-radius 0.2s;
+            /* Suaviza a mudança de borda ao abrir */
+        }
+
+        body.light-mode .accordion-header {
+            background-color: #F3F4F6;
+            color: var(--light-text);
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .accordion-header:hover {
+            background-color: #E5E7EB;
+        }
+
+        /* Quando aberto, remove o arredondamento inferior */
+        .accordion-header.active-header {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 0;
+            border-top: 1px solid var(--dark-border);
+            overflow: hidden;
+            /* Mantém o conteúdo interno comportado */
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        body.light-mode .accordion-content {
+            border-top-color: var(--light-border);
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        .traceability-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .traceability-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--dark-border);
+            transition: background-color 0.15s;
+        }
+
+        body.light-mode .traceability-item {
+            border-bottom-color: #F3F4F6;
+        }
+
+        .traceability-item:last-child {
+            border-bottom: none;
+        }
+
+        .traceability-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body.light-mode .traceability-item:hover {
+            background-color: #F9FAFB;
+        }
+
+        .traceability-item a {
+            text-decoration: none;
+            color: var(--dark-text);
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.light-mode .traceability-item a {
+            color: #374151;
+        }
+
+        .download-btn-sm {
+            padding: 6px 12px;
+            background-color: #E0E7FF;
+            color: #4F46E5;
+            border-radius: 4px;
+            font-size: 0.85em;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .download-btn-sm:hover {
+            background-color: #C7D2FE;
+        }
+    </style>
+
+    <div class="results-wrapper" style="width: 100%; max-width: 800px; margin: 0 auto;">
+
+        <!-- 1. Destaque Principal: Risco Calculado -->
         {% for arquivo in arquivos_saida %}
-        <a href="{{ url_for('main.download_arquivo', id_execucao=id_saida, nome_arquivo=arquivo) }}"
-            class="download-item">
-            <i class="fas fa-file-alt"></i>
-            <span>{{ arquivo }}</span>
-            <i class="fas fa-download"></i>
-        </a>
+        {% if '3_calculated_risks' in arquivo %}
+        <div class="result-section">
+            <div class="highlight-card">
+                <div class="card-content">
+                    <i class="fas fa-file-medical-alt file-icon"></i>
+                    <div class="file-info">
+                        <h3>
+                            {{ _('Resultado Principal: Riscos Calculados') }}
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle tooltip-icon"></i>
+                                <span class="tooltip-text">{{ _('Contém os cálculos finais de risco (LAR e ERR) para
+                                    cada órgão e tipo de câncer, baseados nos modelos BEIR.') }}</span>
+                            </div>
+                        </h3>
+                        <p>{{ arquivo }}</p>
+                    </div>
+                </div>
+                <a href="{{ url_for('main.download_arquivo', id_execucao=id_saida, nome_arquivo=arquivo) }}"
+                    class="download-btn-sm">
+                    <i class="fas fa-download"></i> {{ _('Baixar') }}
+                </a>
+            </div>
+        </div>
+        {% endif %}
         {% endfor %}
+
+        <!-- 2. Destaque Secundário: Log de Execução -->
+        {% for arquivo in arquivos_saida %}
+        {% if '4_execution_log' in arquivo %}
+        <div class="result-section">
+            <div class="highlight-card secondary">
+                <div class="card-content">
+                    <i class="fas fa-clipboard-list file-icon" style="color: #6B7280;"></i>
+                    <div class="file-info">
+                        <h3>
+                            {{ _('Log de Execução') }}
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle tooltip-icon"></i>
+                                <span class="tooltip-text">{{ _('Registro técnico detalhado de todas as etapas do
+                                    processamento para fins de auditoria e rastreabilidade.') }}</span>
+                            </div>
+                        </h3>
+                        <p>{{ arquivo }}</p>
+                    </div>
+                </div>
+                <a href="{{ url_for('main.download_arquivo', id_execucao=id_saida, nome_arquivo=arquivo) }}"
+                    class="download-btn-sm" style="background-color: #F3F4F6; color: #374151;">
+                    <i class="fas fa-download"></i> {{ _('Baixar') }}
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <!-- 3. Acordeão: Outros Arquivos -->
+        <div class="accordion">
+            <button class="accordion-header" onclick="toggleAccordion('traceability-files')">
+                <span>
+                    <i class="fas fa-folder-open" style="margin-right: 8px; color: #9CA3AF;"></i>
+                    {{ _('Arquivos de Rastreabilidade e Validação') }}
+                    <div class="tooltip-container" onclick="event.stopPropagation();">
+                        <i class="fas fa-question-circle tooltip-icon"></i>
+                        <span class="tooltip-text">{{ _('Arquivos intermediários gerados durante o processamento
+                            (extração, transposição) e relatórios de validação dos dados.') }}</span>
+                    </div>
+                </span>
+                <i class="fas fa-chevron-down" id="accordion-icon-traceability-files"></i>
+            </button>
+            <div id="traceability-files" class="accordion-content">
+                <ul class="traceability-list">
+                    {% for arquivo in arquivos_saida %}
+                    {% if '3_calculated_risks' not in arquivo and '4_execution_log' not in arquivo %}
+                    <li class="traceability-item">
+                        <a href="{{ url_for('main.download_arquivo', id_execucao=id_saida, nome_arquivo=arquivo) }}">
+                            <i class="fas fa-file-csv" style="color: #9CA3AF;"></i>
+                            {{ arquivo }}
+                        </a>
+                        <a href="{{ url_for('main.download_arquivo', id_execucao=id_saida, nome_arquivo=arquivo) }}"
+                            title="{{ _('Baixar arquivo') }}">
+                            <i class="fas fa-download" style="color: #6B7280;"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const header = content.previousElementSibling; // Pega o botão header
+            const icon = document.getElementById('accordion-icon-' + id);
+
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                header.classList.remove('active-header');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                content.classList.add('active');
+                header.classList.add('active-header');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+    </script>
 
     <div class="action-buttons" style="flex-direction: column; gap: 10px;">
         <a href="{{ url_for('main.download_todos', id_saida=id_saida) }}" class="submit-btn"

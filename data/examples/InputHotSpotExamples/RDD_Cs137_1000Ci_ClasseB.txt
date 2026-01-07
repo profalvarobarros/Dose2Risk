@@ -1,0 +1,317 @@
+HotSpot  Version 3.1.2 General Plume
+dez 11, 2025 17:48:05
+
+Source Term                : Cs137_1000Ci.mix (Mixture Scale Factor = 1,0000E+00)
+                             Cs-137-1000Ci
+Effective Release Height   : 0,00 m
+Wind Speed (h=10 m)        : 3,00 m/s
+Wind Direction             : 195,0 degrees  Wind from the SSW
+Wind Speed (h=H-eff)       : 2,68 m/s
+Stability Class            : B
+Receptor Height            : 1,5 m
+Inversion Layer Height     : None
+Sample Time                : 10,000 min
+Breathing Rate             : 3,33E-04 m3/sec
+Distance Coordinates       : All distances are on the Plume Centerline
+
+Maximum Dose Distance      : 0,010 km   
+Maximum TEDE               : 4,4 Sv
+Inner  Contour Dose        : 1,00E-03 Sv
+Middle Contour Dose        : 8,00E-04 Sv
+Outer  Contour Dose        : 5,00E-04 Sv
+Exceeds Inner  Dose Out To : 0,89 km   
+Exceeds Middle Dose Out To : 1,0 km   
+Exceeds Outer  Dose Out To : 1,3 km   
+
+
+      Include Plume Passage Inhalation and Submersion
+      Include Ground Shine (Weathering Correction Factor : None)
+      Exposure Window:(Start: 0,00 days; Duration: 4,00 days)  [100% stay time].
+      Initial Deposition and Dose Rate shown
+      Ground Roughness Correction Factor: 1,000
+
+                             RESPIRABLE
+ DISTANCE      T E D E     TIME-INTEGRATED   GROUND SURFACE    GROUND SHINE    ARRIVAL
+                          AIR CONCENTRATION    DEPOSITION       DOSE RATE       TIME
+    km          (Sv)         (Bq-sec)/m3        (kBq/m2)          (Sv/hr)     (hour:min)
+ _______________________________________________________________________________________
+   0,030        8,2E-01         2,3E+11          7,6E+05          1,5E-03       <00:01
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,030       km   
+
+  Skin.........[1,0E+00]  Lung.........[8,3E-01]  thyroid......[7,6E-01]
+  Surface Bone.[8,3E-01]  Red Marrow...[7,9E-01]  Liver........[8,0E-01]
+  Spleen.......[8,0E-01]  Ovaries......[7,6E-01]  Adrenals.....[8,6E-01]
+  Breast.......[7,6E-01]  Stomach Wall.[8,0E-01]  SI Wall......[8,3E-01]
+  ULI Wall.....[8,3E-01]  LLI Wall.....[8,4E-01]  Bladder Wall.[8,2E-01]
+  Thymus.......[7,4E-01]  Esophagus....[7,3E-01]  Muscle.......[7,6E-01]
+  Kidneys......[8,0E-01]  Testes.......[8,3E-01]  Uterus.......[8,3E-01]
+  Pancreas.....[7,8E-01]  Brain........[1,4E-01]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   0,100        7,8E-02         2,2E+10          6,8E+04          1,4E-04       <00:01
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,100       km   
+
+  Skin.........[9,4E-02]  Lung.........[7,9E-02]  thyroid......[7,3E-02]
+  Surface Bone.[7,9E-02]  Red Marrow...[7,5E-02]  Liver........[7,7E-02]
+  Spleen.......[7,7E-02]  Ovaries......[7,3E-02]  Adrenals.....[8,2E-02]
+  Breast.......[7,2E-02]  Stomach Wall.[7,7E-02]  SI Wall......[8,0E-02]
+  ULI Wall.....[7,9E-02]  LLI Wall.....[8,0E-02]  Bladder Wall.[7,9E-02]
+  Thymus.......[7,1E-02]  Esophagus....[7,0E-02]  Muscle.......[7,3E-02]
+  Kidneys......[7,7E-02]  Testes.......[8,0E-02]  Uterus.......[7,9E-02]
+  Pancreas.....[7,4E-02]  Brain........[1,2E-02]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   0,200        2,0E-02         5,6E+09          1,7E+04          3,4E-05        00:01
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,200       km   
+
+  Skin.........[2,3E-02]  Lung.........[2,0E-02]  thyroid......[1,8E-02]
+  Surface Bone.[2,0E-02]  Red Marrow...[1,9E-02]  Liver........[1,9E-02]
+  Spleen.......[1,9E-02]  Ovaries......[1,8E-02]  Adrenals.....[2,1E-02]
+  Breast.......[1,8E-02]  Stomach Wall.[1,9E-02]  SI Wall......[2,0E-02]
+  ULI Wall.....[2,0E-02]  LLI Wall.....[2,0E-02]  Bladder Wall.[2,0E-02]
+  Thymus.......[1,8E-02]  Esophagus....[1,7E-02]  Muscle.......[1,8E-02]
+  Kidneys......[1,9E-02]  Testes.......[2,0E-02]  Uterus.......[2,0E-02]
+  Pancreas.....[1,9E-02]  Brain........[3,1E-03]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   0,300        8,7E-03         2,5E+09          7,6E+03          1,5E-05        00:01
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,300       km   
+
+  Skin.........[1,0E-02]  Lung.........[8,8E-03]  thyroid......[8,2E-03]
+  Surface Bone.[8,8E-03]  Red Marrow...[8,4E-03]  Liver........[8,6E-03]
+  Spleen.......[8,6E-03]  Ovaries......[8,2E-03]  Adrenals.....[9,2E-03]
+  Breast.......[8,1E-03]  Stomach Wall.[8,6E-03]  SI Wall......[8,9E-03]
+  ULI Wall.....[8,9E-03]  LLI Wall.....[9,0E-03]  Bladder Wall.[8,8E-03]
+  Thymus.......[7,9E-03]  Esophagus....[7,8E-03]  Muscle.......[8,1E-03]
+  Kidneys......[8,6E-03]  Testes.......[8,9E-03]  Uterus.......[8,9E-03]
+  Pancreas.....[8,3E-03]  Brain........[1,4E-03]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   0,400        4,9E-03         1,4E+09          4,3E+03          8,5E-06        00:02
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,400       km   
+
+  Skin.........[5,9E-03]  Lung.........[5,0E-03]  thyroid......[4,6E-03]
+  Surface Bone.[5,0E-03]  Red Marrow...[4,8E-03]  Liver........[4,8E-03]
+  Spleen.......[4,9E-03]  Ovaries......[4,6E-03]  Adrenals.....[5,2E-03]
+  Breast.......[4,6E-03]  Stomach Wall.[4,8E-03]  SI Wall......[5,0E-03]
+  ULI Wall.....[5,0E-03]  LLI Wall.....[5,1E-03]  Bladder Wall.[5,0E-03]
+  Thymus.......[4,5E-03]  Esophagus....[4,4E-03]  Muscle.......[4,6E-03]
+  Kidneys......[4,8E-03]  Testes.......[5,0E-03]  Uterus.......[5,0E-03]
+  Pancreas.....[4,7E-03]  Brain........[7,8E-04]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   0,500        3,2E-03         9,1E+08          2,7E+03          5,5E-06        00:03
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,500       km   
+
+  Skin.........[3,8E-03]  Lung.........[3,2E-03]  thyroid......[3,0E-03]
+  Surface Bone.[3,2E-03]  Red Marrow...[3,1E-03]  Liver........[3,1E-03]
+  Spleen.......[3,1E-03]  Ovaries......[3,0E-03]  Adrenals.....[3,3E-03]
+  Breast.......[2,9E-03]  Stomach Wall.[3,1E-03]  SI Wall......[3,2E-03]
+  ULI Wall.....[3,2E-03]  LLI Wall.....[3,3E-03]  Bladder Wall.[3,2E-03]
+  Thymus.......[2,9E-03]  Esophagus....[2,8E-03]  Muscle.......[2,9E-03]
+  Kidneys......[3,1E-03]  Testes.......[3,2E-03]  Uterus.......[3,2E-03]
+  Pancreas.....[3,0E-03]  Brain........[5,0E-04]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   0,600        2,2E-03         6,4E+08          1,9E+03          3,8E-06        00:03
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,600       km   
+
+  Skin.........[2,6E-03]  Lung.........[2,2E-03]  thyroid......[2,1E-03]
+  Surface Bone.[2,2E-03]  Red Marrow...[2,1E-03]  Liver........[2,2E-03]
+  Spleen.......[2,2E-03]  Ovaries......[2,1E-03]  Adrenals.....[2,3E-03]
+  Breast.......[2,0E-03]  Stomach Wall.[2,2E-03]  SI Wall......[2,3E-03]
+  ULI Wall.....[2,2E-03]  LLI Wall.....[2,3E-03]  Bladder Wall.[2,2E-03]
+  Thymus.......[2,0E-03]  Esophagus....[2,0E-03]  Muscle.......[2,1E-03]
+  Kidneys......[2,2E-03]  Testes.......[2,3E-03]  Uterus.......[2,2E-03]
+  Pancreas.....[2,1E-03]  Brain........[3,5E-04]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   0,700        1,6E-03         4,7E+08          1,4E+03          2,8E-06        00:04
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,700       km   
+
+  Skin.........[1,9E-03]  Lung.........[1,6E-03]  thyroid......[1,5E-03]
+  Surface Bone.[1,6E-03]  Red Marrow...[1,6E-03]  Liver........[1,6E-03]
+  Spleen.......[1,6E-03]  Ovaries......[1,5E-03]  Adrenals.....[1,7E-03]
+  Breast.......[1,5E-03]  Stomach Wall.[1,6E-03]  SI Wall......[1,7E-03]
+  ULI Wall.....[1,6E-03]  LLI Wall.....[1,7E-03]  Bladder Wall.[1,6E-03]
+  Thymus.......[1,5E-03]  Esophagus....[1,5E-03]  Muscle.......[1,5E-03]
+  Kidneys......[1,6E-03]  Testes.......[1,7E-03]  Uterus.......[1,7E-03]
+  Pancreas.....[1,6E-03]  Brain........[2,6E-04]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   0,800        1,3E-03         3,6E+08          1,1E+03          2,2E-06        00:04
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,800       km   
+
+  Skin.........[1,5E-03]  Lung.........[1,3E-03]  thyroid......[1,2E-03]
+  Surface Bone.[1,3E-03]  Red Marrow...[1,2E-03]  Liver........[1,2E-03]
+  Spleen.......[1,2E-03]  Ovaries......[1,2E-03]  Adrenals.....[1,3E-03]
+  Breast.......[1,2E-03]  Stomach Wall.[1,2E-03]  SI Wall......[1,3E-03]
+  ULI Wall.....[1,3E-03]  LLI Wall.....[1,3E-03]  Bladder Wall.[1,3E-03]
+  Thymus.......[1,1E-03]  Esophagus....[1,1E-03]  Muscle.......[1,2E-03]
+  Kidneys......[1,2E-03]  Testes.......[1,3E-03]  Uterus.......[1,3E-03]
+  Pancreas.....[1,2E-03]  Brain........[2,0E-04]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   0,900        9,9E-04         2,9E+08          8,6E+02          1,7E-06        00:05
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    0,900       km   
+
+  Skin.........[1,2E-03]  Lung.........[1,0E-03]  thyroid......[9,3E-04]
+  Surface Bone.[1,0E-03]  Red Marrow...[9,6E-04]  Liver........[9,7E-04]
+  Spleen.......[9,8E-04]  Ovaries......[9,3E-04]  Adrenals.....[1,0E-03]
+  Breast.......[9,2E-04]  Stomach Wall.[9,7E-04]  SI Wall......[1,0E-03]
+  ULI Wall.....[1,0E-03]  LLI Wall.....[1,0E-03]  Bladder Wall.[1,0E-03]
+  Thymus.......[9,0E-04]  Esophagus....[8,8E-04]  Muscle.......[9,2E-04]
+  Kidneys......[9,8E-04]  Testes.......[1,0E-03]  Uterus.......[1,0E-03]
+  Pancreas.....[9,4E-04]  Brain........[1,6E-04]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   1,000        8,1E-04         2,3E+08          7,0E+02          1,4E-06        00:06
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    1,000       km   
+
+  Skin.........[9,6E-04]  Lung.........[8,2E-04]  thyroid......[7,5E-04]
+  Surface Bone.[8,1E-04]  Red Marrow...[7,8E-04]  Liver........[7,9E-04]
+  Spleen.......[7,9E-04]  Ovaries......[7,6E-04]  Adrenals.....[8,5E-04]
+  Breast.......[7,5E-04]  Stomach Wall.[7,9E-04]  SI Wall......[8,2E-04]
+  ULI Wall.....[8,2E-04]  LLI Wall.....[8,3E-04]  Bladder Wall.[8,1E-04]
+  Thymus.......[7,3E-04]  Esophagus....[7,2E-04]  Muscle.......[7,5E-04]
+  Kidneys......[7,9E-04]  Testes.......[8,2E-04]  Uterus.......[8,2E-04]
+  Pancreas.....[7,7E-04]  Brain........[1,3E-04]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   2,000        2,1E-04         6,0E+07          1,8E+02          3,6E-07        00:12
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    2,000       km   
+
+  Skin.........[2,5E-04]  Lung.........[2,1E-04]  thyroid......[2,0E-04]
+  Surface Bone.[2,1E-04]  Red Marrow...[2,0E-04]  Liver........[2,1E-04]
+  Spleen.......[2,1E-04]  Ovaries......[2,0E-04]  Adrenals.....[2,2E-04]
+  Breast.......[1,9E-04]  Stomach Wall.[2,1E-04]  SI Wall......[2,1E-04]
+  ULI Wall.....[2,1E-04]  LLI Wall.....[2,2E-04]  Bladder Wall.[2,1E-04]
+  Thymus.......[1,9E-04]  Esophagus....[1,9E-04]  Muscle.......[1,9E-04]
+  Kidneys......[2,1E-04]  Testes.......[2,1E-04]  Uterus.......[2,1E-04]
+  Pancreas.....[2,0E-04]  Brain........[3,3E-05]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   4,000        5,6E-05         1,6E+07          4,9E+01          9,7E-08        00:24
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    4,000       km   
+
+  Skin.........[6,7E-05]  Lung.........[5,7E-05]  thyroid......[5,3E-05]
+  Surface Bone.[5,7E-05]  Red Marrow...[5,4E-05]  Liver........[5,5E-05]
+  Spleen.......[5,5E-05]  Ovaries......[5,3E-05]  Adrenals.....[5,9E-05]
+  Breast.......[5,2E-05]  Stomach Wall.[5,5E-05]  SI Wall......[5,7E-05]
+  ULI Wall.....[5,7E-05]  LLI Wall.....[5,8E-05]  Bladder Wall.[5,7E-05]
+  Thymus.......[5,1E-05]  Esophagus....[5,0E-05]  Muscle.......[5,2E-05]
+  Kidneys......[5,5E-05]  Testes.......[5,8E-05]  Uterus.......[5,7E-05]
+  Pancreas.....[5,4E-05]  Brain........[8,9E-06]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   6,000        2,7E-05         7,7E+06          2,3E+01          4,6E-08        00:37
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    6,000       km   
+
+  Skin.........[3,2E-05]  Lung.........[2,7E-05]  thyroid......[2,5E-05]
+  Surface Bone.[2,7E-05]  Red Marrow...[2,6E-05]  Liver........[2,6E-05]
+  Spleen.......[2,6E-05]  Ovaries......[2,5E-05]  Adrenals.....[2,8E-05]
+  Breast.......[2,5E-05]  Stomach Wall.[2,6E-05]  SI Wall......[2,7E-05]
+  ULI Wall.....[2,7E-05]  LLI Wall.....[2,7E-05]  Bladder Wall.[2,7E-05]
+  Thymus.......[2,4E-05]  Esophagus....[2,4E-05]  Muscle.......[2,5E-05]
+  Kidneys......[2,6E-05]  Testes.......[2,7E-05]  Uterus.......[2,7E-05]
+  Pancreas.....[2,5E-05]  Brain........[4,2E-06]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+   8,000        1,6E-05         4,6E+06          1,4E+01          2,7E-08        00:49
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location    8,000       km   
+
+  Skin.........[1,9E-05]  Lung.........[1,6E-05]  thyroid......[1,5E-05]
+  Surface Bone.[1,6E-05]  Red Marrow...[1,5E-05]  Liver........[1,6E-05]
+  Spleen.......[1,6E-05]  Ovaries......[1,5E-05]  Adrenals.....[1,7E-05]
+  Breast.......[1,5E-05]  Stomach Wall.[1,6E-05]  SI Wall......[1,6E-05]
+  ULI Wall.....[1,6E-05]  LLI Wall.....[1,6E-05]  Bladder Wall.[1,6E-05]
+  Thymus.......[1,4E-05]  Esophagus....[1,4E-05]  Muscle.......[1,5E-05]
+  Kidneys......[1,6E-05]  Testes.......[1,6E-05]  Uterus.......[1,6E-05]
+  Pancreas.....[1,5E-05]  Brain........[2,5E-06]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+  10,000        1,1E-05         3,1E+06          9,3E+00          1,8E-08        01:02
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location   10,000       km   
+
+  Skin.........[1,3E-05]  Lung.........[1,1E-05]  thyroid......[1,0E-05]
+  Surface Bone.[1,1E-05]  Red Marrow...[1,0E-05]  Liver........[1,1E-05]
+  Spleen.......[1,1E-05]  Ovaries......[1,0E-05]  Adrenals.....[1,1E-05]
+  Breast.......[9,9E-06]  Stomach Wall.[1,1E-05]  SI Wall......[1,1E-05]
+  ULI Wall.....[1,1E-05]  LLI Wall.....[1,1E-05]  Bladder Wall.[1,1E-05]
+  Thymus.......[9,7E-06]  Esophagus....[9,6E-06]  Muscle.......[1,0E-05]
+  Kidneys......[1,1E-05]  Testes.......[1,1E-05]  Uterus.......[1,1E-05]
+  Pancreas.....[1,0E-05]  Brain........[1,7E-06]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+  20,000        3,3E-06         9,4E+05          2,8E+00          5,6E-09        02:04
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location   20,000       km   
+
+  Skin.........[3,9E-06]  Lung.........[3,3E-06]  thyroid......[3,1E-06]
+  Surface Bone.[3,3E-06]  Red Marrow...[3,1E-06]  Liver........[3,2E-06]
+  Spleen.......[3,2E-06]  Ovaries......[3,1E-06]  Adrenals.....[3,4E-06]
+  Breast.......[3,0E-06]  Stomach Wall.[3,2E-06]  SI Wall......[3,3E-06]
+  ULI Wall.....[3,3E-06]  LLI Wall.....[3,4E-06]  Bladder Wall.[3,3E-06]
+  Thymus.......[3,0E-06]  Esophagus....[2,9E-06]  Muscle.......[3,0E-06]
+  Kidneys......[3,2E-06]  Testes.......[3,3E-06]  Uterus.......[3,3E-06]
+  Pancreas.....[3,1E-06]  Brain........[5,1E-07]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+  40,000        1,1E-06         3,0E+05          9,1E-01          1,8E-09        04:08
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location   40,000       km   
+
+  Skin.........[1,3E-06]  Lung.........[1,1E-06]  thyroid......[9,8E-07]
+  Surface Bone.[1,1E-06]  Red Marrow...[1,0E-06]  Liver........[1,0E-06]
+  Spleen.......[1,0E-06]  Ovaries......[9,8E-07]  Adrenals.....[1,1E-06]
+  Breast.......[9,7E-07]  Stomach Wall.[1,0E-06]  SI Wall......[1,1E-06]
+  ULI Wall.....[1,1E-06]  LLI Wall.....[1,1E-06]  Bladder Wall.[1,1E-06]
+  Thymus.......[9,5E-07]  Esophagus....[9,4E-07]  Muscle.......[9,8E-07]
+  Kidneys......[1,0E-06]  Testes.......[1,1E-06]  Uterus.......[1,1E-06]
+  Pancreas.....[1,0E-06]  Brain........[1,7E-07]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+  60,000        5,5E-07         1,6E+05          4,8E-01          9,5E-10        06:13
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location   60,000       km   
+
+  Skin.........[6,6E-07]  Lung.........[5,6E-07]  thyroid......[5,2E-07]
+  Surface Bone.[5,6E-07]  Red Marrow...[5,3E-07]  Liver........[5,4E-07]
+  Spleen.......[5,4E-07]  Ovaries......[5,2E-07]  Adrenals.....[5,8E-07]
+  Breast.......[5,1E-07]  Stomach Wall.[5,4E-07]  SI Wall......[5,6E-07]
+  ULI Wall.....[5,6E-07]  LLI Wall.....[5,7E-07]  Bladder Wall.[5,6E-07]
+  Thymus.......[5,0E-07]  Esophagus....[4,9E-07]  Muscle.......[5,1E-07]
+  Kidneys......[5,4E-07]  Testes.......[5,6E-07]  Uterus.......[5,6E-07]
+  Pancreas.....[5,3E-07]  Brain........[8,7E-08]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+  80,000        3,5E-07         1,0E+05          3,0E-01          6,1E-10        08:17
+ ----------------------------------------------------------------------------
+  Target Organ Committed Dose Equivalent (Sv), at Location   80,000       km   
+
+  Skin.........[4,2E-07]  Lung.........[3,6E-07]  thyroid......[3,3E-07]
+  Surface Bone.[3,5E-07]  Red Marrow...[3,4E-07]  Liver........[3,5E-07]
+  Spleen.......[3,5E-07]  Ovaries......[3,3E-07]  Adrenals.....[3,7E-07]
+  Breast.......[3,3E-07]  Stomach Wall.[3,5E-07]  SI Wall......[3,6E-07]
+  ULI Wall.....[3,6E-07]  LLI Wall.....[3,6E-07]  Bladder Wall.[3,6E-07]
+  Thymus.......[3,2E-07]  Esophagus....[3,1E-07]  Muscle.......[3,3E-07]
+  Kidneys......[3,5E-07]  Testes.......[3,6E-07]  Uterus.......[3,6E-07]
+  Pancreas.....[3,4E-07]  Brain........[5,6E-08]
+ ----------------------------------------------------------------------------
+ ----------------------------------------------------------------------------

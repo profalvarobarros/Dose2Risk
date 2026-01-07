@@ -21,7 +21,7 @@ class HotspotPipeline:
     antes de servir como entrada para a próxima. Gerencia também a criação de diretórios
     e a nomenclatura consistente de arquivos baseada em carimbos de tempo (Timestamp).
     """
-    def __init__(self, input_folder: str, exposure_age: float, current_age: float, output_folder: str, params_file: str) -> None:
+    def __init__(self, input_folder: str, exposure_age: float, current_age: float, output_folder: str, params_file: str, filters: dict = None) -> None:
         """
         Inicializa o pipeline de processamento.
 
@@ -37,12 +37,15 @@ class HotspotPipeline:
             Diretório onde todos os artefatos gerados (CSVs, Logs) serão salvos.
         params_file : str
             Caminho para o arquivo mestre de parâmetros biológicos (BEIR).
+        filters : dict, optional
+            Dicionário contendo critérios de filtragem (sexo, órgãos, etc).
         """
         self.input_folder = input_folder
         self.exposure_age = exposure_age
         self.current_age = current_age
         self.output_folder = output_folder
         self.params_file = params_file
+        self.filters = filters if filters else {}
 
     def run(self) -> None:
         """
@@ -99,7 +102,8 @@ class HotspotPipeline:
                     output_folder=self.output_folder,
                     exposure_age=self.exposure_age,
                     current_age=self.current_age,
-                    timestamp=ts
+                    timestamp=ts,
+                    filters=self.filters
                 )
                 calculator.calculate()
             else:

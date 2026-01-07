@@ -1,0 +1,274 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Manual de Logs') }}{% endblock %}
+
+{% block content %}
+<style>
+    .docs-wrapper {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        color: #334155;
+        line-height: 1.7;
+        background-color: #ffffff;
+        padding-top: 40px;
+        padding-bottom: 80px;
+    }
+
+    .docs-title {
+        font-family: 'Segoe UI', serif;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+    }
+
+    .docs-subtitle {
+        font-weight: 400;
+        color: #64748b;
+        font-size: 1.25rem;
+        margin-bottom: 3rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-top: 3rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #334155;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* JSON Style */
+    .json-box {
+        background-color: #1e293b;
+        color: #e2e8f0;
+        padding: 1.5rem;
+        border-radius: 8px;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        border-left: 4px solid #10b981;
+    }
+
+    .json-key {
+        color: #93c5fd;
+    }
+
+    .json-string {
+        color: #a5f3fc;
+    }
+
+    .json-number {
+        color: #fcd34d;
+    }
+
+    .json-boolean {
+        color: #f472b6;
+    }
+
+    /* Scientific Table Style */
+    .table-scientific {
+        width: 100%;
+        margin: 1.5rem 0;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-scientific th {
+        background-color: #f8fafc;
+        color: #0f172a;
+        font-weight: 600;
+        text-align: left;
+        padding: 1rem;
+        border-bottom: 2px solid #e2e8f0;
+    }
+
+    .table-scientific td {
+        padding: 1rem;
+        border-bottom: 1px solid #e2e8f0;
+        color: #475569;
+        vertical-align: top;
+    }
+
+    .table-scientific tr:last-child td {
+        border-bottom: none;
+    }
+
+    .badge-var {
+        font-family: 'Consolas', monospace;
+        background-color: #f1f5f9;
+        color: #0f172a;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        border: 1px solid #cbd5e1;
+        font-size: 0.85em;
+    }
+
+    .callout {
+        border-left: 4px solid #3b82f6;
+        background-color: #eff6ff;
+        padding: 1.5rem;
+        margin: 2rem 0;
+        border-radius: 0 6px 6px 0;
+    }
+
+    .callout-title {
+        font-weight: 700;
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #1e3a8a;
+    }
+</style>
+
+<div class="docs-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="docs-title text-center">{{ _('Manual de Auditoria: Logs de Execução') }}</h1>
+                <p class="docs-subtitle text-center">{{ _('Entendendo a "Caixa Preta" do Dose2Risk') }}</p>
+
+                <div class="callout">
+                    <span class="callout-title">{{ _('Por que auditar o log?') }}</span>
+                    {{ _('Enquanto o arquivo CSV mostra o <strong>RESULTADO</strong>, o arquivo de log (.log) mostra o
+                    <strong>RACIOCÍNIO</strong>. Ele é fundamental para validação científica ("Whitebox Testing"), pois
+                    revela exatamente qual fórmula e quais coeficientes foram usados para cada cálculo individual.') }}
+                </div>
+
+                <!-- Seção 1: Estrutura -->
+                <section id="estrutura">
+                    <h2>1. Estrutura do Arquivo</h2>
+                    <p>{{ _('O arquivo de log segue o formato "JSON Lines" (ndjson). Cada linha é um objeto JSON
+                        completo e independente, facilitando a ingestão por softwares de análise de dados (Splunk, ELK,
+                        Python Pandas).') }}</p>
+                    <p>{{ _('Existem dois tipos principais de registros:') }}</p>
+                    <ul>
+                        <li><strong>METADATA:</strong> {{ _('Cabeçalho e Rodapé de segurança.') }}</li>
+                        <li><strong>CALC_LOG:</strong> {{ _('O registro detalhado de cálculo de uma célula específica.')
+                            }}</li>
+                    </ul>
+                </section>
+
+                <!-- Seção 2: Campos Críticos -->
+                <section id="campos">
+                    <h2>2. Dicionário de Dados (CALC_LOG)</h2>
+                    <p>{{ _('Este é o registro mais comum. Ele explica um único cálculo de risco.') }}</p>
+
+                    <div class="json-box">
+                        {
+                        <span class="json-key">"Row_ID"</span>: <span class="json-number">10</span>,
+                        <span class="json-key">"Context"</span>: <span class="json-string">"male|thyroid|A_0.03"</span>,
+                        <span class="json-key">"Dose_Sv"</span>: <span class="json-string">"5.0000e-01"</span>,
+                        <span class="json-key">"Model"</span>: <span class="json-string">"BEIR_V"</span>,
+                        <span class="json-key">"Equation"</span>: <span class="json-string">"ERR = 7.5 * dose"</span>,
+                        <span class="json-key">"Params"</span>: {
+                        <span class="json-key">"coef_young"</span>: <span class="json-number">7.5</span>,
+                        <span class="json-key">"threshold_age"</span>: <span class="json-number">18</span>
+                        },
+                        <span class="json-key">"Result_ERR"</span>: <span class="json-string">"3.7500e+00"</span>
+                        }
+                    </div>
+
+                    <table class="table-scientific">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%">{{ _('Campo') }}</th>
+                                <th>{{ _('Significado e Uso na Auditoria') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge-var">Row_ID</span></td>
+                                <td>
+                                    <strong>{{ _('Link com CSV') }}</strong><br>
+                                    {{ _('Use este número para encontrar a linha correspondente no arquivo CSV de
+                                    resultados.') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-var">Context</span></td>
+                                <td>
+                                    <strong>{{ _('Coordenadas do Cálculo') }}</strong><br>
+                                    {{ _('Formato: "SEXO | ÓRGÃO | CENÁRIO". Garante que você saiba exatamente o que
+                                    está sendo calculado.') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-var">Model</span></td>
+                                <td>
+                                    <strong>{{ _('Decisão do Algoritmo') }}</strong><br>
+                                    {{ _('Mostra qual modelo foi escolhido automaticamente (BEIR V ou BEIR VII) com base
+                                    na dose recebida.') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-var">Equation</span></td>
+                                <td>
+                                    <strong>{{ _('Fórmula Simbólica') }}</strong><br>
+                                    {{ _('A representação matemática da lógica aplicada. Essencial para verificar se o
+                                    sistema aplicou a regra correta (ex: linear vs quadrática).') }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-var">Params</span></td>
+                                <td>
+                                    <strong>{{ _('Parâmetros "Vivos"') }}</strong><br>
+                                    {{ _('Os valores numéricos exatos dos coeficientes usados. Permite que um auditor
+                                    externo recalcule e valide o resultado manualmente.') }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Seção 3: Segurança -->
+                <section id="seguranca">
+                    <h2>3. Integridade e Segurança</h2>
+                    <p>{{ _('Para evitar adulteração de resultados, o sistema assina digitalmente a sessão de cálculo.')
+                        }}</p>
+
+                    <div class="json-box">
+                        <span class="json-key">"Inputs_Integrity"</span>: {
+                        <span class="json-key">"Dose_Matrix_Hash_SHA256"</span>: <span
+                            class="json-string">"a3f5e..."</span>,
+                        <span class="json-key">"Params_JSON_Hash_SHA256"</span>: <span
+                            class="json-string">"b7c9d..."</span>
+                        }
+                    </div>
+
+                    <table class="table-scientific">
+                        <thead>
+                            <tr>
+                                <th>{{ _('Mecanismo') }}</th>
+                                <th>{{ _('Propósito') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>{{ _('Hash SHA-256') }}</strong></td>
+                                <td>{{ _('Se um único byte do arquivo de entrada (HotSpot) ou dos parâmetros de risco
+                                    for alterado, este código mudará completamente. Ele garante que os resultados
+                                    correspondem exatamente aos dados originais.') }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>METADATA_FOOTER</strong></td>
+                                <td>{{ _('A última linha do arquivo. Se ela não existir ou não indicar "SUCCESS", o
+                                    arquivo de log está incompleto ou corrompido (ex: queda de energia durante o
+                                    cálculo).') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

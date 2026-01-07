@@ -36,7 +36,7 @@ class CalculadoraRisco:
     - Geração de Logs de Auditoria detalhados para rastreabilidade matemática.
     - Formatação de saída em CSV científico.
     """
-    def __init__(self, input_csv: str, params_file: str, output_folder: str, exposure_age: float, current_age: float, model: str = 'auto', timestamp: Optional[str] = None) -> None:
+    def __init__(self, input_csv: str, params_file: str, output_folder: str, exposure_age: float, current_age: float, model: str = 'auto', timestamp: Optional[str] = None, filters: Dict[str, Any] = None) -> None:
         """
         Inicializa a Calculadora de Risco.
 
@@ -48,6 +48,7 @@ class CalculadoraRisco:
             current_age (float): Idade atual (na avaliação).
             model (str, optional): 'auto', 'vii' (BEIR VII), ou 'v' (BEIR V). Padrão é 'auto'.
             timestamp (str, optional): String de data/hora personalizada para nomeação de arquivos.
+            filters (dict, optional): Filtros de processamento (sexo, órgãos, colunas, limite 4Sv).
         """
         self.input_csv = input_csv
         self.params_file = params_file
@@ -56,8 +57,9 @@ class CalculadoraRisco:
         self.current_age = current_age
         self.model = model
         self.timestamp = timestamp
+        self.filters = filters if filters else {}
 
-    def beir_vii_risk(self, beta: float, gamma: float, eta: float, dose_Sv: float, age_exp: float, age_att: float, model_type: str, latency: float, ddref: float, beta_M: Any, beta_F: Any, theta: Any, delta: Any, phi: Any, e_star: float, organ: Optional[str] = None, baseline_rate: Optional[float] = None, scenario: Optional[str] = None, gender: Optional[str] = None) -> Tuple[float, str]:
+    def beir_vii_risk(self, beta: float, gamma: float, eta: float, dose_Sv: float, age_exp: float, age_att: float, model_type: str, latency: float, ddref: float, beta_M: Any, beta_F: Any, theta: Any, delta: Any, phi: Any, e_star: float, organ: Optional[str] = None, baseline_rate: Optional[float] = None, scenario: Optional[str] = None, sex: Optional[str] = None) -> Tuple[float, str]:
         """
         Calcula o Excesso de Risco Relativo (ERR) utilizando o formalismo matemático do relatório BEIR VII (Fase 2).
 
@@ -154,7 +156,7 @@ class CalculadoraRisco:
             logging.error(f"Erro crítico no cálculo BEIR VII: {error}")
             return float('nan'), f"Erro de Execução: {error}"
 
-    def beir_v_risk(self, dose_Sv: float, age_exp: float, age_att: float, gender: str, beir_v_config: Dict[str, Any]) -> Tuple[float, str, Dict[str, Any]]:
+    def beir_v_risk(self, dose_Sv: float, age_exp: float, age_att: float, sex: str, beir_v_config: Dict[str, Any]) -> Tuple[float, str, Dict[str, Any]]:
         """
         Calcula o Excesso de Risco Relativo (ERR) utilizando os modelos legados do Relatório BEIR V (1990).
         
@@ -176,7 +178,7 @@ class CalculadoraRisco:
         dose_Sv (float): Dose absorvida em Sieverts.
         age_exp (float): Idade na exposição.
         age_att (float): Idade atingida (no momento da avaliação de risco).
-        gender (str): Sexo do indivíduo ('male' ou 'female').
+        sex (str): Sexo do indivíduo ('male' ou 'female').
         beir_v_config (dict): Dicionário contendo a configuração do modelo ('model_type') e seus parâmetros ('params').
 
         Retorna:
@@ -271,7 +273,7 @@ class CalculadoraRisco:
             # de risco baseando-se em faixas etárias na exposição (<15, <25, <35, etc).
             # -------------------------------------------------------------------------
             elif model_type == 'breast_age_dependent':
-                if gender != 'female': 
+                if sex != 'female': 
                     result = 0.0
                     eq_symbolic = "ERR = 0 (Risco de Câncer de Mama aplicável apenas para sexo feminino neste modelo)"
                 else:
@@ -318,7 +320,7 @@ class CalculadoraRisco:
                 raw_coef = params.get('coef')
                 
                 if isinstance(raw_coef, dict):
-                    sex_key = 'M' if gender == 'male' else 'F'
+                    sex_key = 'M' if sex == 'male' else 'F'
                     coef = raw_coef.get(sex_key, 0.0)
                 else:
                     coef = float(raw_coef)
@@ -465,11 +467,34 @@ class CalculadoraRisco:
                 
                 # Não fazemos mais merge com CSV. Iteramos e buscamos no dict.
 
-                for sex in ['M', 'F']:
-                    gender = 'male' if sex == 'M' else 'female'
+                # Extração de Filtros
+                selected_organs = self.filters.get('organs') # Se None, processa todos?
+                selected_sexes = self.filters.get('sexes', ['M', 'F'])
+                selected_models = self.filters.get('models', ['ERR', 'LAR'])
+                show_4sv = self.filters.get('show_4sv', True)
+
+                # Tracking para Supressão de Colunas (>4Sv)
+                # Dicionário: { 'cenario_X': {'total': 0, 'high_dose': 0} }
+                scenario_stats = {c: {'total': 0, 'high_dose': 0} for c in scenarios}
+
+                for sex_code in ['M', 'F']:
+                    sex = 'male' if sex_code == 'M' else 'female'
                     
+                    # Filtro de Sexo
+                    if sex_code not in selected_sexes:
+                        continue
+
                     for idx, row in df_doses.iterrows():
                         organ = row['organ']
+                        
+                        # Filtro de Órgão
+                        # Se selected_organs for None ou vazio E filters foi passado como dict vazio (default init), 
+                        # assumimos processar tudo?
+                        # Se filters foi populado via UI, 'organs' será uma lista.
+                        # Lógica: Se self.filters não estiver vazio, respeitar estritamente a lista.
+                        if self.filters and selected_organs is not None:
+                             if organ not in selected_organs:
+                                 continue
                         
                         # Extração antecipada do ID para logs de erro
                         row_id_val = row.get('row_id')
@@ -481,7 +506,7 @@ class CalculadoraRisco:
                         if organ not in risk_configs:
                             warn_payload = {
                                 "Row_ID": row_id_safe,
-                                "Context": f"{gender}|{organ}",
+                                "Context": f"{sex}|{organ}",
                                 "Status": "SKIPPED",
                                 "Reason": "Órgão não encontrado no JSON de parâmetros (risk_parameters.json).",
                                 "Action": "Ignorando linha de cálculo."
@@ -503,7 +528,7 @@ class CalculadoraRisco:
                         # Baseline Incidence e Beir Eq
                         organ_beir = org_config.get('beir_VII_equivalence', organ)
                         base_inc_dict = org_config.get('baseline_incidence', {})
-                        base_inc = base_inc_dict.get(sex, 0.0)
+                        base_inc = base_inc_dict.get(sex_code, 0.0)
                         
                         # Parâmetros Específicos VII
                         # Helper local para conversão segura
@@ -526,7 +551,7 @@ class CalculadoraRisco:
                         raw_beta = vii_params.get('beta')
                         beta_val = 0.0
                         if isinstance(raw_beta, dict):
-                             beta_val = raw_beta.get(sex, "N/A")
+                             beta_val = raw_beta.get(sex_code, "N/A")
                         else:
                              beta_val = raw_beta
                         
@@ -537,9 +562,9 @@ class CalculadoraRisco:
                         beta_F = raw_beta.get('F', "N/A") if isinstance(raw_beta, dict) else raw_beta
 
                         res_row = {
-                            'gender': gender,
-                            'age_in_exposition_years': int(self.exposure_age),
-                            'age_after': int(self.current_age)
+                            'sex': sex,
+                            'age_at_exposure': int(self.exposure_age),
+                            'attained_age': int(self.current_age)
                         }
                         
                         # ID Linkage (Agora validado pelo valor antecipado)
@@ -563,7 +588,30 @@ class CalculadoraRisco:
                             dose_Sv = float(row.get(cen, 0.0))
                             if pd.isna(dose_Sv): dose_Sv = 0.0
                             
-                            if math.isnan(beta):
+                            scenario_stats[cen]['total'] += 1
+
+                            dose_mSv_check = dose_Sv * 1000.0
+
+                            if dose_mSv_check > 4000:
+                                result_skipped_high_dose = True
+                                scenario_stats[cen]['high_dose'] += 1 # Contabiliza falha por dose alta
+                                
+                                err_val = "N/A"
+                                lar_val = "N/A"
+                                model_name = "N/A"
+
+                                log_details = {
+                                    "Row_ID": row_id_safe,
+                                    "Context": f"{sex}|{organ}|{cen}",
+                                    "Status": "SKIPPED",
+                                    "Reason": "dose acima de 4000 mSv",
+                                    "Dose_Measured_mSv": f"{dose_mSv_check:.2f}",
+                                    "Result_ERR": "N/A",
+                                    "Result_LAR": "N/A"
+                                }
+                                logging.warning(f"CALC_LOG: {json.dumps(log_details, ensure_ascii=False)}")
+
+                            elif math.isnan(beta):
                                 err_val = "N/A" # String para indicar dado ausente no CSV
                                 lar_val = "N/A"
                                 model_name = "N/A"
@@ -577,7 +625,7 @@ class CalculadoraRisco:
                                 # ---------------------------------------------------------------------
                                 log_details = {
                                     "Row_ID": row_id_safe,
-                                    "Context": f"{gender}|{organ}|{cen}",
+                                    "Context": f"{sex}|{organ}|{cen}",
                                     "Status": "SKIPPED",
                                     "Reason": "Modelo biológico não aplicável para este sexo (Coeficiente Beta = NaN)",
                                     "Result_ERR": "N/A",
@@ -611,7 +659,7 @@ class CalculadoraRisco:
                                         model_type=model_type, latency=latency, ddref=ddref, 
                                         beta_M=beta_M, beta_F=beta_F, theta=theta, delta=delta, 
                                         phi=phi, e_star=e_star, organ=organ, 
-                                        baseline_rate=base_inc, scenario=cen, gender=gender
+                                        baseline_rate=base_inc, scenario=cen, sex=sex
                                     )
                                     row_extra_params['ALPHA2'] = "N/A"
                                     row_extra_params['ALPHA3'] = "N/A"
@@ -620,7 +668,7 @@ class CalculadoraRisco:
                                     # Passamos o config do BEIR V direto
                                     err_val, eq_s, extras = self.beir_v_risk(
                                         dose_Sv=dose_Sv, age_exp=self.exposure_age, 
-                                        age_att=self.current_age, gender=gender,
+                                        age_att=self.current_age, sex=sex,
                                         beir_v_config=v_conf
                                     )
                                     if extras:
@@ -637,7 +685,7 @@ class CalculadoraRisco:
                                 # inspecionando as variáveis intermediárias que não vão para o CSV final.
                                 log_details = {
                                     "Row_ID": row_id_safe,
-                                    "Context": f"{gender}|{organ}|{cen}",
+                                    "Context": f"{sex}|{organ}|{cen}",
                                     "Dose_Sv": f"{dose_Sv:.4e}",
                                     "Dose_mSv": f"{dose_Sv*1000:.2f}",
                                     "Model": model_name,
@@ -671,9 +719,11 @@ class CalculadoraRisco:
                             # Atribuição final para o dicionário de resultados que irá para o CSV
                             res_row[f"dose_Sv_{cen}"] = dose_Sv
                             res_row[f"model_{cen}"] = model_name
+                            
                             if isinstance(err_val, str) and err_val == "N/A":
                                 res_row[f'ERR_{cen}'] = "N/A"
                                 res_row[f'LAR_{cen}'] = "N/A"
+                                # Para efeito de supressão, N/A já foi contado se foi por high dose
                             else:
                                 res_row[f'ERR_{cen}'] = f"{err_val:.2e}"
                                 res_row[f'LAR_{cen}'] = f"{lar_val:.2e}"
@@ -717,25 +767,58 @@ class CalculadoraRisco:
                 # Criar DataFrame
                 df_final = pd.DataFrame(final_rows)
                 
-                # Ordenação das Colunas
-                cols = ['row_id', 'gender', 'age_in_exposition_years', 'age_after', 'hotspot_organ', 'beir_VII_organ_equivalence']
+                # Definição Dinâmica de Colunas baseada nos Filtros
+                cols = ['row_id', 'sex', 'age_at_exposure', 'attained_age', 'hotspot_organ', 'beir_VII_organ_equivalence']
+                
+                # Lista de cenários a serem removidos (Supressão 4Sv)
+                scenarios_to_suppress = []
+                if not show_4sv:
+                    for cen, stats in scenario_stats.items():
+                        # Se total > 0 (evita div por zero) E total == high_dose (100% dos dados filtrados por dose alta)
+                        if stats['total'] > 0 and stats['total'] == stats['high_dose']:
+                            scenarios_to_suppress.append(cen)
                 
                 for cen in scenarios:
-                    cols.extend([f"dose_Sv_{cen}", f"model_{cen}", f"ERR_{cen}", f"LAR_{cen}"])
+                    # Se cenário marcado para supressão, pula todas as colunas dele
+                    if cen in scenarios_to_suppress:
+                        continue
+                        
+                    # Coluna de Dose sempre vai? "Suprimir grupo de colunas (dose_Sv_..., model_..., ERR_..., LAR_...)"
+                    cols.append(f"dose_Sv_{cen}")
+                    cols.append(f"model_{cen}")
+                    
+                    if 'ERR' in selected_models:
+                         cols.append(f"ERR_{cen}")
+                    if 'LAR' in selected_models:
+                         cols.append(f"LAR_{cen}")
                 
                 # Extensão final de colunas (se houver metadados adicionais futuros)
                 # Nota: Detalhes finos de parâmetros foram removidos do CSV para evitar poluição visual,
                 # mantendo-os acessíveis via Log de Auditoria (.log)
                 
-                # Filtrar colunas existentes
-                existing_cols = [c for c in cols if c in df_final.columns]
-                df_final = df_final[existing_cols]
+                # Filtrar colunas existentes (necessário pois dynamic cols podem não estar no df se logic falhar)
+                # Porém df_final tem tudo que foi colocado em res_row.
+                # Precisamos garantir que df_final tenha as chaves.
+                # As chaves foram inseridas: dose_Sv_{cen}, model_{cen}, ERR_{cen}, LAR_{cen}.
+                # Se filtramos colunas aqui (ex: removemos LAR do 'cols'), o to_csv abaixo vai respeitar 'cols'.
+                
+                # Verificação se df_final não está vazio
+                if df_final.empty:
+                     # Cria df vazio com as colunas esperadas para não quebrar contrato?
+                     df_final = pd.DataFrame(columns=cols)
+                
+                existing_cols = [c for c in cols if c in df_final.columns or c in cols] # Mantém cols mesmo que vazias?
+                # Ajuste: df_final pode ter rows com chaves extras que não queremos (ex: LAR se filtro desligado),
+                # ou pode não ter chaves se o filtro as removeu?
+                # O 'res_row' populou tudo. O 'cols' define o que sai.
+                # O df_final criado a partir de list dicts tem todas chaves.
+                
+                df_final = df_final[[c for c in cols if c in df_final.columns]]
 
                 df_final.to_csv(out_csv, sep=';', index=False, decimal='.', float_format='%.2e')
                 
                 # ---------------------------------------------------------------------
                 # FOOTER DE ENCERRAMENTO (Confirmação de Sucesso)
-                # ---------------------------------------------------------------------
                 audit_footer = {
                     "Event": "EXECUTION_END",
                     "Timestamp_ISO": datetime.now().isoformat(),

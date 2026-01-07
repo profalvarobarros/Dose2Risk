@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-25 11:16-0300\n"
+"POT-Creation-Date: 2026-01-07 09:30-0300\n"
 "PO-Revision-Date: 2025-06-23 23:05-0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -16,374 +16,1087 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: app_web.py:68
-msgid "O processamento foi concluído com sucesso."
-msgstr "El procesamiento se completó con éxito."
+#: dose2risk/api/routes.py:52
+msgid "Language not supported."
+msgstr ""
 
-#: app_web.py:70
-msgid "Idioma não suportado."
-msgstr "Idioma no soportado."
+#: dose2risk/api/routes.py:84
+msgid "Nenhum campo de arquivo na requisição."
+msgstr ""
 
-#: templates/contato.html:2 templates/partials/footer.html:22
+#: dose2risk/api/routes.py:90
+#, fuzzy
+msgid "Nenhum arquivo selecionado."
+msgstr "Ningún archivo seleccionado"
+
+#: dose2risk/api/routes.py:112
+#, python-format
+msgid "Arquivos rejeitados: %(files)s"
+msgstr ""
+
+#: dose2risk/api/routes.py:119
+msgid "Nenhum arquivo válido enviado."
+msgstr ""
+
+#: dose2risk/api/routes.py:125
+#, python-format
+msgid "Erro durante upload: %(error)s"
+msgstr ""
+
+#: dose2risk/api/routes.py:133
+msgid "Execução não identificada."
+msgstr ""
+
+#: dose2risk/api/routes.py:178
+msgid "Informe as idades corretamente."
+msgstr ""
+
+#: dose2risk/api/routes.py:182
+msgid "Arquivos de entrada não encontrados."
+msgstr ""
+
+#: dose2risk/api/routes.py:209
+msgid "Erro: Pasta de saída não criada."
+msgstr ""
+
+#: dose2risk/api/routes.py:215
+msgid "Nenhum arquivo de saída gerado."
+msgstr ""
+
+#: dose2risk/api/routes.py:221
+#, fuzzy, python-format
+msgid "Erro no processamento: %(error)s"
+msgstr "Resultados del Procesamiento"
+
+#: dose2risk/api/routes.py:230
+#, python-format
+msgid "Erro ao baixar arquivo: %(error)s"
+msgstr ""
+
+#: dose2risk/api/routes.py:241
+msgid "Pasta de saída não encontrada."
+msgstr ""
+
+#: dose2risk/api/routes.py:280
+#, python-format
+msgid "Erro ao gerar ZIP: %(error)s"
+msgstr ""
+
+#: dose2risk/api/templates/contato.html:2
+#: dose2risk/api/templates/partials/footer.html:22
 msgid "Contato"
 msgstr "Contacto"
 
-#: templates/contato.html:8
+#: dose2risk/api/templates/contato.html:8
 #, fuzzy
 msgid "Entre em Contato"
 msgstr "Contacto"
 
-#: templates/contato.html:9
+#: dose2risk/api/templates/contato.html:9
 msgid ""
-"Para nos ajudar a resolver o seu problema mais rapidamente, por favor, "
-"inclua as seguintes informações no seu contato:"
-msgstr "Para ayudarnos a resolver su problema más rápidamente, por favor, incluya la siguiente información en su contacto:"
+"Para dúvidas, sugestões, ou suporte técnico, por favor, envie um e-mail "
+"para:"
+msgstr ""
 
-#: templates/contato.html:13
+#: dose2risk/api/templates/contato.html:13
 msgid "Nossa equipe responderá o mais breve possível."
 msgstr "Nuestro equipo responderá lo antes posible."
 
-#: templates/documentacao.html:2 templates/partials/footer.html:13
-msgid "Documentação"
+#: dose2risk/api/templates/contato.html:15
+msgid "Endereço"
+msgstr ""
+
+#: dose2risk/api/templates/contato.html:17
+msgid "Instituto Militar de Engenharia (IME)"
+msgstr ""
+
+#: dose2risk/api/templates/contato.html:18
+msgid "Praça General Tibúrcio, 80"
+msgstr ""
+
+#: dose2risk/api/templates/contato.html:19
+msgid "Praia Vermelha, Rio de Janeiro - RJ, 22290-270"
+msgstr ""
+
+#: dose2risk/api/templates/contato.html:20
+#, fuzzy
+msgid "Brasil"
+msgstr "Cerebro"
+
+#: dose2risk/api/templates/documentacao.html:3
+#: dose2risk/api/templates/partials/header.html:18
+#, fuzzy
+msgid "Documentação Técnica"
 msgstr "Documentación"
 
-#: templates/documentacao.html:8
-msgid "Documentação do Processo de Cálculo de Risco"
-msgstr "Documentación del Proceso de Cálculo de Riesgo"
+#: dose2risk/api/templates/documentacao.html:225
+msgid "Manual Técnico de Referência"
+msgstr "Manual Técnico de Referencia"
 
-#: templates/documentacao.html:10
+#: dose2risk/api/templates/documentacao.html:226
 msgid ""
-"Este documento detalha o processo computacional implementado no arquivo "
-"<code>hotspot_to_risk.py</code>, que automatiza a conversão de dados de "
-"dispersão atmosférica, gerados pelo software HotSpot, em estimativas de "
-"risco de câncer. O processo é dividido em três etapas principais, "
-"orquestradas por uma classe de pipeline."
-msgstr "Este documento detalla el proceso computacional implementado en el archivo <code>hotspot_to_risk.py</code>, que automatiza la conversión de datos de dispersión atmosférica, generados por el software HotSpot, en estimaciones de riesgo de cáncer. El proceso se divide en tres etapas principales, orquestadas por una clase de pipeline."
+"Dose2Risk: Sistema Integrado de Avaliação de Risco\n"
+"                    Radiológico"
+msgstr "Dose2Risk: Sistema Integrado de Evaluación de Riesgo Radiológico"
 
-#: templates/documentacao.html:14
-msgid "Resultados do Processamento"
-msgstr "Resultados del Procesamiento"
+#: dose2risk/api/templates/documentacao.html:243
+msgid "1. Introdução e Propósito"
+msgstr "1. Introducción y Propósito"
 
-#: templates/documentacao.html:15
+#: dose2risk/api/templates/documentacao.html:245
+msgid "2. Fundamentação Científica"
+msgstr "2. Fundamentos Científicos"
+
+#: dose2risk/api/templates/documentacao.html:247
+msgid "3. Guia Operacional"
+msgstr "3. Guía Operativa"
+
+#: dose2risk/api/templates/documentacao.html:249
+msgid "4. Especificação de Saída"
+msgstr "4. Especificación de Salida"
+
+#: dose2risk/api/templates/documentacao.html:251
+msgid "5. Auditoria e Segurança"
+msgstr "5. Auditoría y Seguridad"
+
+#: dose2risk/api/templates/documentacao.html:264
 msgid ""
-"O fluxo de trabalho é gerenciado pela classe "
-"<code>HotspotPipeline</code>, que coordena a execução sequencial das "
-"seguintes etapas:"
-msgstr "El flujo de trabajo es gestionado por la clase <code>HotspotPipeline</code>, que coordina la ejecución secuencial de las siguientes etapas:"
+"O <strong>Dose2Risk</strong> estabelece uma ponte metodológica crítica "
+"entre a física\n"
+"                            da dispersão atmosférica e a radiobiologia "
+"quantitativa. Enquanto softwares de dispersão\n"
+"                            tradicionais (como o HotSpot) entregam "
+"métricas de dose física (e.g., Dose Efetiva\n"
+"                            Comprometida em Sieverts), eles falham em "
+"traduzir esses números em consequências biológicas\n"
+"                            tangíveis para a vida humana."
+msgstr ""
+"<strong>Dose2Risk</strong> establece un puente metodológico crítico entre la física de la dispersión atmosférica y la radiobiología cuantitativa. Mientras que el software de dispersión tradicional (como HotSpot) entrega métricas de dosis física (e.g., Dosis Efectiva Comprometida en Sieverts), fallan en traducir estos números en consecuencias biológicas tangibles para la vida humana."
 
-#: templates/documentacao.html:17
-msgid "Extração de Dados:"
-msgstr "Extracción de Datos:"
+#: dose2risk/api/templates/documentacao.html:272
+msgid "Objetivo Primário"
+msgstr "Objetivo Primario"
 
-#: templates/documentacao.html:17
-msgid "A classe <code>ExtratorHotspot</code> lê os arquivos de saída do HotSpot."
-msgstr "La clase <code>ExtractorHotspot</code> lee los archivos de salida de HotSpot."
-
-#: templates/documentacao.html:18
-msgid "Transposição de Dados:"
-msgstr "Transposición de Datos:"
-
-#: templates/documentacao.html:18
+#: dose2risk/api/templates/documentacao.html:273
 msgid ""
-"A classe <code>TranspositorHotspot</code> pivota os dados extraídos para "
-"um formato estruturado."
-msgstr "La clase <code>TranspositorHotspot</code> pivota los datos extraídos a un formato estructurado."
+"Prover uma estimativa probabilística, auditável e cientificamente "
+"embasada do risco de\n"
+"                            carcinogênese (câncer) induzido por radiação "
+"em indivíduos expostos a eventos radiológicos\n"
+"                            ou nucleares, utilizando os modelos padrão-"
+"ouro da Academia Nacional de Ciências\n"
+"                            (NAS/USA)."
+msgstr ""
+"Proporcionar una estimación probabilística, auditable y científicamente fundamentada del riesgo de carcinogénesis (cáncer) inducido por radiación en individuos expuestos a eventos radiológicos o nucleares, utilizando los modelos estándar de oro de la Academia Nacional de Ciencias (NAS/USA)."
 
-#: templates/documentacao.html:19
-msgid "Cálculo de Risco:"
-msgstr "Cálculo de Riesgo:"
-
-#: templates/documentacao.html:19
+#: dose2risk/api/templates/documentacao.html:280
 msgid ""
-"A classe <code>CalculadoraRisco</code> aplica modelos matemáticos para "
-"estimar o risco."
-msgstr "La clase <code>CalculadoraRisco</code> aplica modelos matemáticos para estimar el riesgo."
+"Para aplicações científicas e acadêmicas de alto rigor, recomenda-se a "
+"instalação local\n"
+"                            da ferramenta para garantir controle total "
+"sobre os artefatos de dados e\n"
+"                            reprodutibilidade."
+msgstr ""
+"Para aplicaciones científicas y académicas de alto rigor, se recomienda la instalación local de la herramienta para garantizar un control total sobre los artefactos de datos y la reproducibilidad."
 
-#: templates/documentacao.html:24
-msgid "Extração de Dados (<code>ExtratorHotspot</code>)"
-msgstr "Extracción de Datos (<code>ExtractorHotspot</code>)"
-
-#: templates/documentacao.html:25
+#: dose2risk/api/templates/documentacao.html:301
 msgid ""
-"A primeira etapa consiste na leitura e extração de informações dos "
-"arquivos de texto (<code>.txt</code>) gerados pelo HotSpot. A classe "
-"<code>ExtratorHotspot</code> realiza as seguintes ações:"
-msgstr "La primera etapa consiste en la lectura y extracción de información de los archivos de texto (<code>.txt</code>) generados por HotSpot. La clase <code>ExtractorHotspot</code> realiza las siguientes acciones:"
+"O motor de cálculo do Dose2Risk implementa estritamente os algoritmos "
+"definidos pelos\n"
+"                            comitês BEIR (Biological Effects of Ionizing "
+"Radiation). O sistema seleciona dinamicamente\n"
+"                            entre os modelos BEIR V e BEIR VII Fase 2, "
+"dependendo da especificidade biológica do tecido\n"
+"                            analisado."
+msgstr ""
+"El motor de cálculo de Dose2Risk implementa estrictamente los algoritmos definidos por los comités BEIR (Efectos Biológicos de la Radiación Ionizante). El sistema selecciona dinámicamente entre los modelos BEIR V y BEIR VII Fase 2, dependiendo de la especificidad biológica del tejido analizado."
 
-#: templates/documentacao.html:27
+#: dose2risk/api/templates/documentacao.html:307
 msgid ""
-"Varre um diretório de entrada em busca de todos os arquivos "
-"<code>.txt</code>."
-msgstr "Escanea un directorio de entrada en busca de todos los archivos <code>.txt</code>."
+"Para a maioria dos tecidos sólidos (e.g., Estômago, Cólon, Pulmão, Mama, "
+"Tireoide),\n"
+"                            utiliza-se o Modelo de Excesso de Risco "
+"Relativo (ERR) com transporte de risco via Idade\n"
+"                            Atingida (Attained Age)."
+msgstr ""
+"Para la mayoría de los tejidos sólidos (e.g., Estómago, Colon, Pulmón, Mama, Tiroides), se utiliza el Modelo de Exceso de Riesgo Relativo (ERR) con transporte de riesgo vía Edad Alcanzada (Attained Age)."
 
-#: templates/documentacao.html:28
+#: dose2risk/api/templates/documentacao.html:318
+msgid "Parâmetro"
+msgstr "Parámetro"
+
+#: dose2risk/api/templates/documentacao.html:319
+msgid "Descrição Técnica"
+msgstr "Descripción Técnica"
+
+#: dose2risk/api/templates/documentacao.html:325
 msgid ""
-"Para cada arquivo, utiliza expressões regulares (regex) para identificar "
-"e extrair parâmetros-chave do cabeçalho, como altura da chaminé, "
-"velocidade do vento e classe de estabilidade atmosférica."
-msgstr "Para cada archivo, utiliza expresiones regulares (regex) para identificar y extraer parámetros clave del encabezado, como la altura de la chimenea, la velocidad del viento y la clase de estabilidad atmosférica."
+"Dose Absorvida no órgão (unidade: Sievert). Extraído da modelagem de\n"
+"                                        dispersão."
+msgstr "Dosis Absorbida en el órgano (unidad: Sievert). Extraído del modelado de dispersión."
 
-#: templates/documentacao.html:29
+#: dose2risk/api/templates/documentacao.html:330
 msgid ""
-"Extrai os dados tabulares do corpo do arquivo, que contêm informações de "
-"dose em função da distância."
-msgstr "Extrae los datos tabulares del cuerpo del archivo, que contienen información de dosis en función de la distancia."
+"Coeficiente angular de risco (Slope Factor). Específico por sexo e\n"
+"                                        órgão."
+msgstr "Factor de Pendiente de Riesgo. Específico por sexo y órgano."
 
-#: templates/documentacao.html:30
+#: dose2risk/api/templates/documentacao.html:335
 msgid ""
-"Consolida todos os dados extraídos em um único arquivo CSV, em formato "
-"tabular, que serve como entrada para a próxima etapa."
-msgstr "Consolida todos los datos extraídos en un único archivo CSV, en formato tabular, que sirve como entrada para la siguiente etapa."
+"Termo de ajuste da idade de exposição. Definido como min(idade_exp - 30,\n"
+"                                        0) / 10."
+msgstr "Término de ajuste de la edad de exposición. Definido como min(edad_exp - 30, 0) / 10."
 
-#: templates/documentacao.html:33
-msgid "Transposição de Dados (<code>TranspositorHotspot</code>)"
-msgstr "Transposición de Datos (<code>TranspositorHotspot</code>)"
+#: dose2risk/api/templates/documentacao.html:340
+msgid "Expoente de dependência da idade atingida."
+msgstr "Exponente de dependencia de la edad alcanzada."
 
-#: templates/documentacao.html:34
+#: dose2risk/api/templates/documentacao.html:344
 msgid ""
-"O arquivo CSV gerado na etapa anterior possui um formato \"longo\", onde "
-"cada linha representa uma medida. Para facilitar o cálculo, é necessário "
-"converter este formato para um formato \"largo\". A classe "
-"<code>TranspositorHotspot</code> realiza esta tarefa:"
-msgstr "El archivo CSV generado en la etapa anterior tiene un formato \"largo\", donde cada fila representa una medida. Para facilitar el cálculo, es necesario convertir este formato a un formato \"ancho\". La clase <code>TranspositorHotspot</code> realiza esta tarea:"
+"Nota: O Fator de Eficácia de Dose e Taxa de Dose (DDREF) é\n"
+"                            configurado como <strong>1.0</strong> (padrão"
+" conservador para proteção radiológica), mas\n"
+"                            pode ser ajustado na configuração profunda do"
+" sistema JSON."
+msgstr ""
+"Nota: El Factor de Efectividad de Dosis y Tasa de Dosis (DDREF) está configurado como <strong>1.0</strong> (estándar conservador para protección radiológica), pero puede ajustarse en la configuración profunda del sistema JSON."
 
-#: templates/documentacao.html:36
-msgid "Lê o arquivo CSV tabular."
-msgstr "Lee el archivo CSV tabular."
-
-#: templates/documentacao.html:37
+#: dose2risk/api/templates/documentacao.html:349
 msgid ""
-"Utiliza a funcionalidade de \"pivot table\" para transformar os dados, de"
-" modo que as linhas representem os diferentes órgãos ou tecidos avaliados"
-" e as colunas representem os cenários de exposição (casos)."
-msgstr "Utiliza la funcionalidad de \"pivot table\" para transformar los datos, de modo que las filas representen los diferentes órganos o tejidos evaluados y las columnas representen los escenarios de exposición (casos)."
+"Para tecidos hematopoiéticos (Leucemia, Medula Óssea), o sistema adota o "
+"modelo\n"
+"                            Linear-Quadrático com forte dependência "
+"temporal (Time Since Exposure), refletindo a janela\n"
+"                            de latência característica dessas patologias."
+msgstr ""
+"Para tejidos hematopoyéticos (Leucemia, Médula Ósea), el sistema adopta el modelo Lineal-Cuadrático con fuerte dependencia temporal (Tiempo Desde la Exposición), reflejando la ventana de latencia característica de estas patologías."
 
-#: templates/documentacao.html:38
+#: dose2risk/api/templates/documentacao.html:359
 msgid ""
-"O resultado é um novo arquivo CSV, com os dados estruturados de forma "
-"matricial (órgão x cenário), pronto para a análise de risco."
-msgstr "El resultado es un nuevo archivo CSV, con los datos estructurados de forma matricial (órgano x escenario), listo para el análisis de riesgo."
+"O cálculo do Risco Vitalício Atribuível (LAR) projeta o ERR sobre as "
+"taxas de\n"
+"                            mortalidade e incidência de câncer da "
+"população. Os dados de base (\"baseline incidence\")\n"
+"                            foram atualizados para o ano de 2025, "
+"utilizando estatísticas do <strong>Instituto Nacional\n"
+"                                de Câncer (INCA, 2022)</strong>."
+msgstr ""
+"El cálculo del Riesgo Atribuible Vitalicio (LAR) proyecta el ERR sobre las tasas de mortalidad e incidencia de cáncer de la población. Los datos base (\"baseline incidence\") fueron actualizados para el año 2025, utilizando estadísticas del <strong>Instituto Nacional del Cáncer (INCA, 2022)</strong>."
 
-#: templates/documentacao.html:41
-msgid "Cálculo de Risco (<code>CalculadoraRisco</code>)"
-msgstr "Cálculo de Riesgo (<code>CalculadoraRisco</code>)"
+#: dose2risk/api/templates/documentacao.html:366
+msgid "Referência BEIR VII (NAP 2006)"
+msgstr "Referencia BEIR VII (NAP 2006)"
 
-#: templates/documentacao.html:42
+#: dose2risk/api/templates/documentacao.html:369
+msgid "Referência BEIR V (NAP 1990)"
+msgstr "Referencia BEIR V (NAP 1990)"
+
+#: dose2risk/api/templates/documentacao.html:383
 msgid ""
-"A etapa final é a quantificação do risco de desenvolvimento de câncer com"
-" base nas doses absorvidas. A classe <code>CalculadoraRisco</code> "
-"implementa os modelos recomendados pelo relatório BEIR (Biological "
-"Effects of Ionizing Radiation)."
-msgstr "La etapa final es la cuantificación del riesgo de desarrollo de cáncer con base en las dosis absorbidas. La clase <code>CalculadoraRisco</code> implementa los modelos recomendados por el informe BEIR (Biological Effects of Ionizing Radiation)."
+"O sistema aceita arquivos de texto puro (.txt) gerados pelo módulo "
+"\"Output to\n"
+"                                    Text\" do HotSpot. Múltiplos arquivos"
+" podem ser processados em lote."
+msgstr ""
+"El sistema acepta archivos de texto plano (.txt) generados por el módulo \"Output to Text\" de HotSpot. Se pueden procesar múltiples archivos en lote."
 
-#: templates/documentacao.html:44
+#: dose2risk/api/templates/documentacao.html:387
+msgid "Interface de Upload de Arquivos"
+msgstr "Interfaz de Carga de Archivos"
+
+#: dose2risk/api/templates/documentacao.html:392
 msgid ""
-"Carrega o CSV transposto (doses por órgão) e um arquivo de parâmetros de "
-"referência, que contém coeficientes específicos para cada órgão "
-"(<code>beta</code>, <code>gamma</code>, <code>eta</code>), baseados no "
-"modelo BEIR."
-msgstr "Carga el CSV transpuesto (dosis por órgano) y un archivo de parámetros de referencia, que contiene coeficientes específicos para cada órgano (<code>beta</code>, <code>gamma</code>, <code>eta</code>), basados en el modelo BEIR."
+"Defina a \"Idade na Exposição\" (momento do incidente) e \"Idade "
+"Atingida\" (alvo\n"
+"                                    da predição). Estas variáveis "
+"calibram os modelos de latência."
+msgstr ""
+"Defina la \"Edad en la Exposición\" (momento del incidente) y la \"Edad Alcanzada\" (objetivo de la predicción). Estas variables calibran los modelos de latencia."
 
-#: templates/documentacao.html:45
+#: dose2risk/api/templates/documentacao.html:396
+msgid "Formulário de Idades"
+msgstr ""
+
+#: dose2risk/api/templates/documentacao.html:402
+#, fuzzy
+msgid "Arquivos de Exemplo para Validação"
+msgstr "Archivos de Trazabilidad y Validación"
+
+#: dose2risk/api/templates/documentacao.html:403
+msgid ""
+"Para fins de treinamento acadêmico, disponibilizamos um dataset padrão "
+"simulando um\n"
+"                                Dispositivo de Dispersão Radiológica "
+"(RDD) de Cs-137 (1000 Ci)."
+msgstr ""
+"Para fines de entrenamiento académico, proporcionamos un conjunto de datos estándar simulando un Dispositivo de Dispersión Radiológica (RDD) de Cs-137 (1000 Ci)."
+
+#: dose2risk/api/templates/documentacao.html:409
+msgid "Baixar Inputs (.txt)"
+msgstr "Descargar Entradas (.txt)"
+
+#: dose2risk/api/templates/documentacao.html:413
+#, fuzzy
+msgid "Baixar Resultados Esperados (.zip)"
+msgstr "Descargar Todos los Archivos (.zip)"
+
+#: dose2risk/api/templates/documentacao.html:424
+msgid ""
+"O sistema gera um pacote de dados completo para cada execução. Abaixo, a "
+"especificação\n"
+"                            técnica das colunas do arquivo principal de "
+"risco (`3_calculated_risks.csv`)."
+msgstr ""
+"El sistema genera un paquete de datos completo para cada ejecución. A continuación, la especificación técnica de las columnas del archivo principal de riesgo (`3_calculated_risks.csv`)."
+
+#: dose2risk/api/templates/documentacao.html:430
+msgid "Variável (Header)"
+msgstr "Variable (Encabezado)"
+
+#: dose2risk/api/templates/documentacao.html:431
+msgid "Definição Técnica"
+msgstr "Definición Técnica"
+
+#: dose2risk/api/templates/documentacao.html:437
+msgid "Identificador único de rastreabilidade (link com arquivo de entrada)."
+msgstr "Identificador único de trazabilidad (enlace con archivo de entrada)."
+
+#: dose2risk/api/templates/documentacao.html:442
+msgid "Dose Absorvida computada para o cenário [cen] (distância/estabilidade)."
+msgstr "Dosis Absorbida calculada para el escenario [cen] (distancia/estabilidad)."
+
+#: dose2risk/api/templates/documentacao.html:447
+msgid ""
+"Excesso de Risco Relativo (Adimensional). Fator multiplicativo sobre a\n"
+"                                        incidência basal."
+msgstr "Exceso de Riesgo Relativo (Adimensional). Factor multiplicativo sobre la incidencia basal."
+
+#: dose2risk/api/templates/documentacao.html:452
+#, python-format
+msgid ""
+"Risco Vitalício Atribuível (Probabilidade %%). O risco absoluto "
+"adicionado\n"
+"                                        ao longo da vida."
+msgstr ""
+"Riesgo Atribuible Vitalicio (Probabilidad %%). El riesgo absoluto añadido a lo largo de la vida."
+
+#: dose2risk/api/templates/documentacao.html:457
+msgid "Algoritmo utilizado (BEIR V ou BEIR VII) para auditoria."
+msgstr "Algoritmo utilizado (BEIR V o BEIR VII) para auditoría."
+
+#: dose2risk/api/templates/documentacao.html:463
+msgid ""
+"Recomenda-se o uso da função <strong>\"Baixar Todos os Arquivos "
+"(.zip)\"</strong> na tela\n"
+"                            de resultados. Este arquivo contém a cadeia "
+"de custódia completa do dado: Input Original +\n"
+"                            Tabelas Intermediárias + Resultados Finais + "
+"Log de Auditoria."
+msgstr ""
+"Se recomienda el uso de la función <strong>\"Descargar Todos los Archivos (.zip)\"</strong> en la pantalla de resultados. Este archivo contiene la cadena de custodia completa del dato: Entrada Original + Tablas Intermedias + Resultados Finales + Registro de Auditoría."
+
+#: dose2risk/api/templates/documentacao.html:473
+msgid ""
+"Para atender requisitos de sistemas críticos, o Dose2Risk implementa "
+"mecanismos\n"
+"                            robustos de integridade de dados."
+msgstr ""
+"Para cumplir con los requisitos de sistemas críticos, Dose2Risk implementa mecanismos robustos de integridad de datos."
+
+#: dose2risk/api/templates/documentacao.html:477
+msgid ""
+"O arquivo `4_execution_log.log` não é apenas um registro de erros. Ele "
+"grava cada\n"
+"                            coeficiente (beta, gamma) utilizado em cada "
+"cálculo individual, permitindo reconstituição\n"
+"                            matemática passo-a-passo (\"Walkthrough "
+"Audit\")."
+msgstr ""
+"El archivo `4_execution_log.log` no es solo un registro de errores. Graba cada coeficiente (beta, gamma) utilizado en cada cálculo individual, permitiendo la reconstitución matemática paso a paso (\"Walkthrough Audit\")."
+
+#: dose2risk/api/templates/documentacao.html:482
+msgid ""
+"O núcleo de cálculo é protegido por um teste de regressão criptográfico. "
+"A cada\n"
+"                            execução, o sistema verifica se a lógica "
+"matemática produz exatamente o mesmo Hash SHA-256\n"
+"                            para um dataset de entrada padrão (\"Golden "
+"Input\"). Isso evita alterações silenciosas\n"
+"                            (\"drift\") no código que poderiam "
+"comprometer a precisão médica dos resultados."
+msgstr ""
+"El núcleo de cálculo está protegido por una prueba de regresión criptográfica. En cada ejecución, el sistema verifica si la lógica matemática produce exactamente el mismo Hash SHA-256 para un conjunto de datos de entrada estándar (\"Golden Input\"). Esto evita cambios silenciosos (\"drift\") en el código que podrían comprometer la precisión médica de los resultados."
+
+#: dose2risk/api/templates/form_idades.html:3
+#: dose2risk/api/templates/form_idades.html:165
+msgid "Informar Idades"
+msgstr ""
+
+#: dose2risk/api/templates/form_idades.html:177
 #, fuzzy
 msgid ""
-"Recebe como entrada a idade do indivíduo na data da exposição e a idade "
-"atual."
+"Digite a idade na data da exposição e a idade atual para o cálculo de "
+"risco."
 msgstr ""
 "Ingrese la edad en la fecha de exposición y la edad actual para el "
 "cálculo de riesgo."
 
-#: templates/documentacao.html:46
-msgid ""
-"Implementa as funções de risco dos modelos <strong>BEIR V</strong> e "
-"<strong>BEIR VII</strong>."
-msgstr "Implementa las funciones de riesgo de los modelos <strong>BEIR V</strong> y <strong>BEIR VII</strong>."
-
-#: templates/documentacao.html:47
-msgid ""
-"Aplica a fórmula de risco apropriada para cada órgão, utilizando a dose "
-"correspondente e os parâmetros do modelo."
-msgstr "Aplica la fórmula de riesgo apropiada para cada órgano, utilizando la dosis correspondiente y los parámetros del modelo."
-
-#: templates/documentacao.html:48
-msgid ""
-"O resultado final é um arquivo CSV contendo as estimativas de risco de "
-"câncer para cada órgão, juntamente com um arquivo de log detalhado do "
-"processo."
-msgstr "El resultado final es un archivo CSV que contiene las estimaciones de riesgo de cáncer para cada órgano, junto con un archivo de registro detallado del proceso."
-
-#: templates/form_idades.html:3 templates/form_idades.html:10
-msgid "Mais informações"
-msgstr "Más información"
-
-#: templates/form_idades.html:22
-msgid ""
-"Não se envolver em atividades que sejam ilegais ou contrárias à boa fé e "
-"à ordem pública;"
-msgstr "No involucrarse en actividades que sean ilegales o contrarias a la buena fe y al orden público;"
-
-#: templates/form_idades.html:25
+#: dose2risk/api/templates/form_idades.html:180
 msgid "Idade na exposição"
 msgstr "Edad en la exposición"
 
-#: templates/form_idades.html:30
-msgid "Idade atual"
-msgstr "Edad actual"
+#: dose2risk/api/templates/form_idades.html:185
+msgid "Idade atingida (anos)"
+msgstr "Edad alcanzada (años)"
 
-#: templates/form_idades.html:34
+# UI Filters & Organs
+#: dose2risk/api/templates/form_idades.html:192
+msgid "Opções de Filtro e Seleção de Dados"
+msgstr "Opciones de Filtro y Selección de Datos"
+
+#: dose2risk/api/templates/form_idades.html:202
+msgid "Mostrar campos com dose > 4 Sv (Segurança)"
+msgstr "Mostrar campos con dosis > 4 Sv (Seguridad)"
+
+#: dose2risk/api/templates/form_idades.html:205
+msgid "Se desmarcado, colunas que excedem 4 Sv serão suprimidas."
+msgstr ""
+"Si está desmarcado, las columnas donde todos los valores exceden el "
+"límite de seguridad serán suprimidas."
+
+#: dose2risk/api/templates/form_idades.html:211
+msgid "Sexo"
+msgstr "Sexo"
+
+#: dose2risk/api/templates/form_idades.html:214
+msgid "Masculino (M)"
+msgstr "Masculino (M)"
+
+#: dose2risk/api/templates/form_idades.html:217
+msgid "Feminino (F)"
+msgstr "Femenino (F)"
+
+#: dose2risk/api/templates/form_idades.html:224
+msgid "Resultados (Colunas)"
+msgstr "Resultados (Columnas)"
+
+#: dose2risk/api/templates/form_idades.html:228
+msgid "ERR (Excesso de Risco Relativo)"
+msgstr "ERR (Exceso de Riesgo Relativo)"
+
+#: dose2risk/api/templates/form_idades.html:232
+msgid "LAR (Risco Atribuível ao Longo da Vida)"
+msgstr "LAR (Riesgo Atribuible a lo Largo de la Vida)"
+
+#: dose2risk/api/templates/form_idades.html:239
+msgid "Órgãos"
+msgstr "Órganos"
+
+#: dose2risk/api/templates/form_idades.html:241
+msgid "Selecionar Todos"
+msgstr "Seleccionar Todos"
+
+#: dose2risk/api/templates/form_idades.html:242
+msgid "Desmarcar Todos"
+msgstr "Deseleccionar Todos"
+
+#: dose2risk/api/templates/form_idades.html:257
 msgid "Processar Dados"
 msgstr "Procesar Datos"
 
-#: templates/form_idades.html:44
+#: dose2risk/api/templates/form_idades.html:267
 msgid "Processando... Por favor, aguarde."
 msgstr "Procesando... Por favor, espere."
 
-#: templates/form_idades.html:70
+#: dose2risk/api/templates/form_idades.html:293
 #, fuzzy
 msgid "Idade na exposição e Idade atual são campos obrigatórios."
 msgstr ""
 "Ingrese la edad en la fecha de exposición y la edad actual para el "
 "cálculo de riesgo."
 
-#: templates/form_idades.html:74
+#: dose2risk/api/templates/form_idades.html:297
 msgid "A Idade na exposição não pode ser menor que zero."
 msgstr "La edad en la exposición no puede ser menor que cero."
 
-#: templates/form_idades.html:79
+#: dose2risk/api/templates/form_idades.html:302
 msgid "A Idade atual não pode ser menor que zero."
 msgstr "La edad actual no puede ser menor que cero."
 
-#: templates/form_idades.html:84
+#: dose2risk/api/templates/form_idades.html:307
 msgid "A Idade atual não pode ser menor que a Idade na exposição."
 msgstr "La edad actual no puede ser menor que la edad en la exposición."
 
-#: templates/form_idades.html:89
+#: dose2risk/api/templates/form_idades.html:312
 msgid "A Idade na exposição não pode ter mais que 3 dígitos."
 msgstr "La edad en la exposición no puede tener más de 3 dígitos."
 
-#: templates/form_idades.html:92
+#: dose2risk/api/templates/form_idades.html:315
 msgid "A Idade atual não pode ter mais que 3 dígitos."
 msgstr "La edad actual no puede tener más de 3 dígitos."
 
-#: templates/index.html:3 templates/index.html:8
+#: dose2risk/api/templates/index.html:3 dose2risk/api/templates/index.html:8
 msgid "Gerador de Riscos Radiológicos"
 msgstr "Generador de Riesgos Radiológicos"
 
-#: templates/index.html:21
+#: dose2risk/api/templates/index.html:21
 msgid "Faça upload dos arquivos HotSpot.txt"
 msgstr "Subir archivos HotSpot.txt"
 
-#: templates/index.html:24
+#: dose2risk/api/templates/index.html:24
 msgid "Selecione um ou mais arquivos .txt"
 msgstr "Seleccione uno o más archivos .txt"
 
-#: templates/index.html:26 templates/index.html:38
+#: dose2risk/api/templates/index.html:26 dose2risk/api/templates/index.html:44
 msgid "Nenhum ficheiro selecionado"
 msgstr "Ningún archivo seleccionado"
 
-#: templates/index.html:29
+#: dose2risk/api/templates/index.html:29
 msgid "Enviar & Processar"
 msgstr "Enviar y Procesar"
 
-#: templates/index.html:39
+#: dose2risk/api/templates/index.html:45
 #, python-brace-format
 msgid "{0} ficheiros selecionados"
 msgstr "{0} archivos seleccionados"
 
-#: templates/index.html:40
+#: dose2risk/api/templates/index.html:46
 msgid "Por favor, selecione pelo menos um arquivo antes de enviar."
 msgstr "Por favor, seleccione al menos un archivo antes de enviar."
 
-#: templates/privacidade.html:2 templates/privacidade.html:8
+#: dose2risk/api/templates/manual_logs.html:3
+#: dose2risk/api/templates/partials/header.html:17
+msgid "Manual de Logs"
+msgstr "Manual de Registros"
+
+#: dose2risk/api/templates/manual_logs.html:135
+msgid "Manual de Auditoria: Logs de Execução"
+msgstr "Manual de Auditoría: Registros de Ejecución"
+
+#: dose2risk/api/templates/manual_logs.html:136
+msgid "Entendendo a \"Caixa Preta\" do Dose2Risk"
+msgstr "Entendiendo la \"Caja Negra\" del Dose2Risk"
+
+#: dose2risk/api/templates/manual_logs.html:139
+msgid "Por que auditar o log?"
+msgstr "¿Por qué auditar el registro?"
+
+#: dose2risk/api/templates/manual_logs.html:140
+msgid ""
+"Enquanto o arquivo CSV mostra o <strong>RESULTADO</strong>, o arquivo de "
+"log (.log) mostra o\n"
+"                    <strong>RACIOCÍNIO</strong>. Ele é fundamental para "
+"validação científica (\"Whitebox Testing\"), pois\n"
+"                    revela exatamente qual fórmula e quais coeficientes "
+"foram usados para cada cálculo individual."
+msgstr ""
+"Mientras que el archivo CSV muestra el <strong>RESULTADO</strong>, el archivo de registro (.log) muestra el <strong>RAZONAMIENTO</strong>. Es fundamental para la validación científica (\"Whitebox Testing\"), ya que revela exactamente qué fórmula y qué coeficientes se utilizaron para cada cálculo individual."
+
+#: dose2risk/api/templates/manual_logs.html:148
+msgid ""
+"O arquivo de log segue o formato \"JSON Lines\" (ndjson). Cada linha é um"
+" objeto JSON\n"
+"                        completo e independente, facilitando a ingestão "
+"por softwares de análise de dados (Splunk, ELK,\n"
+"                        Python Pandas)."
+msgstr ""
+"El archivo de registro sigue el formato \"JSON Lines\" (ndjson). Cada línea es un objeto JSON completo e independiente, lo que facilita la ingesta por software de análisis de datos (Splunk, ELK, Python Pandas)."
+
+#: dose2risk/api/templates/manual_logs.html:151
+msgid "Existem dois tipos principais de registros:"
+msgstr "Existen dos tipos principales de registros:"
+
+#: dose2risk/api/templates/manual_logs.html:153
+msgid "Cabeçalho e Rodapé de segurança."
+msgstr "Encabezado y Pie de página de seguridad."
+
+#: dose2risk/api/templates/manual_logs.html:154
+msgid "O registro detalhado de cálculo de uma célula específica."
+msgstr "El registro detallado de cálculo de una celda específica."
+
+#: dose2risk/api/templates/manual_logs.html:162
+msgid "Este é o registro mais comum. Ele explica um único cálculo de risco."
+msgstr "Este es el registro más común. Explica un único cálculo de riesgo."
+
+#: dose2risk/api/templates/manual_logs.html:182
+msgid "Campo"
+msgstr "Campo"
+
+#: dose2risk/api/templates/manual_logs.html:183
+msgid "Significado e Uso na Auditoria"
+msgstr "Significado y Uso en Auditoría"
+
+#: dose2risk/api/templates/manual_logs.html:190
+msgid "Link com CSV"
+msgstr "Enlace con CSV"
+
+#: dose2risk/api/templates/manual_logs.html:191
+msgid ""
+"Use este número para encontrar a linha correspondente no arquivo CSV de\n"
+"                                    resultados."
+msgstr "Use este número para encontrar la línea correspondiente en el archivo CSV de resultados."
+
+#: dose2risk/api/templates/manual_logs.html:198
+msgid "Coordenadas do Cálculo"
+msgstr "Coordenadas del Cálculo"
+
+#: dose2risk/api/templates/manual_logs.html:199
+msgid ""
+"Formato: \"SEXO | ÓRGÃO | CENÁRIO\". Garante que você saiba exatamente o "
+"que\n"
+"                                    está sendo calculado."
+msgstr "Formato: \"SEXO | ÓRGANO | ESCENARIO\". Garantiza que sepa exactamente qué se está calculando."
+
+#: dose2risk/api/templates/manual_logs.html:206
+msgid "Decisão do Algoritmo"
+msgstr "Decisión del Algoritmo"
+
+#: dose2risk/api/templates/manual_logs.html:207
+msgid ""
+"Mostra qual modelo foi escolhido automaticamente (BEIR V ou BEIR VII) com"
+" base\n"
+"                                    na dose recebida."
+msgstr "Muestra qué modelo se eligió automáticamente (BEIR V o BEIR VII) en función de la dosis recibida."
+
+#: dose2risk/api/templates/manual_logs.html:214
+msgid "Fórmula Simbólica"
+msgstr "Fórmula Simbólica"
+
+#: dose2risk/api/templates/manual_logs.html:215
+msgid ""
+"A representação matemática da lógica aplicada. Essencial para verificar "
+"se o\n"
+"                                    sistema aplicou a regra correta (ex: "
+"linear vs quadrática)."
+msgstr "La representación matemática de la lógica aplicada. Esencial para verificar si el sistema aplicó la regla correcta (ej: lineal vs cuadrática)."
+
+#: dose2risk/api/templates/manual_logs.html:222
+msgid "Parâmetros \"Vivos\""
+msgstr "Parámetros \"Vivos\""
+
+#: dose2risk/api/templates/manual_logs.html:223
+msgid ""
+"Os valores numéricos exatos dos coeficientes usados. Permite que um "
+"auditor\n"
+"                                    externo recalcule e valide o "
+"resultado manualmente."
+msgstr "Los valores numéricos exactos de los coeficientes utilizados. Permite a un auditor externo recalcular y validar el resultado manualmente."
+
+#: dose2risk/api/templates/manual_logs.html:234
+msgid ""
+"Para evitar adulteração de resultados, o sistema assina digitalmente a "
+"sessão de cálculo."
+msgstr "Para evitar la manipulación de resultados, el sistema firma digitalmente la sesión de cálculo."
+
+#: dose2risk/api/templates/manual_logs.html:249
+msgid "Mecanismo"
+msgstr "Mecanismo"
+
+#: dose2risk/api/templates/manual_logs.html:250
+msgid "Propósito"
+msgstr "Propósito"
+
+#: dose2risk/api/templates/manual_logs.html:255
+msgid "Hash SHA-256"
+msgstr "Hash SHA-256"
+
+#: dose2risk/api/templates/manual_logs.html:256
+msgid ""
+"Se um único byte do arquivo de entrada (HotSpot) ou dos parâmetros de "
+"risco\n"
+"                                    for alterado, este código mudará "
+"completamente. Ele garante que os resultados\n"
+"                                    correspondem exatamente aos dados "
+"originais."
+msgstr ""
+"Si se cambia un solo byte del archivo de entrada (HotSpot) o de los parámetros de riesgo, este código cambiará por completo. Garantiza que los resultados correspondan exactamente a los datos originales."
+
+#: dose2risk/api/templates/manual_logs.html:262
+msgid ""
+"A última linha do arquivo. Se ela não existir ou não indicar \"SUCCESS\","
+" o\n"
+"                                    arquivo de log está incompleto ou "
+"corrompido (ex: queda de energia durante o\n"
+"                                    cálculo)."
+msgstr ""
+"La última línea del archivo. Si no existe o no indica \"SUCCESS\", el archivo de registro está incompleto o dañado (ej: corte de energía durante el cálculo)."
+
+#: dose2risk/api/templates/manual_resultados.html:3
+#: dose2risk/api/templates/partials/header.html:16
+#
+msgid "Manual de Resultados"
+msgstr "Manual de Resultados"
+
+#: dose2risk/api/templates/manual_resultados.html:115
+msgid "Manual de Interpretação de Resultados"
+msgstr "Manual de Interpretación de Resultados"
+
+#: dose2risk/api/templates/manual_resultados.html:116
+msgid ""
+"Guia definitivo para entender o arquivo de Risco (CSV) gerado\n"
+"                    pelo Dose2Risk"
+msgstr ""
+
+#: dose2risk/api/templates/manual_resultados.html:120
+msgid "Para quem é este guia?"
+msgstr "¿Para quién es esta guía?"
+
+#: dose2risk/api/templates/manual_resultados.html:121
+msgid ""
+"Este documento destina-se a gestores de emergência, físicos médicos e "
+"pesquisadores que\n"
+"                    necessitam interpretar os dados brutos gerados pelo "
+"sistema para tomada de decisão ou compilação de\n"
+"                    relatórios."
+msgstr ""
+"Este documento está destinado a gestores de emergencias, físicos médicos e investigadores que necesitan interpretar los datos brutos generados por el sistema para la toma de decisiones o la compilación de informes."
+
+#: dose2risk/api/templates/manual_resultados.html:129
+msgid ""
+"Todo arquivo gerado pelo sistema possui uma \"impressão digital\" no "
+"próprio nome, garantindo\n"
+"                        que você saiba exatamente sob quais condições "
+"aquela simulação foi rodada."
+msgstr ""
+"Todo archivo generado por el sistema tiene una \"huella digital\" en su propio nombre, garantizando que usted sepa exactamente bajo qué condiciones se ejecutó esa simulación."
+
+#: dose2risk/api/templates/manual_resultados.html:139
+msgid "Segmento"
+msgstr "Segmento"
+
+#: dose2risk/api/templates/manual_resultados.html:140
+msgid "Significado"
+msgstr "Significado"
+
+#: dose2risk/api/templates/manual_resultados.html:147
+msgid "Age at Exposure (Idade na Exposição): 10 anos"
+msgstr "Age at Exposure (Edad en la Exposición): 10 años"
+
+#: dose2risk/api/templates/manual_resultados.html:148
+msgid ""
+"Indica que os cálculos assumiram que as vítimas tinham 10 anos no momento"
+" do\n"
+"                                    contato com a radiação. Isso é "
+"crítico pois crianças são muito mais radiossensíveis\n"
+"                                    que adultos."
+msgstr ""
+"Indica que los cálculos asumieron que las víctimas tenían 10 años en el momento del contacto con la radiación. Esto es crítico ya que los niños son mucho más radiosensibles que los adultos."
+
+#: dose2risk/api/templates/manual_resultados.html:156
+#, fuzzy
+msgid "Attained Age (Idade Atingida): 30 anos"
+msgstr "Edad alcanzada (años)"
+
+#: dose2risk/api/templates/manual_resultados.html:157
+msgid ""
+"Indica que o risco foi calculado projetando a saúde dessa pessoa até ela\n"
+"                                    completar 30 anos (ou seja, 20 anos "
+"após o acidente)."
+msgstr ""
+"Indica que el riesgo fue calculado proyectando la salud de esa persona hasta que cumpla 30 años (es decir, 20 años después del accidente)."
+
+#: dose2risk/api/templates/manual_resultados.html:168
+msgid ""
+"O arquivo CSV é uma tabela onde cada linha representa uma análise "
+"biológica para um órgão\n"
+"                        específico. Abaixo, o dicionário de variáveis:"
+msgstr ""
+"El archivo CSV es una tabla donde cada línea representa un análisis biológico para un órgano específico. A continuación, el diccionario de variables:"
+
+#: dose2risk/api/templates/manual_resultados.html:174
+msgid "Nome da Coluna"
+msgstr "Nombre de la Columna"
+
+#: dose2risk/api/templates/manual_resultados.html:175
+msgid "Definição e Interpretação"
+msgstr "Definición e Interpretación"
+
+#: dose2risk/api/templates/manual_resultados.html:182
+msgid "Identificador de Auditoria"
+msgstr "Identificador de Auditoría"
+
+#: dose2risk/api/templates/manual_resultados.html:183
+msgid ""
+"Um número sequencial único. Se você precisar auditar a matemática exata "
+"de uma\n"
+"                                    linha, use este número para buscar o "
+"registro correspondente no arquivo de LOG\n"
+"                                    (.log)."
+msgstr ""
+"Un número secuencial único. Si necesita auditar las matemáticas exactas de una línea, use este número para buscar el registro correspondiente en el archivo de LOG (.log)."
+
+#: dose2risk/api/templates/manual_resultados.html:191
+msgid "Sexo Biológico"
+msgstr "Sexo Biológico"
+
+#: dose2risk/api/templates/manual_resultados.html:192
+msgid ""
+"Valores: \"male\" ou \"female\". Define quais coeficientes hormonais e "
+"tabelas de\n"
+"                                    incidência de câncer foram usados. "
+"Ex: O risco de câncer de mama é zerado para\n"
+"                                    \"male\"."
+msgstr ""
+"Valores: \"male\" o \"female\". Define qué coeficientes hormonales y tablas de incidencia de cáncer se utilizaron. Ej: El riesgo de cáncer de mama se pone a cero para \"male\"."
+
+#: dose2risk/api/templates/manual_resultados.html:200
+#, fuzzy
+msgid "Órgão Alvo"
+msgstr "Órganos"
+
+#: dose2risk/api/templates/manual_resultados.html:201
+msgid ""
+"O tecido onde a dose de radiação foi depositada (Ex: thyroid, lung, "
+"colon)."
+msgstr "El tejido donde se depositó la dosis de radiación (Ej: thyroid, lung, colon)."
+
+#: dose2risk/api/templates/manual_resultados.html:208
+msgid "Dose Absorvida (Sievert)"
+msgstr "Dosis Absorbida (Sievert)"
+
+#: dose2risk/api/templates/manual_resultados.html:209
+msgid ""
+"A quantidade de energia radioativa absorvida pelo órgão. Ex: "
+"\"dose_Sv_A_0.03\"\n"
+"                                    significa a dose no cenário de "
+"estabilidade A a 0.03km."
+msgstr ""
+"La cantidad de energía radiactiva absorbida por el órgano. Ej: \"dose_Sv_A_0.03\" significa la dosis en el escenario de estabilidad A a 0.03km."
+
+#: dose2risk/api/templates/manual_resultados.html:211
+msgid ""
+"Valores acima de 4.0 Sv são letais e podem ser suprimidos do relatório "
+"por\n"
+"                                        segurança."
+msgstr "Los valores superiores a 4.0 Sv son letales y pueden suprimirse del informe por seguridad."
+
+#: dose2risk/api/templates/manual_resultados.html:218
+#, fuzzy
+msgid "Excesso de Risco Relativo (ERR)"
+msgstr "ERR (Exceso de Riesgo Relativo)"
+
+#: dose2risk/api/templates/manual_resultados.html:219
+msgid "O \"multiplicador\" de perigo. É um número adimensional."
+msgstr "El \"multiplicador\" de peligro. Es un número adimensional."
+
+#: dose2risk/api/templates/manual_resultados.html:221
+msgid "Sem risco adicional."
+msgstr "Sin riesgo adicional."
+
+#: dose2risk/api/templates/manual_resultados.html:222
+#, python-format
+msgid ""
+"O risco dobrou (100%% de aumento) em relação a uma pessoa\n"
+"                                            não exposta."
+msgstr ""
+"El riesgo se duplicó (100%% de aumento) en relación con una persona\n"
+"                                            no expuesta."
+
+#: dose2risk/api/templates/manual_resultados.html:224
+#, python-format
+msgid "50%% de aumento no risco."
+msgstr "50%% de aumento en el riesgo."
+
+#: dose2risk/api/templates/manual_resultados.html:231
+msgid "Risco Vitalício Atribuível (LAR)"
+msgstr "Riesgo Atribuible Vitalicio (LAR)"
+
+#: dose2risk/api/templates/manual_resultados.html:232
+msgid ""
+"A probabilidade absoluta (0.0 a 1.0) de desenvolver câncer DEVIDO à\n"
+"                                    radiação."
+msgstr "La probabilidad absoluta (0.0 a 1.0) de desarrollar cáncer DEBIDO a la radiación."
+
+#: dose2risk/api/templates/manual_resultados.html:234
+#, python-format
+msgid ""
+"Exemplo: 0.05 significa 5%% de chance extra de ter câncer ao longo da\n"
+"                                        vida."
+msgstr ""
+"Ejemplo: 0.05 significa 5%% de probabilidad extra de tener cáncer a lo largo de la vida."
+
+#: dose2risk/api/templates/manual_resultados.html:245
+msgid "Para manter a precisão, o sistema usa notação \"E\" (exponencial)."
+msgstr "Para mantener la precisión, el sistema utiliza notación \"E\" (exponencial)."
+
+#: dose2risk/api/templates/manual_resultados.html:252
+#: dose2risk/api/templates/manual_resultados.html:258
+msgid "Significa"
+msgstr "Significa"
+
+#: dose2risk/api/templates/privacidade.html:2
+#: dose2risk/api/templates/privacidade.html:8
 #, fuzzy
 msgid "Política de Privacidade"
 msgstr "Política de Privacidad"
 
-#: templates/privacidade.html:9
+#: dose2risk/api/templates/privacidade.html:9
 msgid ""
-"Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) "
-"do Dose2Risk, de seus fornecedores ou terceiros, para introduzir ou "
-"disseminar vírus informáticos ou quaisquer outros sistemas de hardware ou "
-"software que sejam capazes de causar os danos anteriormente mencionados."
-msgstr "No causar daños a los sistemas físicos (hardware) y lógicos (software) de Dose2Risk, de sus proveedores o de terceros, para introducir o diseminar virus informáticos o cualesquiera otros sistemas de hardware o software que sean capaces de causar los daños anteriormente mencionados."
+"A sua privacidade é importante para nós. É política do Dose2Risk "
+"respeitar a sua privacidade em relação a qualquer informação sua que "
+"possamos coletar no site Dose2Risk, e outros sites que possuímos e "
+"operamos."
+msgstr ""
 
-#: templates/privacidade.html:10
+#: dose2risk/api/templates/privacidade.html:10
 msgid ""
 "Solicitamos informações pessoais apenas quando realmente precisamos delas"
 " para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o"
 " seu conhecimento e consentimento. Também informamos por que estamos "
 "coletando e como será usado."
-msgstr "Solicitamos información personal solo cuando realmente la necesitamos para brindarle un servicio. Lo hacemos por medios justos y legales, con su conocimiento y consentimiento. También le informamos por qué la estamos recopilando y cómo se utilizará."
+msgstr ""
+"Solicitamos información personal solo cuando realmente la necesitamos "
+"para brindarle un servicio. Lo hacemos por medios justos y legales, con "
+"su conocimiento y consentimiento. También le informamos por qué la "
+"estamos recopilando y cómo se utilizará."
 
-#: templates/privacidade.html:11
+#: dose2risk/api/templates/privacidade.html:11
 msgid ""
 "Apenas retemos as informações coletadas pelo tempo necessário para "
 "fornecer o serviço solicitado. Quando armazenamos dados, protegemos "
 "dentro de meios comercialmente aceitáveis para evitar perdas e roubos, "
 "bem como acesso, divulgação, cópia, uso ou modificação não autorizados."
-msgstr "Solo retenemos la información recopilada durante el tiempo necesario para proporcionar el servicio solicitado. Cuando almacenamos datos, los protegemos dentro de medios comercialmente aceptables para evitar pérdidas y robos, así como el acceso, la divulgación, la copia, el uso o la modificación no autorizados."
+msgstr ""
+"Solo retenemos la información recopilada durante el tiempo necesario para"
+" proporcionar el servicio solicitado. Cuando almacenamos datos, los "
+"protegemos dentro de medios comercialmente aceptables para evitar "
+"pérdidas y robos, así como el acceso, la divulgación, la copia, el uso o "
+"la modificación no autorizados."
 
-#: templates/privacidade.html:12
+#: dose2risk/api/templates/privacidade.html:12
 msgid ""
 "Não compartilhamos informações de identificação pessoal publicamente ou "
 "com terceiros, exceto quando exigido por lei."
-msgstr "No compartimos información de identificación personal públicamente o con terceros, excepto cuando lo exija la ley."
+msgstr ""
+"No compartimos información de identificación personal públicamente o con "
+"terceros, excepto cuando lo exija la ley."
 
-#: templates/privacidade.html:13
+#: dose2risk/api/templates/privacidade.html:13
 msgid ""
 "O nosso site pode ter links para sites externos que não são operados por "
 "nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas "
 "desses sites e não podemos aceitar responsabilidade por suas respectivas "
 "políticas de privacidade."
-msgstr "Nuestro sitio puede tener enlaces a sitios externos que no son operados por nosotros. Tenga en cuenta que no tenemos control sobre el contenido y las prácticas de estos sitios y no podemos aceptar responsabilidad por sus respectivas políticas de privacidad."
+msgstr ""
+"Nuestro sitio puede tener enlaces a sitios externos que no son operados "
+"por nosotros. Tenga en cuenta que no tenemos control sobre el contenido y"
+" las prácticas de estos sitios y no podemos aceptar responsabilidad por "
+"sus respectivas políticas de privacidad."
 
-#: templates/privacidade.html:14
+#: dose2risk/api/templates/privacidade.html:14
 msgid ""
 "Você é livre para recusar a nossa solicitação de informações pessoais, "
 "entendendo que talvez não possamos fornecer alguns dos serviços "
 "desejados."
-msgstr "Usted es libre de rechazar nuestra solicitud de información personal, entendiendo que es posible que no podamos brindarle algunos de los servicios deseados."
+msgstr ""
+"Usted es libre de rechazar nuestra solicitud de información personal, "
+"entendiendo que es posible que no podamos brindarle algunos de los "
+"servicios deseados."
 
-#: templates/privacidade.html:15
+#: dose2risk/api/templates/privacidade.html:15
 msgid ""
 "O uso continuado de nosso site será considerado como aceitação de nossas "
 "práticas em torno de privacidade e informações pessoais. Se você tiver "
 "alguma dúvida sobre como lidamos com dados do usuário e informações "
 "pessoais, entre em contato conosco."
-msgstr "El uso continuado de nuestro sitio se considerará como la aceptación de nuestras prácticas en torno a la privacidad y la información personal. Si tiene alguna pregunta sobre cómo manejamos los datos de los usuarios y la información personal, contáctenos."
+msgstr ""
+"El uso continuado de nuestro sitio se considerará como la aceptación de "
+"nuestras prácticas en torno a la privacidad y la información personal. Si"
+" tiene alguna pregunta sobre cómo manejamos los datos de los usuarios y "
+"la información personal, contáctenos."
 
-#: templates/resultado.html:3
+#: dose2risk/api/templates/resultado.html:3
 msgid "Resultados"
 msgstr "Resultados"
 
-#: templates/resultado.html:7
+#: dose2risk/api/templates/resultado.html:7
 msgid "Resultados Gerados"
 msgstr "Resultados Generados"
 
-#: templates/resultado.html:8
+#: dose2risk/api/templates/resultado.html:8
 msgid "Clique nos links abaixo para baixar os arquivos de saída:"
-msgstr "Haga clic en los enlaces a continuación para descargar los archivos de salida:"
+msgstr ""
+"Haga clic en los enlaces a continuación para descargar los archivos de "
+"salida:"
 
-#: templates/resultado.html:21
+#: dose2risk/api/templates/resultado.html:266
+msgid "Resultado Principal: Riscos Calculados"
+msgstr "Resultado Principal: Riesgos Calculados"
+
+#: dose2risk/api/templates/resultado.html:269
+#, fuzzy
+msgid ""
+"Contém os cálculos finais de risco (LAR e ERR) para\n"
+"                                    cada órgão e tipo de câncer, baseados"
+" nos modelos BEIR."
+msgstr ""
+"Contiene los cálculos finales de riesgo (LAR y ERR) para cada órgano y "
+"tipo de cáncer, basados en los modelos BEIR."
+
+#: dose2risk/api/templates/resultado.html:278
+#: dose2risk/api/templates/resultado.html:306
+msgid "Baixar"
+msgstr "Descargar"
+
+#: dose2risk/api/templates/resultado.html:294
+msgid "Log de Execução"
+msgstr "Registro de Ejecución"
+
+#: dose2risk/api/templates/resultado.html:297
+#, fuzzy
+msgid ""
+"Registro técnico detalhado de todas as etapas do\n"
+"                                    processamento para fins de auditoria "
+"e rastreabilidade."
+msgstr ""
+"Registro técnico detallado de todas las etapas del procesamiento para "
+"fines de auditoría y trazabilidad."
+
+#: dose2risk/api/templates/resultado.html:318
+msgid "Arquivos de Rastreabilidade e Validação"
+msgstr "Archivos de Trazabilidad y Validación"
+
+#: dose2risk/api/templates/resultado.html:321
+#, fuzzy
+msgid ""
+"Arquivos intermediários gerados durante o processamento\n"
+"                            (extração, transposição) e relatórios de "
+"validação dos dados."
+msgstr ""
+"Archivos intermedios generados durante el procesamiento (extracción, "
+"transposición) e informes de validación de datos."
+
+#: dose2risk/api/templates/resultado.html:337
+msgid "Baixar arquivo"
+msgstr "Descargar archivo"
+
+#: dose2risk/api/templates/resultado.html:371
+msgid "Baixar Todos os Arquivos (.zip)"
+msgstr "Descargar Todos los Archivos (.zip)"
+
+#: dose2risk/api/templates/resultado.html:375
 msgid "Processar Novamente"
 msgstr "Procesar de Nuevo"
 
-#: templates/resultado.html:22
+#: dose2risk/api/templates/resultado.html:376
 msgid "Voltar ao Início"
 msgstr "Volver al Inicio"
 
-#: templates/partials/footer.html:12 templates/partials/header.html:15
-#: templates/sobre.html:3
+#: dose2risk/api/templates/partials/footer.html:12
+#: dose2risk/api/templates/partials/header.html:19
+#: dose2risk/api/templates/sobre.html:3
 msgid "Sobre"
 msgstr "Sobre"
 
-#: templates/sobre.html:8
-msgid "Relação com o Dose2Risk"
-msgstr "Relación con Dose2Risk"
+#: dose2risk/api/templates/sobre.html:8
+#, fuzzy
+msgid "Sobre o Dose2Risk"
+msgstr "Logo de Dose2Risk"
 
-#: templates/sobre.html:9
+#: dose2risk/api/templates/sobre.html:9
+#, fuzzy
 msgid ""
 "O Dose2Risk é um sistema para análise de riscos radiológicos baseado em "
 "dados de exposição de software HotSpot."
@@ -391,7 +1104,7 @@ msgstr ""
 "Dose2Risk es un sistema para el análisis de riesgos radiológicos basado "
 "en datos de exposición del software HotSpot."
 
-#: templates/sobre.html:10
+#: dose2risk/api/templates/sobre.html:10
 msgid ""
 "Este projeto foi desenvolvido para fins de análise científica "
 "radiológica, fornecendo uma ferramenta para calcular os riscos associados"
@@ -403,57 +1116,61 @@ msgstr ""
 "asociados a la exposición a la radiación a partir de los archivos "
 "generados por el software HotSpot."
 
-#: templates/partials/footer.html:14 templates/suporte.html:2
+#: dose2risk/api/templates/partials/footer.html:14
+#: dose2risk/api/templates/suporte.html:2
 #, fuzzy
 msgid "Suporte"
 msgstr "Soporte"
 
-#: templates/suporte.html:8
+#: dose2risk/api/templates/suporte.html:8
 msgid "Página de Suporte"
 msgstr "Página de Soporte"
 
-#: templates/suporte.html:9
+#: dose2risk/api/templates/suporte.html:9
 msgid ""
 "Se você encontrou um problema ou tem alguma dúvida sobre o uso do sistema"
 " Dose2Risk, por favor, entre em contato conosco através dos canais "
 "listados na página de Contato."
-msgstr "Si ha encontrado un problema o tiene alguna pregunta sobre el uso del sistema Dose2Risk, por favor, póngase en contacto con nosotros a través de los canales que se enumeran en la página de Contacto."
+msgstr ""
+"Si ha encontrado un problema o tiene alguna pregunta sobre el uso del "
+"sistema Dose2Risk, por favor, póngase en contacto con nosotros a través "
+"de los canales que se enumeran en la página de Contacto."
 
-#: templates/suporte.html:10
+#: dose2risk/api/templates/suporte.html:10
 msgid "Para relatar um bug, por favor, inclua o máximo de detalhes possível:"
 msgstr ""
 
-#: templates/suporte.html:12
+#: dose2risk/api/templates/suporte.html:12
 msgid "Os passos para reproduzir o erro."
 msgstr "Los pasos para reproducir el error."
 
-#: templates/suporte.html:13
-msgid ""
-"O que você esperava que acontecesse."
+#: dose2risk/api/templates/suporte.html:13
+msgid "O que você esperava que acontecesse."
 msgstr ""
 
-#: templates/suporte.html:14
-msgid ""
-"O que de fato aconteceu (incluindo mensagens de erro)."
+#: dose2risk/api/templates/suporte.html:14
+msgid "O que de fato aconteceu (incluindo mensagens de erro)."
 msgstr ""
 
-#: templates/suporte.html:15
+#: dose2risk/api/templates/suporte.html:15
 msgid "Capturas de tela são muito úteis."
 msgstr ""
 
-#: templates/suporte.html:17
-msgid "Agradecemos a sua colaboração para melhorar o sistema Dose2Risk."
+#: dose2risk/api/templates/suporte.html:17
+#, fuzzy
+msgid "Agradecemos a sua colaboração para melhorar o Dose2Risk."
 msgstr "Agradecemos su colaboración para mejorar el sistema Dose2Risk."
 
-#: templates/termos.html:2 templates/termos.html:8
-msgid "Compromisso do Usuário"
-msgstr "Compromiso del Usuario"
+#: dose2risk/api/templates/termos.html:2 dose2risk/api/templates/termos.html:8
+msgid "Termos de Serviço"
+msgstr ""
 
-#: templates/partials/footer.html:21 templates/termos.html:9
+#: dose2risk/api/templates/partials/footer.html:21
+#: dose2risk/api/templates/termos.html:9
 msgid "Termos"
 msgstr "Términos"
 
-#: templates/termos.html:10
+#: dose2risk/api/templates/termos.html:10
 msgid ""
 "Ao acessar ao site Dose2Risk, concorda em cumprir estes termos de "
 "serviço, todas as leis e regulamentos aplicáveis e concorda que é "
@@ -461,63 +1178,86 @@ msgid ""
 "não concordar com algum desses termos, está proibido de usar ou acessar "
 "este site. Os materiais contidos neste site são protegidos pelas leis de "
 "direitos autorais e marcas comerciais aplicáveis."
-msgstr "Al acceder al sitio web de Dose2Risk, usted acepta cumplir con estos términos de servicio, todas las leyes y regulaciones aplicables, y acepta que es responsable del cumplimiento de las leyes locales aplicables. Si no está de acuerdo con alguno de estos términos, tiene prohibido usar o acceder a este sitio. Los materiales contenidos en este sitio están protegidos por las leyes de derechos de autor y marcas comerciales aplicables."
+msgstr ""
+"Al acceder al sitio web de Dose2Risk, usted acepta cumplir con estos "
+"términos de servicio, todas las leyes y regulaciones aplicables, y acepta"
+" que es responsable del cumplimiento de las leyes locales aplicables. Si "
+"no está de acuerdo con alguno de estos términos, tiene prohibido usar o "
+"acceder a este sitio. Los materiales contenidos en este sitio están "
+"protegidos por las leyes de derechos de autor y marcas comerciales "
+"aplicables."
 
-#: templates/termos.html:11
+#: dose2risk/api/templates/termos.html:11
 msgid "Uso de Licença"
 msgstr ""
 
-#: templates/termos.html:12
+#: dose2risk/api/templates/termos.html:12
 msgid ""
-"É concedida permissão para baixar temporariamente uma cópia dos materiais "
-"(informações ou software) no site Dose2Risk , apenas para visualização "
+"É concedida permissão para baixar temporariamente uma cópia dos materiais"
+" (informações ou software) no site Dose2Risk , apenas para visualização "
 "transitória pessoal e não comercial. Esta é a concessão de uma licença, "
 "não uma transferência de título e, sob esta licença, você não pode:"
-msgstr "Se concede permiso para descargar temporalmente una copia de los materiales (información o software) en el sitio web de Dose2Risk, solo para visualización transitoria personal y no comercial. Esta es la concesión de una licencia, no una transferencia de título, y bajo esta licencia no puede:"
+msgstr ""
+"Se concede permiso para descargar temporalmente una copia de los "
+"materiales (información o software) en el sitio web de Dose2Risk, solo "
+"para visualización transitoria personal y no comercial. Esta es la "
+"concesión de una licencia, no una transferencia de título, y bajo esta "
+"licencia no puede:"
 
-#: templates/termos.html:14
+#: dose2risk/api/templates/termos.html:14
 msgid "modificar ou copiar os materiais;"
 msgstr "modificar o copiar los materiales;"
 
-#: templates/termos.html:15
+#: dose2risk/api/templates/termos.html:15
 msgid ""
 "usar os materiais para qualquer finalidade comercial ou para exibição "
 "pública (comercial ou não comercial);"
-msgstr "usar los materiales para cualquier propósito comercial o para exhibición pública (comercial o no comercial);"
+msgstr ""
+"usar los materiales para cualquier propósito comercial o para exhibición "
+"pública (comercial o no comercial);"
 
-#: templates/termos.html:16
+#: dose2risk/api/templates/termos.html:16
 msgid ""
 "tentar descompilar ou fazer engenharia reversa de qualquer software "
 "contido no site Dose2Risk;"
-msgstr "intentar descompilar o aplicar ingeniería inversa a cualquier software contenido en el sitio web de Dose2Risk;"
+msgstr ""
+"intentar descompilar o aplicar ingeniería inversa a cualquier software "
+"contenido en el sitio web de Dose2Risk;"
 
-#: templates/termos.html:17
+#: dose2risk/api/templates/termos.html:17
 msgid ""
-"O usuário se compromete a fazer uso adequado dos conteúdos e da "
-"informação que o Dose2Risk oferece no site e com caráter enunciativo, mas"
-" não limitativo:"
-msgstr "El usuario se compromete a hacer un uso adecuado de los contenidos y la información que Dose2Risk ofrece en el sitio y con carácter enunciativo, mas no limitativo:"
+"remover quaisquer direitos autorais ou outras notações de propriedade dos"
+" materiais; ou"
+msgstr ""
 
-#: templates/termos.html:18
+#: dose2risk/api/templates/termos.html:18
 msgid ""
 "transferir os materiais para outra pessoa ou 'espelhe' os materiais em "
 "qualquer outro servidor."
-msgstr "transferir los materiales a otra persona o 'reflejar' los materiales en cualquier otro servidor."
+msgstr ""
+"transferir los materiales a otra persona o 'reflejar' los materiales en "
+"cualquier otro servidor."
 
-#: templates/termos.html:20
+#: dose2risk/api/templates/termos.html:20
+#, fuzzy
 msgid ""
-"Esta licença será automaticamente rescindida se você violar alguma dessas "
-"restrições e poderá ser rescindida por Dose2Risk a qualquer momento. Após"
-" encerrar a visualização desses materiais ou após o término desta licença,"
+"Esta licença será automaticamente rescindida se você violar alguma dessas"
+" restrições e poderá ser rescindida por Dose2Risk a qualquer momento. Ao "
+"encerrar a visualização desses materiais ou após o término desta licença,"
 " você deve apagar todos os materiais baixados em sua posse, seja em "
 "formato eletrónico ou impresso."
-msgstr "Esta licencia se rescindirá automáticamente si usted viola alguna de estas restricciones y puede ser rescindida por Dose2Risk en cualquier momento. Al terminar de ver estos materiales o al finalizar esta licencia, debe destruir cualquier material descargado que tenga en su poder, ya sea en formato electrónico o impreso."
+msgstr ""
+"Esta licencia se rescindirá automáticamente si usted viola alguna de "
+"estas restricciones y puede ser rescindida por Dose2Risk en cualquier "
+"momento. Al terminar de ver estos materiales o al finalizar esta "
+"licencia, debe destruir cualquier material descargado que tenga en su "
+"poder, ya sea en formato electrónico o impreso."
 
-#: templates/termos.html:21
+#: dose2risk/api/templates/termos.html:21
 msgid "Isenção de responsabilidade"
 msgstr "Exención de responsabilidad"
 
-#: templates/termos.html:22
+#: dose2risk/api/templates/termos.html:22
 msgid ""
 "Os materiais no site da Dose2Risk são fornecidos 'como estão'. Dose2Risk "
 "não oferece garantias, expressas ou implícitas, e, por este meio, isenta "
@@ -525,64 +1265,486 @@ msgid ""
 "implícitas ou condições de comercialização, adequação a um fim específico"
 " ou não violação de propriedade intelectual ou outra violação de "
 "direitos."
-msgstr "Los materiales en el sitio web de Dose2Risk se proporcionan 'tal cual'. Dose2Risk no ofrece garantías, expresas o implícitas, y por la presente renuncia y niega todas las demás garantías, incluidas, entre otras, las garantías implícitas o las condiciones de comerciabilidad, idoneidad para un propósito particular o no infracción de la propiedad intelectual u otra violación de derechos."
+msgstr ""
+"Los materiales en el sitio web de Dose2Risk se proporcionan 'tal cual'. "
+"Dose2Risk no ofrece garantías, expresas o implícitas, y por la presente "
+"renuncia y niega todas las demás garantías, incluidas, entre otras, las "
+"garantías implícitas o las condiciones de comerciabilidad, idoneidad para"
+" un propósito particular o no infracción de la propiedad intelectual u "
+"otra violación de derechos."
 
-#: templates/termos.html:23
+#: dose2risk/api/templates/termos.html:23
 msgid ""
 "Além disso, o Dose2Risk não garante ou faz qualquer representação "
 "relativa à precisão, aos resultados prováveis ou à confiabilidade do uso "
 "dos materiais em seu site ou de outra forma relacionado a esses materiais"
 " ou em sites vinculados a este site."
-msgstr "Además, Dose2Risk no garantiza ni hace ninguna representación con respecto a la precisión, los resultados probables o la confiabilidad del uso de los materiales en su sitio web o de otra manera relacionados con dichos materiales o en cualquier sitio vinculado a este sitio."
+msgstr ""
+"Además, Dose2Risk no garantiza ni hace ninguna representación con "
+"respecto a la precisión, los resultados probables o la confiabilidad del "
+"uso de los materiales en su sitio web o de otra manera relacionados con "
+"dichos materiales o en cualquier sitio vinculado a este sitio."
 
-#: templates/partials/footer.html:4
+#: dose2risk/api/templates/partials/footer.html:4
 msgid "Dose2Risk Logo"
 msgstr "Logo de Dose2Risk"
 
-#: templates/partials/footer.html:5 templates/partials/footer.html:28
+#: dose2risk/api/templates/partials/footer.html:5
+#: dose2risk/api/templates/partials/footer.html:28
 #, fuzzy
 msgid "Dose2Risk"
 msgstr "Sobre Dose2Risk"
 
-#: templates/partials/footer.html:6
-#, fuzzy
+#: dose2risk/api/templates/partials/footer.html:6
 msgid ""
-"Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, ou "
-"sobre azar, qualquer tipo de pornografia ilegal, de apologia ao terrorismo"
-" ou contra os direitos humanos;"
-msgstr "No difundir propaganda o contenido de naturaleza racista, xenófoba, o sobre juegos de azar, cualquier tipo de pornografía ilegal, de apología al terrorismo o en contra de los derechos humanos;"
-"Sistema de análisis de riesgos radiológicos basado en datos de exposición"
-" del software HotSpot."
+"Sistema para análise de riscos radiológicos baseado em dados de exposição"
+" de software HotSpot."
+msgstr ""
+"Dose2Risk es un sistema para el análisis de riesgos radiológicos basado "
+"en datos de exposición del software HotSpot."
 
-#: templates/partials/footer.html:10
+#: dose2risk/api/templates/partials/footer.html:10
 msgid "Links Úteis"
 msgstr "Enlaces Útiles"
 
-#: templates/partials/footer.html:18
+#: dose2risk/api/templates/partials/footer.html:13
+msgid "Documentação"
+msgstr "Documentación"
+
+#: dose2risk/api/templates/partials/footer.html:18
 msgid "Legal"
 msgstr "Legal"
 
-#: templates/partials/footer.html:20
+#: dose2risk/api/templates/partials/footer.html:20
 msgid "Privacidade"
 msgstr "Privacidad"
 
-#: templates/partials/footer.html:28
+#: dose2risk/api/templates/partials/footer.html:28
 msgid "todos os direitos reservados."
 msgstr "todos los derechos reservados."
 
-#: templates/partials/footer.html:29
+#: dose2risk/api/templates/partials/footer.html:29
 msgid "Desenvolvido para análise científica radiológica."
 msgstr "Desarrollado para análisis científico radiológico."
 
-#: templates/partials/header.html:5
+#: dose2risk/api/templates/partials/header.html:6
 msgid "Logo da Dose2Risk"
 msgstr "Logo de Dose2Risk"
 
-#: templates/partials/header.html:8
+#: dose2risk/api/templates/partials/header.html:9
 msgid "Análise de Risco Radiológico"
 msgstr "Análisis de Riesgo Radiológico"
 
-#: templates/partials/header.html:14
+#: dose2risk/api/templates/partials/header.html:15
 msgid "Início"
 msgstr "Inicio"
+
+#~ msgid "O processamento foi concluído com sucesso."
+#~ msgstr "El procesamiento se completó con éxito."
+
+#~ msgid "Idioma não suportado."
+#~ msgstr "Idioma no soportado."
+
+#~ msgid ""
+#~ "Para nos ajudar a resolver o seu"
+#~ " problema mais rapidamente, por favor, "
+#~ "inclua as seguintes informações no seu"
+#~ " contato:"
+#~ msgstr ""
+#~ "Para ayudarnos a resolver su problema"
+#~ " más rápidamente, por favor, incluya "
+#~ "la siguiente información en su contacto:"
+
+#~ msgid "Documentação do Processo de Cálculo de Risco"
+#~ msgstr "Documentación del Proceso de Cálculo de Riesgo"
+
+#~ msgid ""
+#~ "Este documento detalha o processo "
+#~ "computacional implementado no arquivo "
+#~ "<code>hotspot_to_risk.py</code>, que automatiza a"
+#~ " conversão de dados de dispersão "
+#~ "atmosférica, gerados pelo software HotSpot,"
+#~ " em estimativas de risco de câncer."
+#~ " O processo é dividido em três "
+#~ "etapas principais, orquestradas por uma "
+#~ "classe de pipeline."
+#~ msgstr ""
+#~ "Este documento detalla el proceso "
+#~ "computacional implementado en el archivo "
+#~ "<code>hotspot_to_risk.py</code>, que automatiza la"
+#~ " conversión de datos de dispersión "
+#~ "atmosférica, generados por el software "
+#~ "HotSpot, en estimaciones de riesgo de"
+#~ " cáncer. El proceso se divide en "
+#~ "tres etapas principales, orquestadas por "
+#~ "una clase de pipeline."
+
+#~ msgid ""
+#~ "O fluxo de trabalho é gerenciado "
+#~ "pela classe <code>HotspotPipeline</code>, que "
+#~ "coordena a execução sequencial das "
+#~ "seguintes etapas:"
+#~ msgstr ""
+#~ "El flujo de trabajo es gestionado "
+#~ "por la clase <code>HotspotPipeline</code>, que"
+#~ " coordina la ejecución secuencial de "
+#~ "las siguientes etapas:"
+
+#~ msgid "Extração de Dados:"
+#~ msgstr "Extracción de Datos:"
+
+#~ msgid ""
+#~ "A classe <code>ExtratorHotspot</code> lê os"
+#~ " arquivos de saída do HotSpot."
+#~ msgstr ""
+#~ "La clase <code>ExtractorHotspot</code> lee los"
+#~ " archivos de salida de HotSpot."
+
+#~ msgid "Transposição de Dados:"
+#~ msgstr "Transposición de Datos:"
+
+#~ msgid ""
+#~ "A classe <code>TranspositorHotspot</code> pivota "
+#~ "os dados extraídos para um formato "
+#~ "estruturado."
+#~ msgstr ""
+#~ "La clase <code>TranspositorHotspot</code> pivota "
+#~ "los datos extraídos a un formato "
+#~ "estructurado."
+
+#~ msgid "Cálculo de Risco:"
+#~ msgstr "Cálculo de Riesgo:"
+
+#~ msgid ""
+#~ "A classe <code>CalculadoraRisco</code> aplica "
+#~ "modelos matemáticos para estimar o "
+#~ "risco."
+#~ msgstr ""
+#~ "La clase <code>CalculadoraRisco</code> aplica "
+#~ "modelos matemáticos para estimar el "
+#~ "riesgo."
+
+#~ msgid "Extração de Dados (<code>ExtratorHotspot</code>)"
+#~ msgstr "Extracción de Datos (<code>ExtractorHotspot</code>)"
+
+#~ msgid ""
+#~ "A primeira etapa consiste na leitura "
+#~ "e extração de informações dos arquivos"
+#~ " de texto (<code>.txt</code>) gerados pelo"
+#~ " HotSpot. A classe <code>ExtratorHotspot</code>"
+#~ " realiza as seguintes ações:"
+#~ msgstr ""
+#~ "La primera etapa consiste en la "
+#~ "lectura y extracción de información de"
+#~ " los archivos de texto (<code>.txt</code>)"
+#~ " generados por HotSpot. La clase "
+#~ "<code>ExtractorHotspot</code> realiza las siguientes"
+#~ " acciones:"
+
+#~ msgid ""
+#~ "Varre um diretório de entrada em "
+#~ "busca de todos os arquivos "
+#~ "<code>.txt</code>."
+#~ msgstr ""
+#~ "Escanea un directorio de entrada en "
+#~ "busca de todos los archivos "
+#~ "<code>.txt</code>."
+
+#~ msgid ""
+#~ "Para cada arquivo, utiliza expressões "
+#~ "regulares (regex) para identificar e "
+#~ "extrair parâmetros-chave do cabeçalho, "
+#~ "como altura da chaminé, velocidade do"
+#~ " vento e classe de estabilidade "
+#~ "atmosférica."
+#~ msgstr ""
+#~ "Para cada archivo, utiliza expresiones "
+#~ "regulares (regex) para identificar y "
+#~ "extraer parámetros clave del encabezado, "
+#~ "como la altura de la chimenea, la"
+#~ " velocidad del viento y la clase "
+#~ "de estabilidad atmosférica."
+
+#~ msgid ""
+#~ "Extrai os dados tabulares do corpo "
+#~ "do arquivo, que contêm informações de"
+#~ " dose em função da distância."
+#~ msgstr ""
+#~ "Extrae los datos tabulares del cuerpo"
+#~ " del archivo, que contienen información "
+#~ "de dosis en función de la "
+#~ "distancia."
+
+#~ msgid ""
+#~ "Consolida todos os dados extraídos em"
+#~ " um único arquivo CSV, em formato "
+#~ "tabular, que serve como entrada para "
+#~ "a próxima etapa."
+#~ msgstr ""
+#~ "Consolida todos los datos extraídos en"
+#~ " un único archivo CSV, en formato "
+#~ "tabular, que sirve como entrada para "
+#~ "la siguiente etapa."
+
+#~ msgid "Transposição de Dados (<code>TranspositorHotspot</code>)"
+#~ msgstr "Transposición de Datos (<code>TranspositorHotspot</code>)"
+
+#~ msgid ""
+#~ "O arquivo CSV gerado na etapa "
+#~ "anterior possui um formato \"longo\", "
+#~ "onde cada linha representa uma medida."
+#~ " Para facilitar o cálculo, é "
+#~ "necessário converter este formato para "
+#~ "um formato \"largo\". A classe "
+#~ "<code>TranspositorHotspot</code> realiza esta "
+#~ "tarefa:"
+#~ msgstr ""
+#~ "El archivo CSV generado en la "
+#~ "etapa anterior tiene un formato "
+#~ "\"largo\", donde cada fila representa "
+#~ "una medida. Para facilitar el cálculo,"
+#~ " es necesario convertir este formato "
+#~ "a un formato \"ancho\". La clase "
+#~ "<code>TranspositorHotspot</code> realiza esta tarea:"
+
+#~ msgid "Lê o arquivo CSV tabular."
+#~ msgstr "Lee el archivo CSV tabular."
+
+#~ msgid ""
+#~ "Utiliza a funcionalidade de \"pivot "
+#~ "table\" para transformar os dados, de"
+#~ " modo que as linhas representem os"
+#~ " diferentes órgãos ou tecidos avaliados "
+#~ "e as colunas representem os cenários "
+#~ "de exposição (casos)."
+#~ msgstr ""
+#~ "Utiliza la funcionalidad de \"pivot "
+#~ "table\" para transformar los datos, de"
+#~ " modo que las filas representen los"
+#~ " diferentes órganos o tejidos evaluados "
+#~ "y las columnas representen los "
+#~ "escenarios de exposición (casos)."
+
+#~ msgid ""
+#~ "O resultado é um novo arquivo CSV,"
+#~ " com os dados estruturados de forma"
+#~ " matricial (órgão x cenário), pronto "
+#~ "para a análise de risco."
+#~ msgstr ""
+#~ "El resultado es un nuevo archivo "
+#~ "CSV, con los datos estructurados de "
+#~ "forma matricial (órgano x escenario), "
+#~ "listo para el análisis de riesgo."
+
+#~ msgid "Cálculo de Risco (<code>CalculadoraRisco</code>)"
+#~ msgstr "Cálculo de Riesgo (<code>CalculadoraRisco</code>)"
+
+#~ msgid ""
+#~ "A etapa final é a quantificação do"
+#~ " risco de desenvolvimento de câncer "
+#~ "com base nas doses absorvidas. A "
+#~ "classe <code>CalculadoraRisco</code> implementa os"
+#~ " modelos recomendados pelo relatório BEIR"
+#~ " (Biological Effects of Ionizing "
+#~ "Radiation)."
+#~ msgstr ""
+#~ "La etapa final es la cuantificación "
+#~ "del riesgo de desarrollo de cáncer "
+#~ "con base en las dosis absorbidas. "
+#~ "La clase <code>CalculadoraRisco</code> implementa"
+#~ " los modelos recomendados por el "
+#~ "informe BEIR (Biological Effects of "
+#~ "Ionizing Radiation)."
+
+#~ msgid ""
+#~ "Carrega o CSV transposto (doses por "
+#~ "órgão) e um arquivo de parâmetros "
+#~ "de referência, que contém coeficientes "
+#~ "específicos para cada órgão "
+#~ "(<code>beta</code>, <code>gamma</code>, <code>eta</code>),"
+#~ " baseados no modelo BEIR."
+#~ msgstr ""
+#~ "Carga el CSV transpuesto (dosis por "
+#~ "órgano) y un archivo de parámetros "
+#~ "de referencia, que contiene coeficientes "
+#~ "específicos para cada órgano "
+#~ "(<code>beta</code>, <code>gamma</code>, <code>eta</code>),"
+#~ " basados en el modelo BEIR."
+
+#~ msgid ""
+#~ "Recebe como entrada a idade do "
+#~ "indivíduo na data da exposição e a"
+#~ " idade atual."
+#~ msgstr ""
+#~ "Ingrese la edad en la fecha de "
+#~ "exposición y la edad actual para "
+#~ "el cálculo de riesgo."
+
+#~ msgid ""
+#~ "Implementa as funções de risco dos "
+#~ "modelos <strong>BEIR V</strong> e <strong>BEIR"
+#~ " VII</strong>."
+#~ msgstr ""
+#~ "Implementa las funciones de riesgo de"
+#~ " los modelos <strong>BEIR V</strong> y "
+#~ "<strong>BEIR VII</strong>."
+
+#~ msgid ""
+#~ "Aplica a fórmula de risco apropriada "
+#~ "para cada órgão, utilizando a dose "
+#~ "correspondente e os parâmetros do "
+#~ "modelo."
+#~ msgstr ""
+#~ "Aplica la fórmula de riesgo apropiada"
+#~ " para cada órgano, utilizando la "
+#~ "dosis correspondiente y los parámetros "
+#~ "del modelo."
+
+#~ msgid ""
+#~ "O resultado final é um arquivo CSV"
+#~ " contendo as estimativas de risco de"
+#~ " câncer para cada órgão, juntamente "
+#~ "com um arquivo de log detalhado do"
+#~ " processo."
+#~ msgstr ""
+#~ "El resultado final es un archivo "
+#~ "CSV que contiene las estimaciones de "
+#~ "riesgo de cáncer para cada órgano, "
+#~ "junto con un archivo de registro "
+#~ "detallado del proceso."
+
+#~ msgid "Mais informações"
+#~ msgstr "Más información"
+
+#~ msgid ""
+#~ "Não se envolver em atividades que "
+#~ "sejam ilegais ou contrárias à boa "
+#~ "fé e à ordem pública;"
+#~ msgstr ""
+#~ "No involucrarse en actividades que sean"
+#~ " ilegales o contrarias a la buena "
+#~ "fe y al orden público;"
+
+#~ msgid "Idade atual"
+#~ msgstr "Edad actual"
+
+#~ msgid ""
+#~ "Não causar danos aos sistemas físicos"
+#~ " (hardwares) e lógicos (softwares) do "
+#~ "Dose2Risk, de seus fornecedores ou "
+#~ "terceiros, para introduzir ou disseminar "
+#~ "vírus informáticos ou quaisquer outros "
+#~ "sistemas de hardware ou software que "
+#~ "sejam capazes de causar os danos "
+#~ "anteriormente mencionados."
+#~ msgstr ""
+#~ "No causar daños a los sistemas "
+#~ "físicos (hardware) y lógicos (software) "
+#~ "de Dose2Risk, de sus proveedores o "
+#~ "de terceros, para introducir o diseminar"
+#~ " virus informáticos o cualesquiera otros"
+#~ " sistemas de hardware o software que"
+#~ " sean capaces de causar los daños "
+#~ "anteriormente mencionados."
+
+#~ msgid "Relação com o Dose2Risk"
+#~ msgstr "Relación con Dose2Risk"
+
+#~ msgid "Compromisso do Usuário"
+#~ msgstr "Compromiso del Usuario"
+
+#~ msgid ""
+#~ "O usuário se compromete a fazer "
+#~ "uso adequado dos conteúdos e da "
+#~ "informação que o Dose2Risk oferece no"
+#~ " site e com caráter enunciativo, mas"
+#~ " não limitativo:"
+#~ msgstr ""
+#~ "El usuario se compromete a hacer "
+#~ "un uso adecuado de los contenidos "
+#~ "y la información que Dose2Risk ofrece"
+#~ " en el sitio y con carácter "
+#~ "enunciativo, mas no limitativo:"
+
+#~ msgid ""
+#~ "Não difundir propaganda ou conteúdo de"
+#~ " natureza racista, xenofóbica, ou sobre "
+#~ "azar, qualquer tipo de pornografia "
+#~ "ilegal, de apologia ao terrorismo ou "
+#~ "contra os direitos humanos;"
+#~ msgstr ""
+#~ "No difundir propaganda o contenido de"
+#~ " naturaleza racista, xenófoba, o sobre "
+#~ "juegos de azar, cualquier tipo de "
+#~ "pornografía ilegal, de apología al "
+#~ "terrorismo o en contra de los "
+#~ "derechos humanos;Sistema de análisis de "
+#~ "riesgos radiológicos basado en datos de"
+#~ " exposición del software HotSpot."
+
+#~ msgid "red_marrow"
+#~ msgstr "Médula Ósea Roja"
+
+#~ msgid "lung"
+#~ msgstr "Pulmón"
+
+#~ msgid "breast"
+#~ msgstr "Mama"
+
+#~ msgid "thyroid"
+#~ msgstr "Tiroides"
+
+#~ msgid "stomach_wall"
+#~ msgstr "Pared Estomacal"
+
+#~ msgid "lli_wall"
+#~ msgstr "Pared Intestino Grueso Inf."
+
+#~ msgid "uli_wall"
+#~ msgstr "Pared Intestino Grueso Sup."
+
+#~ msgid "si_wall"
+#~ msgstr "Pared Intestino Delgado"
+
+#~ msgid "liver"
+#~ msgstr "Hígado"
+
+#~ msgid "esophagus"
+#~ msgstr "Esófago"
+
+#~ msgid "bladder_wall"
+#~ msgstr "Pared de la Vejiga"
+
+#~ msgid "ovaries"
+#~ msgstr "Ovarios"
+
+#~ msgid "uterus"
+#~ msgstr "Útero"
+
+#~ msgid "testes"
+#~ msgstr "Testículos"
+
+#~ msgid "kidneys"
+#~ msgstr "Riñones"
+
+#~ msgid "pancreas"
+#~ msgstr "Páncreas"
+
+#~ msgid "spleen"
+#~ msgstr "Bazo"
+
+#~ msgid "skin"
+#~ msgstr "Piel"
+
+#~ msgid "muscle"
+#~ msgstr "Músculo"
+
+#~ msgid "adrenals"
+#~ msgstr "Glándulas Suprarrenales"
+
+#~ msgid "surface_bone"
+#~ msgstr "Superficie Ósea"
+
+#~ msgid "thymus"
+#~ msgstr "Timo"
 

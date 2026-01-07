@@ -2,7 +2,8 @@
     <div class="container">
         <div class="logo">
             <a href="{{ url_for('main.index') }}">
-                <img src="{{ url_for('main.static', filename='image/d2r-removebg-preview.png') }}" alt="{{ _('Logo da Dose2Risk') }}">
+                <img src="{{ url_for('main.static', filename='image/d2r-removebg-preview.png') }}"
+                    alt="{{ _('Logo da Dose2Risk') }}">
                 <div>
                     <h1>Dose2Risk</h1>
                     <p>{{ _('Análise de Risco Radiológico') }}</p>
@@ -12,6 +13,16 @@
         <nav class="navigation">
             <ul>
                 <li><a href="{{ url_for('main.index') }}">{{ _('Início') }}</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">{{ _('Documentação') }} <i class="fas fa-chevron-down ms-1"
+                            style="font-size: 0.8em;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('main.tutorial') }}">{{ _('Tutorial') }}</a></li>
+                        <li><a href="{{ url_for('main.manual_resultados') }}">{{ _('Manual de Resultados') }}</a></li>
+                        <li><a href="{{ url_for('main.manual_logs') }}">{{ _('Manual de Logs') }}</a></li>
+                        <li><a href="{{ url_for('main.documentacao') }}">{{ _('Documentação Técnica') }}</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{ url_for('main.sobre') }}">{{ _('Sobre') }}</a></li>
             </ul>
         </nav>
@@ -19,14 +30,17 @@
             <div class="language-selector">
                 <button class="action-btn" id="lang-btn"><i class="fas fa-globe"></i></button>
                 <div class="lang-dropdown" id="lang-dropdown">
-                    <a href="{{ url_for('main.set_language', lang='pt_BR') }}"><span class="flag-icon">br</span> Português (BR)</a>
-                    <a href="{{ url_for('main.set_language', lang='en') }}"><span class="flag-icon">us</span> English</a>
-                    <a href="{{ url_for('main.set_language', lang='es') }}"><span class="flag-icon">es</span> Español</a>
-                    <a href="{{ url_for('main.set_language', lang='fr') }}"><span class="flag-icon">fr</span> Français</a>
+                    <a href="{{ url_for('main.set_language', lang='pt_BR') }}"><span class="flag-icon">br</span>
+                        Português (BR)</a>
+                    <a href="{{ url_for('main.set_language', lang='en') }}"><span class="flag-icon">us</span>
+                        English</a>
+                    <a href="{{ url_for('main.set_language', lang='es') }}"><span class="flag-icon">es</span>
+                        Español</a>
+                    <a href="{{ url_for('main.set_language', lang='fr') }}"><span class="flag-icon">fr</span>
+                        Français</a>
                 </div>
             </div>
             <button class="action-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
         </div>
     </div>
 </header>
-

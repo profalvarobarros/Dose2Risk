@@ -1,0 +1,314 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Tutorial: Configuração HotSpot') }}{% endblock %}
+
+{% block content %}
+<style>
+    .docs-wrapper {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        color: #334155;
+        line-height: 1.7;
+        background-color: #ffffff;
+        padding-top: 40px;
+        padding-bottom: 80px;
+    }
+
+    .docs-title {
+        font-family: 'Segoe UI', serif;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+    }
+
+    .docs-subtitle {
+        font-weight: 400;
+        color: #64748b;
+        font-size: 1.25rem;
+        margin-bottom: 3rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-top: 3rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+        margin-bottom: 2rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #334155;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid #3b82f6;
+        padding-left: 1rem;
+    }
+
+    /* Tables */
+    .table-scientific {
+        width: 100%;
+        margin: 1.5rem 0;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+        border: 1px solid #e2e8f0;
+    }
+
+    .table-scientific th {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        font-weight: 600;
+        text-align: left;
+        padding: 0.75rem 1rem;
+        border-bottom: 2px solid #e2e8f0;
+    }
+
+    .table-scientific td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #e2e8f0;
+        color: #475569;
+        vertical-align: top;
+    }
+
+    .code-block {
+        background-color: #1e293b;
+        color: #e2e8f0;
+        padding: 1rem;
+        border-radius: 6px;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9rem;
+        margin: 1rem 0;
+    }
+
+    .screenshot-box {
+        background-color: #f8fafc;
+        border: 2px dashed #cbd5e1;
+        border-radius: 8px;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #64748b;
+        font-style: italic;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .screenshot-box img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .callout {
+        border-left: 4px solid #f59e0b;
+        background-color: #fffbeb;
+        padding: 1.25rem;
+        margin: 1.5rem 0;
+        border-radius: 0 4px 4px 0;
+        color: #92400e;
+    }
+</style>
+
+<div class="docs-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <!-- Navegação de Retorno -->
+                <a href="{{ url_for('main.tutorial') }}" class="btn btn-outline-secondary mb-4">
+                    <i class="fas fa-arrow-left me-2"></i> {{ _('Voltar para o Tutorial Principal') }}
+                </a>
+
+                <h1 class="docs-title text-center">{{ _('💻 Tutorial Completo: Criando e Executando Simulações com o
+                    HotSpot (Cs-137)') }}</h1>
+                <p class="docs-subtitle text-center">{{ _('Guia detalhado para criar a fonte radiológica e executar a
+                    simulação de dispersão.') }}</p>
+
+                <h3>1. {{ _('Este guia abrange duas etapas principais:') }}</h3>
+                <ul>
+                    <li>{{ _('Criação de um arquivo .mix personalizado com Cs-137.') }}</li>
+                    <li>{{ _('Execução completa da simulação no HotSpot com esse radionuclídeo.') }}</li>
+                </ul>
+
+                <!-- Parte 1 -->
+                <section>
+                    <h2>{{ _('☢️ Parte 1: Como Criar um Arquivo .mix no HotSpot para Cs-137') }}</h2>
+                    <p>{{ _('O arquivo .mix define os parâmetros da fonte radiológica usada na simulação. No nosso caso,
+                        criamos um arquivo para Cs-137 com 1000 Ci, com os parâmetros usados na tese.') }}</p>
+
+                    <h3><strong>{{ _('Etapas:') }}</strong></h3>
+                    <h3>1. {{ _('Acesse a tela de radionuclídeos') }}</h3>
+                    <ul>
+                        <li>{{ _('Abra o HotSpot.') }}</li>
+                        <li>{{ _('Na aba <strong>Models</strong>, selecione qualquer modelo.') }}</li>
+                        <li>{{ _('Em seguida, clique em <strong>Source Term</strong> > <strong>Change Radionuclide
+                                Source Term</strong>.') }}</li>
+                    </ul>
+                    <div class="screenshot-box">
+                        <!-- Upload image to: dose2risk/api/static/tutorial/hotspot_step1_menu.png -->
+                        <img src="{{ url_for('main.static', filename='tutorial/hotspot_step1_menu.png') }}"
+                            alt="HotSpot Menu"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div style="display:none; text-align:center;">
+                            <i class="fas fa-image fa-3x mb-2"></i><br>
+                            <span>{{ _('Salve: static/tutorial/hotspot_step1_menu.png') }}</span>
+                        </div>
+                    </div>
+
+                    <h3>2. {{ _('Selecionar Radionuclídeo') }}</h3>
+                    <ul>
+                        <li>{{ _('Selecione <strong>Cs-137</strong> na lista.') }}</li>
+                        <li>{{ _('Em "Lung Clearance Class", escolha o Tipo <strong>D</strong> (Day - Absorção
+                            Rápida).') }}</li>
+                    </ul>
+
+                    <h3>3. {{ _('Configurar Parâmetros da Fonte') }}</h3>
+                    <p>{{ _('Preencha os campos exatamente com os valores abaixo:') }}</p>
+                    <table class="table-scientific">
+                        <thead>
+                            <tr>
+                                <th>{{ _('Campo') }}</th>
+                                <th>{{ _('Valor') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total Release</td>
+                                <td><strong>1000 Ci</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Deposition Velocity</td>
+                                <td><strong>0.3 cm/sec</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Non-respirable Dep. Velocity</td>
+                                <td><strong>8 cm/sec</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Airborne Fraction</td>
+                                <td><strong>1</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Respirable Fraction</td>
+                                <td><strong>1</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="screenshot-box">
+                        <!-- Upload image to: dose2risk/api/static/tutorial/hotspot_step3_source.png -->
+                        <img src="{{ url_for('main.static', filename='tutorial/hotspot_step3_source.png') }}"
+                            alt="Source Configuration"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div style="display:none; text-align:center;">
+                            <i class="fas fa-image fa-3x mb-2"></i><br>
+                            <span>{{ _('Salve: static/tutorial/hotspot_step3_source.png') }}</span>
+                        </div>
+                    </div>
+
+                    <h3>4. {{ _('Salvar na Biblioteca') }}</h3>
+                    <p>{{ _('Clique no botão <strong>Add to Mixture Library File</strong> e salve como:') }}</p>
+                    <div class="code-block">Cs137_1000Ci.mix</div>
+                </section>
+
+                <!-- Parte 2 -->
+                <section>
+                    <h2>{{ _('Parte 2: Executando a Simulação (General Plume)') }}</h2>
+
+                    <h3>1. {{ _('Setup Inicial') }}</h3>
+                    <ul>
+                        <li>{{ _('Na aba principal "Models", selecione <strong>General Plume</strong>.') }}</li>
+                        <li>{{ _('Clique no botão <strong>Setup</strong> no topo.') }}</li>
+                    </ul>
+                    <table class="table-scientific">
+                        <tr>
+                            <td>Terrain</td>
+                            <td>Standard/Rural</td>
+                        </tr>
+                        <tr>
+                            <td>Sample Time</td>
+                            <td>10 min</td>
+                        </tr>
+                        <tr>
+                            <td>Wind Input Height</td>
+                            <td>10 meters</td>
+                        </tr>
+                        <tr>
+                            <td>Include Ground Shine</td>
+                            <td><strong>{{ _('Ativado (YES)') }}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Include Resuspension</td>
+                            <td>{{ _('Desativado (NO)') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Exposure Time</td>
+                            <td><strong>4.00 days</strong></td>
+                        </tr>
+                        <tr>
+                            <td>DCF Library</td>
+                            <td>FGR 11</td>
+                        </tr>
+                    </table>
+                    <div class="screenshot-box">
+                        <!-- Upload image to: dose2risk/api/static/tutorial/hotspot_step5_setup.png -->
+                        <img src="{{ url_for('main.static', filename='tutorial/hotspot_step5_setup.png') }}"
+                            alt="Setup Screen"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div style="display:none; text-align:center;">
+                            <i class="fas fa-image fa-3x mb-2"></i><br>
+                            <span>{{ _('Salve: static/tutorial/hotspot_step5_setup.png') }}</span>
+                        </div>
+                    </div>
+
+                    <h3>2. {{ _('Meteorologia e Distância') }}</h3>
+                    <div class="callout">
+                        <strong>{{ _('IMPORTANTE:') }}</strong> {{ _('Você deve rodar uma simulação separada para cada
+                        Classe de Estabilidade (A até F).') }}
+                    </div>
+                    <ul>
+                        <li><strong>Wind Speed:</strong> 3.0 m/s</li>
+                        <li><strong>Wind Direction:</strong> 195 deg</li>
+                        <li><strong>Stability Class:</strong> Comece com <strong>A</strong>, salve, mude para B, salve,
+                            etc.</li>
+                    </ul>
+
+                    <h3>3. {{ _('Salvar o Output') }}</h3>
+                    <ul>
+                        <li>{{ _('Vá para a aba <strong>Table Output</strong>.') }}</li>
+                        <li>{{ _('Clique em <strong>Save Table Output</strong> (ícone de disquete ou menu File).') }}
+                        </li>
+                        <li>{{ _('Use o padrão de nomeação:') }}</li>
+                    </ul>
+                    <div class="code-block">
+                        RDD_Cs137_1000Ci_ClasseA.txt
+                        RDD_Cs137_1000Ci_ClasseB.txt
+                        ...
+                        RDD_Cs137_1000Ci_ClasseF.txt
+                    </div>
+                    <div class="screenshot-box">
+                        <!-- Upload image to: dose2risk/api/static/tutorial/hotspot_step6_output.png -->
+                        <img src="{{ url_for('main.static', filename='tutorial/hotspot_step6_output.png') }}"
+                            alt="Save Output"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div style="display:none; text-align:center;">
+                            <i class="fas fa-image fa-3x mb-2"></i><br>
+                            <span>{{ _('Salve: static/tutorial/hotspot_step6_output.png') }}</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="text-center mt-5">
+                    <p class="lead">{{ _('Com os arquivos .txt gerados, você está pronto para usar o Dose2Risk.') }}</p>
+                    <a href="{{ url_for('main.tutorial') }}" class="btn btn-primary btn-lg">{{ _('Continuar para o
+                        Tutorial do Dose2Risk') }}</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
