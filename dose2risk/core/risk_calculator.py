@@ -10,7 +10,9 @@ import platform
 import getpass
 import sys
 from dose2risk.core.validator import validate_risk_parameters
+from dose2risk.core.validator import validate_risk_parameters
 from dose2risk.core.reporter import ValidationReporter
+
 
 class CalculadoraRisco:
     """
@@ -816,6 +818,21 @@ class CalculadoraRisco:
                 df_final = df_final[[c for c in cols if c in df_final.columns]]
 
                 df_final.to_csv(out_csv, sep=';', index=False, decimal='.', float_format='%.2e')
+                
+                # ---------------------------------------------------------------------
+                # GERAÇÃO DE GRÁFICOS (Vis)
+                # ---------------------------------------------------------------------
+                try:
+                    from dose2risk.vis.charts import RiskChartGenerator
+                    chart_gen = RiskChartGenerator(self.output_folder)
+                    chart_gen.generate_plots(df_final)
+                except Exception as chart_err:
+                    error_log = {
+                        "Event": "CHART_GENERATION_FAILURE",
+                        "Timestamp_ISO": datetime.now().isoformat(),
+                        "Error": str(chart_err)
+                    }
+                    logging.error(f"VIS_FAILURE: {json.dumps(error_log, ensure_ascii=False)}")
                 
                 # ---------------------------------------------------------------------
                 # FOOTER DE ENCERRAMENTO (Confirmação de Sucesso)

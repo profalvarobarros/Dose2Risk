@@ -186,17 +186,42 @@ class ExtratorHotspot:
                     j += 1
                 
                 # Extração de componentes específicos de dose (Inalação, Submersão, Solo)
-                for label, colname in [
-                    ('Inhalation', 'inhalation_plume_passage'),
-                    ('Submersion', 'submersion_plume_passage'),
-                    ('Ground Shine', 'ground_shine'),
-                ]:
-                    while j < len(lines) and label not in lines[j]:
-                        j += 1
-                    if j < len(lines):
-                        m2 = re.search(rf'{label}\s*:\s*([^\s]+)', lines[j])
-                        row[colname] = self.parse_number(m2.group(1)) if m2 else None
-                    j += 1
+                # O loop deve parar se encontrar o início de um novo bloco ou fim de arquivo
+                labels_to_find = {
+                    'Inhalation': 'inhalation_plume_passage',
+                    'Submersion': 'submersion_plume_passage',
+                    'Ground Shine': 'ground_shine'
+                }
+                
+                # Para evitar ler o arquivo todo, vamos procurar apenas ate encontrar --------- ou nova linha de dados
+                current_labels_found = []
+                
+                # Salva a posição atual para restaurar caso necessário (não estamos usando seek, mas indice j)
+                temp_j = j
+                
+                while temp_j < len(lines):
+                    line_content = lines[temp_j]
+                    
+                    # Se encontrarmos um separador de bloco ou inicio de nova distancia, paramos a busca de opcionais
+                    if '-------' in line_content or re.match(r'^\s*\d+,\d+', line_content):
+                        break
+                        
+                    for label, colname in labels_to_find.items():
+                        if label not in current_labels_found and label in line_content:
+                            m2 = re.search(rf'{label}\s*:\s*([^\s]+)', line_content)
+                            if m2:
+                                row[colname] = self.parse_number(m2.group(1))
+                                current_labels_found.append(label)
+                    
+                    temp_j += 1
+                
+                # Atualizando j para o ponto onde paramos ou onde encontramos o ultimo dado útil?
+                # Na verdade, o j deve avançar para temp_j, MAS, se temp_j parou em um novo bloco (match regex), 
+                # o loop principal (externo) vai incrementar i=j. 
+                # Se j apontar para a linha da nova distância, na proxima iteração do while externo:
+                # i = j. lines[i] será a linha da nova distancia.
+                # Então podemos fazer j = temp_j.
+                j = temp_j
                 
                 rows.append(row)
                 i = j

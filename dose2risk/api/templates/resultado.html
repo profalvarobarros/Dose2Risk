@@ -310,6 +310,32 @@
         {% endif %}
         {% endfor %}
 
+        <!-- BOTÃO DE VISUALIZAR GRÁFICOS (NOVO) -->
+        {% if imagens_graficos %}
+        <div class="result-section">
+            <div class="highlight-card" style="border-left-color: #10B981; cursor: pointer;" onclick="openGallery()">
+                <div class="card-content">
+                    <i class="fas fa-chart-line file-icon" style="color: #10B981;"></i>
+                    <div class="file-info">
+                        <h3>
+                            {{ _('Visualizar Gráficos') }}
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle tooltip-icon"></i>
+                                <span class="tooltip-text">{{ _('Navegue pelos gráficos de risco (ERR/LAR) gerados para
+                                    visualização rápida.') }}</span>
+                            </div>
+                        </h3>
+                        <p>{{ imagens_graficos|length }} {{ _('gráficos disponíveis') }}</p>
+                    </div>
+                </div>
+                <button class="download-btn-sm"
+                    style="background-color: #D1FAE5; color: #065F46; border: none; cursor: pointer;">
+                    <i class="fas fa-eye"></i> {{ _('Abrir Galeria') }}
+                </button>
+            </div>
+        </div>
+        {% endif %}
+
         <!-- 3. Acordeão: Outros Arquivos -->
         <div class="accordion">
             <button class="accordion-header" onclick="toggleAccordion('traceability-files')">
@@ -345,7 +371,221 @@
         </div>
     </div>
 
+
+
+    <!-- MODAL DA GALERIA -->
+    <div id="galleryModal" class="gallery-modal">
+        <span class="close-modal" onclick="closeGallery()">&times;</span>
+
+        <div class="gallery-content">
+            <div class="main-image-container">
+                <button class="nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</button>
+                <img id="galleryMainImage" src="" alt="Risk Chart">
+                <button class="nav-btn next-btn" onclick="changeImage(1)">&#10095;</button>
+            </div>
+
+            <div class="image-title" id="galleryImageTitle"></div>
+
+            <div class="thumbnails-container">
+                {% for img in imagens_graficos %}
+                <img src="{{ url_for('main.serve_chart_image', id_saida=id_saida, filename=img) }}" class="thumbnail"
+                    data-filename="{{ img }}" data-index="{{ loop.index0 }}"
+                    onclick="selectImage(this.dataset.filename, parseInt(this.dataset.index))" alt="{{ img }}">
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Estilos do Modal */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+
+        .gallery-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .main-image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 90%;
+            max-height: 70%;
+            position: relative;
+        }
+
+        #galleryMainImage {
+            max-width: 100%;
+            max-height: 70vh;
+            /* Altura máxima de 70% da tela */
+            object-fit: contain;
+            border-radius: 4px;
+            background-color: white;
+            /* Garante fundo branco para o PNG transparente se houver */
+        }
+
+        .nav-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+            user-select: none;
+            border-radius: 5px;
+            margin: 0 15px;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .image-title {
+            color: #ddd;
+            margin-top: 10px;
+            font-size: 1.1em;
+            font-family: monospace;
+        }
+
+        .thumbnails-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            overflow-x: auto;
+            max-width: 90%;
+            padding: 10px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #555 #222;
+        }
+
+        .thumbnails-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .thumbnails-container::-webkit-scrollbar-track {
+            background: #222;
+        }
+
+        .thumbnails-container::-webkit-scrollbar-thumb {
+            background-color: #555;
+            border-radius: 4px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            cursor: pointer;
+            border-radius: 4px;
+            opacity: 0.6;
+            transition: all 0.2s;
+        }
+
+        .thumbnail:hover {
+            opacity: 1;
+        }
+
+        .thumbnail.active {
+            border-color: #10B981;
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            color: #10B981;
+        }
+    </style>
+
+    <script id="chart-data" type="application/json">
+        {{ imagens_graficos | tojson }}
+    </script>
+
     <script>
+        // Dados das imagens injetados pelo Python
+        const chartImages = JSON.parse(document.getElementById('chart-data').textContent);
+        const idSaida = "{{ id_saida }}";
+        let currentIndex = 0;
+
+        function openGallery() {
+            if (chartImages.length === 0) return;
+            document.getElementById('galleryModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Bloqueia scroll da página
+            selectImage(chartImages[0], 0);
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Libera scroll
+        }
+
+        function changeImage(direction) {
+            let newIndex = currentIndex + direction;
+            if (newIndex < 0) newIndex = chartImages.length - 1;
+            if (newIndex >= chartImages.length) newIndex = 0;
+            selectImage(chartImages[newIndex], newIndex);
+        }
+
+        function selectImage(filename, index) {
+            currentIndex = index;
+            // Construir URL da imagem
+            const url = "{{ url_for('main.serve_chart_image', id_saida='PLACEHOLDER_ID', filename='PLACEHOLDER_FILE') }}"
+                .replace('PLACEHOLDER_ID', idSaida)
+                .replace('PLACEHOLDER_FILE', filename);
+
+            document.getElementById('galleryMainImage').src = url;
+            document.getElementById('galleryImageTitle').innerText = filename;
+
+            // Atualizar thumbnails
+            const thumbs = document.querySelectorAll('.thumbnail');
+            thumbs.forEach((t, i) => {
+                if (i === index) t.classList.add('active');
+                else t.classList.remove('active');
+
+                // Auto scroll para o thumbnail ativo se necessário
+                if (i === index) {
+                    t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            });
+        }
+
+        // Navegação por teclado
+        document.addEventListener('keydown', function (event) {
+            if (document.getElementById('galleryModal').style.display === 'block') {
+                if (event.key === 'ArrowLeft') changeImage(-1);
+                if (event.key === 'ArrowRight') changeImage(1);
+                if (event.key === 'Escape') closeGallery();
+            }
+        });
+
         function toggleAccordion(id) {
             const content = document.getElementById(id);
             const header = content.previousElementSibling; // Pega o botão header

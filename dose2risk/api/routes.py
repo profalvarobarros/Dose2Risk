@@ -221,7 +221,13 @@ def processar():
             flash(_('Nenhum arquivo de saída gerado.'))
             return redirect(url_for('main.index'))
             
-        return render_template('resultado.html', arquivos_saida=arquivos_saida, id_saida=id_saida, id_entrada=id_execucao)
+        # Listar gráficos gerados (se houver)
+        imagens_graficos = []
+        pasta_charts = os.path.join(pasta_saida, 'charts')
+        if os.path.exists(pasta_charts):
+            imagens_graficos = sorted([f for f in os.listdir(pasta_charts) if f.endswith('.png')])
+            
+        return render_template('resultado.html', arquivos_saida=arquivos_saida, id_saida=id_saida, id_entrada=id_execucao, imagens_graficos=imagens_graficos)
         
     except Exception as e:
         flash(_('Erro no processamento: %(error)s', error=str(e)))
@@ -260,11 +266,13 @@ def download_todos(id_saida):
         memory_file = io.BytesIO()
         with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zf:
             # Add Output Files
+            # Add Output Files (Recursive)
             for root, dirs, files in os.walk(pasta_saida):
                 for file in files:
-                    if file.endswith(('.csv', '.log', '.html')):
-                         abs_path = os.path.join(root, file)
-                         zf.write(abs_path, arcname=file)
+                    # Inclui tudo (csv, log, html, png, etc) e preserva estrutura de pastas
+                    abs_path = os.path.join(root, file)
+                    rel_path = os.path.relpath(abs_path, pasta_saida)
+                    zf.write(abs_path, arcname=rel_path)
             
             # Add Input Files
             if os.path.exists(pasta_entrada):
@@ -286,3 +294,13 @@ def download_todos(id_saida):
         flash(_('Erro ao gerar ZIP: %(error)s', error=str(e)))
         logging.error(f"Erro ao gerar ZIP: {e}")
         return redirect(url_for('main.index'))
+
+@main_bp.route('/resultados/<id_saida>/charts/<path:filename>')
+def serve_chart_image(id_saida, filename):
+    """Rota para servir as imagens dos gráficos"""
+    try:
+        pasta_saida = os.path.join(current_app.config['OUTPUT_FOLDER'], id_saida)
+        pasta_charts = os.path.join(pasta_saida, 'charts')
+        return send_from_directory(pasta_charts, filename)
+    except Exception as e:
+        return "Image not found", 404
